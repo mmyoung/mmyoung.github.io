@@ -28,8 +28,9 @@
 <meta property="og:description" content="This blog records two customized visualization tracks when using IGV genome browser.     Make customized genome file;    Heatmap with DNA methylation array data.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png">
+<meta property="og:image" content="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png">
 <meta property="article:published_time" content="2022-01-25T20:32:27.000Z">
-<meta property="article:modified_time" content="2022-01-27T22:39:27.405Z">
+<meta property="article:modified_time" content="2022-01-28T08:42:47.406Z">
 <meta property="article:author" content="Lin">
 <meta property="article:tag" content="IGV">
 <meta property="article:tag" content="genome browser">
@@ -216,7 +217,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-27 23:39:27" itemprop="dateModified" datetime="2022-01-27T23:39:27+01:00">2022-01-27</time>
+        <time title="Modified: 2022-01-28 09:42:47" itemprop="dateModified" datetime="2022-01-28T09:42:47+01:00">2022-01-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,14 +252,42 @@
 </ol>
 <img src="/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png" alt="IGV screenshot accessing to the igvtools" width="400" height="250">
 
-<ol start="3">
+<p><img src="/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png" alt="IGV screenshot accessing to the igvtools"></p>
+<ol>
 <li><strong>Create</strong> the <em>.genome</em> file<br> Through the <code>Genomes</code> panel in the main page of IGV to create visualizable genome file.<br> <code>Genomes</code> -&gt; <code>create .genome file</code></li>
 </ol>
 <h3 id="Proper-format-of-DNA-methylation-data"><a href="#Proper-format-of-DNA-methylation-data" class="headerlink" title="Proper format of DNA methylation data"></a>Proper format of DNA methylation data</h3><p>In order to visualize the DNA methylation data (like beta-value matrix obtained from TCGA) in heatmap format, we need proper files to load in IGV.</p>
 <p>Actually, IGV manual provides proper <a target="_blank" rel="noopener" href="https://software.broadinstitute.org/software/igv/custom_file_formats">instructions</a>, but I ran into problems in practice, since recording my experience here.</p>
-<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a><strong>Notes:</strong></h3><p>The file format need to be like this:<br>column | description<br>———|———-<br>chr | chromosome number (required)<br>start | start position (required)<br>end | end position (optional)<br>probe | description, like a DNA probe name (optional)<br>data | values to show, like beta-value of DNA methylation probe (required)</p>
-<p>And, very importantly, a special index instruction line need to be added in the first line in this file. The content of the line should be like:</p>
-<p><code>#columns chr=1 start=2 probe=4 data=5-9</code><br>In this line, you need to clarify the column index of the most important features, which is 1-based index.</p>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a><strong>Notes:</strong></h3><p>The file format need to be like this:</p>
+<table>
+<thead>
+<tr>
+<th>column</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>chr</td>
+<td>chromosome number (required)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>start position (required)</td>
+</tr>
+<tr>
+<td>end</td>
+<td>end position (optional)</td>
+</tr>
+<tr>
+<td>probe</td>
+<td>description, like a DNA probe name (optional)</td>
+</tr>
+<tr>
+<td>data</td>
+<td>values to show, like beta-value of DNA methylation probe (required)</td>
+</tr>
+</tbody></table>
+<p>And, very importantly, a special index instruction line need to be added in the first line in this file. The content of the line should be like:<br><code>#columns chr=1 start=2 probe=4 data=5-9</code><br>In this line, you need to clarify the column index of the most important features, which is 1-based index.</p>
 <p><em>Warning: pay attention to the blanks between columns, that might be the reason you can’t successfully load your data.</em></p>
 <p><strong>Coding tips for merging two files by a ID column with awk:</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F&quot;\t&quot; &#x27;ARGIND==1&#123;a[$1]=$0&#125; ARGIND==2 &amp;&amp; ($1 in a) &#123;print $0,&quot;\t&quot;,a[$1]&#125;&#x27;  file1 file2 </span><br><span class="line">#the ID column is the first in both files</span><br></pre></td></tr></table></figure>
