@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="This is about the basic steps of building your own website with only a github account as prerequisite.Start building your knowledgebase!!!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Build your personal website with github &amp; hexo">
+<meta property="og:url" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/index.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="This is about the basic steps of building your own website with only a github account as prerequisite.Start building your knowledgebase!!!">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
+<meta property="og:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
+<meta property="article:published_time" content="2022-12-22T06:52:13.000Z">
+<meta property="article:modified_time" content="2022-12-23T08:04:58.321Z">
+<meta property="article:author" content="Lin">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/","path":"2022/12/22/Build-your-personal-website-with-github-hexo/","title":"Build your personal website with github & hexo"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Build your personal website with github & hexo | Lin's blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-up-your-computer"><span class="nav-number">1.</span> <span class="nav-text">Set up your computer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Post-an-article-using-basic-commands"><span class="nav-number">2.</span> <span class="nav-text">Post an article using basic commands</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decorate-your-website"><span class="nav-number">3.</span> <span class="nav-text">Decorate your website</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lin's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Build your personal website with github & hexo
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-22 14:52:13" itemprop="dateCreated datePublished" datetime="2022-12-22T14:52:13+08:00">2022-12-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-12-23 16:04:58" itemprop="dateModified" datetime="2022-12-23T16:04:58+08:00">2022-12-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tool-usage/" itemprop="url" rel="index"><span itemprop="name">tool usage</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="text-align:center"><img src="/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png" width="500" height="350"></div>
+
+<p>This is about the basic steps of building your own website with only a github account as prerequisite.<br>Start building your knowledgebase!!!</p>
+<span id="more"></span>
+<hr>
+<h4 id="Set-up-your-computer"><a href="#Set-up-your-computer" class="headerlink" title="Set up your computer"></a>Set up your computer</h4><ul>
+<li><strong>Installation</strong></li>
+</ul>
+<ol>
+<li><a href="(https://nodejs.org/en/)">node.js and npm</a>: NodeJS is a cross-platform Javascript runtime environment; npm allows open-source web developers to share and borrow packages for app development.<br>(Here you can find more explaination of them: <a target="_blank" rel="noopener" href="https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac">https://radixweb.com/blog/installing-npm-and-nodejs-on-windows-and-mac</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/git-guides/install-git">git</a>: to manipulate the deployment on github.</li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/">hexo</a>: an easy and convenient blog workflow.<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">npm install hexo</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><strong>Sign up github account and create new repository</strong> <ol>
+<li>Go to <a target="_blank" rel="noopener" href="https://github.com/">https://github.com</a> to create a new account if you don’t have one, set a nice user name which will be part of your website address.</li>
+<li>Create a new repository named as username.github.io, where all the code for your website will be stored at.<br>(The address of your future website will be <a target="_blank" rel="noopener" href="http://username.github.io/">http://username.github.io</a>.)   </li>
+</ol>
+</li>
+<li><strong>Configure the computer</strong><ol>
+<li>Connect the device with github repository<br>In git bash terminal, execute following command:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cd</span> ~/.ssh  ## check the existed ssh key in your local computer if there is one</span><br></pre></td></tr></table></figure>
+Reminder <em>No such file or directory</em> means you haven’t used git before and you need to create the ssh key with the following command:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen -t rsa -C</span> &quot;your-email-address&quot;</span><br></pre></td></tr></table></figure>
+Then a file ~/.ssh/id_rsa.pub will be created and the ssh key is the cotent in it.<br>You just need to copy and paste all the content in that file into github, the connection will be done. This is where to paste in github:<br>Go to <strong>account setting -&gt; SSH and GPG keys -&gt; New SSH key</strong><img src="/2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
+*Note*: <font color="#F44336">Title</font> is the name you give to your connected device; <font color="#F44336">Key</font> area is where you paste the ssh key.
+Then, go to your local device, and run:
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh -T git</span>@github.com</span><br></pre></td></tr></table></figure>
+The message  `Hi username! You've successfully authenticated, but GitHub does not provide shell access.`  means you've done it successfully.
+Next, two more commands need to be run:
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git config --global user</span>.name &quot;user-name&quot; ## your github user name</span><br><span class="line"><span class="attribute">git config --global user</span>.email &quot;xxx@xx.com&quot; ## your github signed up email</span><br></pre></td></tr></table></figure>
+And this is finally done.</li>
+<li>Create a folder in your local computer<br>Create a folder in your computer where everything about the website will be stored at, as an example here: ~/blog</li>
+<li>Hexo initiation<br>Go into the folder you just created for your website (~/blog), and implement the initiating command:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo init</span></span><br></pre></td></tr></table></figure>
+Then some files and folder about hexo will be created.</li>
+<li>Set up the _config.yml file<br>To let your computer know it’s connected to the github, following settings must be done in file ~/blog/_config.yml:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line"><span class="attribute">type</span>: git</span><br><span class="line"><span class="attribute">repo</span>: git@github.com:user-name/user-name.github.io.git  ## substitue with your own user name</span><br><span class="line"><span class="attribute">branch</span>: master   </span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h4 id="Post-an-article-using-basic-commands"><a href="#Post-an-article-using-basic-commands" class="headerlink" title="Post an article using basic commands"></a>Post an article using basic commands</h4><ol>
+<li>Create a new article<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo new</span> &quot;new-post-name&quot;</span><br></pre></td></tr></table></figure>
+This command will create a new file new-post-name.md in folder ~/blog/source/_post, which is the content of your new post.</li>
+<li>Edit the article<br>Choose any Markdown editors you like to put your content in.<br>Some tricks to make your post looks more structured:<ul>
+<li>Using <code>&lt;!--more--&gt;</code> to only show the content before it in the home page</li>
+<li>Using html grammer to set the format of images:<code>&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;./sample.png&quot; width=500 height=350 /&gt;&lt;/div&gt;</code></li>
+<li>Change the color of certain sentence with <code>&lt;font size=5 color=&quot;#FF0000&quot;&gt;This is the example.&lt;/font&gt;</code></li>
+<li>Change the position of sentence with <code>&lt;center&gt;This is the example.&lt;/center&gt;</code></li>
+</ul>
+</li>
+<li>Upload the article<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo generate</span> (hexo g) ## Generate static files in public folder</span><br><span class="line"><span class="attribute">hexo server</span> (hexo s) ## To preview your new article at address: http://localhost:4000</span><br><span class="line"><span class="attribute">hexo deploy</span> (hexo d) ## To deploy your new article</span><br></pre></td></tr></table></figure>
+While, so far, you can already read your article in <a target="_blank" rel="noopener" href="http://user-name.github.io/">http://user-name.github.io</a></li>
+</ol>
+<h4 id="Decorate-your-website"><a href="#Decorate-your-website" class="headerlink" title="Decorate your website"></a>Decorate your website</h4><p><em>Not necessarily needed, but will make your website more personalized and pretty.</em></p>
+<ol>
+<li>Theme<br>Change the theme of your website to any kind in the repository: <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></li>
+<li>Add tags<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hexo new page tags</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/12/20/color-inspiration-resources/" rel="prev" title="Web resources to get color palette inspiration">
+                  <i class="fa fa-chevron-left"></i> Web resources to get color palette inspiration
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
