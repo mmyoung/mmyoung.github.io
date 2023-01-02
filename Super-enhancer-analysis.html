@@ -20,25 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="(source : https:&#x2F;&#x2F;doi.org&#x2F;10.1038&#x2F;s41698-020-0108-z)   This post explores the most widely used super-enhancer identification tool ROSE.And some errors I ran into in practice using ROSE.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://mmyoung.github.io/about/index.html">
+<meta property="og:title" content="Super enhancer analysis">
+<meta property="og:url" content="https://mmyoung.github.io/Super-enhancer-analysis.html">
 <meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="(source : https:&#x2F;&#x2F;doi.org&#x2F;10.1038&#x2F;s41698-020-0108-z)   This post explores the most widely used super-enhancer identification tool ROSE.And some errors I ran into in practice using ROSE.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-08T11:49:47.000Z">
-<meta property="article:modified_time" content="2021-11-08T04:58:05.368Z">
+<meta property="og:image" content="https://mmyoung.github.io/Super-enhancer-analysis.htm/super-enhancer.png">
+<meta property="article:published_time" content="2022-12-29T09:46:41.000Z">
+<meta property="article:modified_time" content="2023-01-02T11:38:51.291Z">
 <meta property="article:author" content="Lin">
+<meta property="article:tag" content="enahncer, ROSE">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/Super-enhancer-analysis.htm/super-enhancer.png">
 
 
-<link rel="canonical" href="https://mmyoung.github.io/about/">
+<link rel="canonical" href="https://mmyoung.github.io/Super-enhancer-analysis">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/about/index.html","path":"about/index.html","title":"about"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/Super-enhancer-analysis.html","path":"Super-enhancer-analysis.html","title":"Super enhancer analysis"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>about | Lin's blog
+<title>Super enhancer analysis | Lin's blog
 </title>
   
 
@@ -104,7 +109,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -117,6 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Errors-and-solutions"><span class="nav-number">1.</span> <span class="nav-text">Errors and solutions</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +184,7 @@
     
     <div class="post-block" lang="en"><header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">about
+<h1 class="post-title" itemprop="name headline">Super enhancer analysis
 </h1>
 
 <div class="post-meta-container">
@@ -188,14 +194,29 @@
 
       
       
-      <div class="post-body"><div class="tag-cloud">
-  <div class="tag-cloud-title">
-    9 tags in total
-  </div>
-  <div class="tag-cloud-tags">
-    <a href="/tags/Alzheimer-s-disease/" style="font-size: 12px;" class="tag-cloud-0">Alzheimer's disease</a> <a href="/tags/IGV/" style="font-size: 12px;" class="tag-cloud-0">IGV</a> <a href="/tags/awk/" style="font-size: 12px;" class="tag-cloud-0">awk</a> <a href="/tags/data-analysis/" style="font-size: 12px;" class="tag-cloud-0">data analysis</a> <a href="/tags/genome-browser/" style="font-size: 12px;" class="tag-cloud-0">genome browser</a> <a href="/tags/github/" style="font-size: 12px;" class="tag-cloud-0">github</a> <a href="/tags/hexo/" style="font-size: 12px;" class="tag-cloud-0">hexo</a> <a href="/tags/proteome-sequencing/" style="font-size: 12px;" class="tag-cloud-0">proteome sequencing</a> <a href="/tags/shell/" style="font-size: 12px;" class="tag-cloud-0">shell</a>
-  </div>
-</div>
+      <div class="post-body">
+          <center><img src="/Super-enhancer-analysis.htm/super-enhancer.png" width="500" height="250"></center>
+<center>(source : https://doi.org/10.1038/s41698-020-0108-z)</center>
+
+
+<p>This post explores the most widely used super-enhancer identification tool ROSE.<br>And some errors I ran into in practice using ROSE.</p>
+<span id="more"></span>
+<hr>
+<p>What does ROSE do?</p>
+<h5 id="Errors-and-solutions"><a href="#Errors-and-solutions" class="headerlink" title="Errors and solutions"></a>Errors and solutions</h5><ul>
+<li>Indentation in raw script<blockquote>
+<p>TabError: inconsistent use of tabs and spaces in indentation</p>
+</blockquote>
+</li>
+</ul>
+<p>This error arises from the inconsistent indentation usage in some scripts you downloaded due to different editors. Solved by simply change the minor inconsistency.    </p>
+<ul>
+<li>Python version<blockquote>
+<p>File “ROSE_main.py”, line 20, in &lt;module&gt;<br>  from string import upper,join<br>ImportError: cannot import name ‘upper’ from ‘string’</p>
+</blockquote>
+</li>
+</ul>
+<p>This error showed up when I ignored the version of python I used which is 3.7.12. For ROSE, python of version 2.7.3 is a prerequisite, or functions in the same module might be different in other versions.</p>
 
       </div>
       
