@@ -20,31 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="This blog records two customized visualization tracks when using IGV genome browser.     Make customized genome file;    Heatmap with DNA methylation array data.">
+<meta name="description" content="(source : https:&#x2F;&#x2F;doi.org&#x2F;10.1038&#x2F;s41698-020-0108-z)   This post explores the most widely used super-enhancer identification tool ROSE.And some errors I ran into in practice using ROSE.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IGV genome browser usage">
-<meta property="og:url" content="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/index.html">
+<meta property="og:title" content="Super enhancer analysis">
+<meta property="og:url" content="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/index.html">
 <meta property="og:site_name" content="Lin&#39;s blog">
-<meta property="og:description" content="This blog records two customized visualization tracks when using IGV genome browser.     Make customized genome file;    Heatmap with DNA methylation array data.">
+<meta property="og:description" content="(source : https:&#x2F;&#x2F;doi.org&#x2F;10.1038&#x2F;s41698-020-0108-z)   This post explores the most widely used super-enhancer identification tool ROSE.And some errors I ran into in practice using ROSE.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png">
-<meta property="article:published_time" content="2022-01-25T13:32:27.000Z">
-<meta property="article:modified_time" content="2022-01-28T12:58:37.260Z">
+<meta property="og:image" content="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/super-enhancer.png">
+<meta property="article:published_time" content="2022-12-29T09:46:41.000Z">
+<meta property="article:modified_time" content="2023-01-05T04:20:55.137Z">
 <meta property="article:author" content="Lin">
-<meta property="article:tag" content="IGV">
-<meta property="article:tag" content="genome browser">
+<meta property="article:tag" content="enahncer, ROSE">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png">
+<meta name="twitter:image" content="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/super-enhancer.png">
 
 
-<link rel="canonical" href="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/">
+<link rel="canonical" href="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/","path":"2022/01/25/IGV-genome-browser-usage/","title":"IGV genome browser usage"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/","path":"2022/12/29/Super-enhancer-analysis/","title":"Super enhancer analysis"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>IGV genome browser usage | Lin's blog</title>
+<title>Super enhancer analysis | Lin's blog</title>
   
 
 
@@ -109,7 +108,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -122,7 +121,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#IGV-genome-file-this-is-only-applicative-for-versions-older-than-2-11-9"><span class="nav-number">1.</span> <span class="nav-text">IGV genome file (this is only applicative for versions older than 2.11.9)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Procedures"><span class="nav-number">2.</span> <span class="nav-text">Procedures:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proper-format-of-DNA-methylation-data"><span class="nav-number"></span> <span class="nav-text">Proper format of DNA methylation data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notes"><span class="nav-number">1.</span> <span class="nav-text">Notes:</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -185,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IGV genome browser usage
+          Super enhancer analysis
         </h1>
 
         <div class="post-meta-container">
@@ -209,14 +207,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-01-25 21:32:27" itemprop="dateCreated datePublished" datetime="2022-01-25T21:32:27+08:00">2022-01-25</time>
+      <time title="Created: 2022-12-29 17:46:41" itemprop="dateCreated datePublished" datetime="2022-12-29T17:46:41+08:00">2022-12-29</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-28 20:58:37" itemprop="dateModified" datetime="2022-01-28T20:58:37+08:00">2022-01-28</time>
+        <time title="Modified: 2023-01-05 12:20:55" itemprop="dateModified" datetime="2023-01-05T12:20:55+08:00">2023-01-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,29 +236,51 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>This blog records two customized visualization tracks when using IGV genome browser.</p>
-<ul>
-<li>   Make customized genome file;</li>
-<li>   Heatmap with DNA methylation array data.<span id="more"></span></li>
-</ul>
-<hr>
-<h4 id="IGV-genome-file-this-is-only-applicative-for-versions-older-than-2-11-9"><a href="#IGV-genome-file-this-is-only-applicative-for-versions-older-than-2-11-9" class="headerlink" title="IGV genome file (this is only applicative for versions older than 2.11.9)"></a>IGV genome file (this is only applicative for versions older than 2.11.9)</h4><p>When the organism you are studying is not support by the default IGV genome server or you just want to keep using the exact same genome with your data analysis procedure, you can customized the genome file in IGV.</p>
-<h4 id="Procedures"><a href="#Procedures" class="headerlink" title="Procedures:"></a><strong>Procedures:</strong></h4><ol>
-<li><strong>Download</strong> the genomic files you plan to use, both the sequence (.fasta) file and annotation (.gtf) file.</li>
-<li><strong>Index</strong> your <em>.fasta</em> and <em>.gtf</em> files. As for <em>fasta</em> file, you can use either the igvtools embeded in the IGV software or samtools index to do this job; for <em>.gtf</em> file, you’d better first use the <em>sort</em> and then the <em>index</em> igvtools. (igvtools mentioned can be found on desktop version IGV in the following panel)</li>
-</ol>
-<img src="/2022/01/25/IGV-genome-browser-usage/igvtools-screenshot.png" alt="IGV screenshot accessing to the igvtools" width="500" height="350">
+        <center><img src="/2022/12/29/Super-enhancer-analysis/super-enhancer.png" width="500" height="250"></center>
+<center>(source : https://doi.org/10.1038/s41698-020-0108-z)</center>
 
-<ol start="3">
-<li><strong>Create</strong> the <em>.genome</em> file<br> Through the <code>Genomes</code> panel in the main page of IGV to create visualizable genome file.<br> <code>Genomes</code> -&gt; <code>create .genome file</code></li>
+
+<p>This post explores the most widely used super-enhancer identification tool ROSE.<br>And some errors I ran into in practice using ROSE.</p>
+<span id="more"></span>
+<hr>
+<p><strong>How does ROSE define super-enhancer?</strong></p>
+<ol>
+<li>Combine the enhancers together that occur within 12.5kb of each other into a single larger enhancer region.</li>
+<li>Rank all enhancers by increasing total background-subtracted occupancy of enhancer markers (eg. H3K27ac). Meanwhile, plot the occupancy of in units of total rmp/bp (reads per million per base pair) in each ranking order, where you can see a clear break point where the occupancy signal starts rising rapidly.</li>
+<li>To find the break point, x and y axis are scaled to 0-1, and the point in the curve with a slope of 1 is regarded as the break point. The enhancers above it are super-enhancers, below it are typical enhancers.</li>
 </ol>
-<h3 id="Proper-format-of-DNA-methylation-data"><a href="#Proper-format-of-DNA-methylation-data" class="headerlink" title="Proper format of DNA methylation data"></a>Proper format of DNA methylation data</h3><p>In order to visualize the DNA methylation data (like beta-value matrix obtained from TCGA) in heatmap format, we need proper files to load in IGV.</p>
-<p>Actually, IGV manual provides proper <a target="_blank" rel="noopener" href="https://software.broadinstitute.org/software/igv/custom_file_formats">instructions</a>, but I ran into problems in practice, since recording my experience here.</p>
-<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes:"></a><strong>Notes:</strong></h4><p>The file format need to be like this:<br>column | description<br>———|———-<br>chr | chromosome number (required)<br>start | start position (required)<br>end | end position (optional)<br>probe | description, like a DNA probe name (optional)<br>data | values to show, like beta-value of DNA methylation probe (required)</p>
-<p>And, very importantly, a special index instruction line need to be added in the first line in this file. The content of the line should be like:<br><code>#columns chr=1 start=2 probe=4 data=5-9</code><br>In this line, you need to clarify the column index of the most important features, which is 1-based index.</p>
-<p><em>Warning: pay attention to the blanks between columns, that might be the reason you can’t successfully load your data.</em></p>
-<p><strong>Coding tips for merging two files by a ID column with awk:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F&quot;\t&quot; &#x27;ARGIND==1&#123;a[$1]=$0&#125; ARGIND==2 &amp;&amp; ($1 in a) &#123;print $0,&quot;\t&quot;,a[$1]&#125;&#x27;  file1 file2 </span><br><span class="line">#the ID column is the first in both files</span><br></pre></td></tr></table></figure>
+<p><strong>How to use ROSE?</strong><br>Simply download the software package from its official website and unzip it, all the scripts needed are included in the folder. A proper software environment with the right version of several tools is also essential running it: python (2.7.x), R (&gt;2.15.3), samtools (&gt;0.1.18).</p>
+<p>Preparing input files:</p>
+<ol>
+<li><em>.gff</em> file of enhancer regions previously identified, <em>.gff</em> files must have following columns:<br>1: chromosome (chr#)<br>2: unique ID for each constituent enhancer region<br>4: start of constituent<br>5: end of constituent<br>7: strand (+,-,.)<br>9: unique ID for each constituent enhancer region</li>
+<li><em>.bam</em> files of sequencing reads for factor of interest and control (WCE/IgG recommended)</li>
+</ol>
+<p>Running:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python ROSE_main.py -g hg19 -i enhancer.gff -r H3K27ac.bam -o SE_results</span><br></pre></td></tr></table></figure>
+<p><strong>Errors and solutions</strong></p>
+<ul>
+<li>Indentation in raw script<blockquote>
+<p>TabError: inconsistent use of tabs and spaces in indentation</p>
+</blockquote>
+</li>
+</ul>
+<p>This error arises from the inconsistent indentation usage in some scripts you downloaded due to different editors. Solved by simply change the minor inconsistency.    </p>
+<ul>
+<li>Python version<blockquote>
+<p>File “ROSE_main.py”, line 20, in &lt;module&gt;<br>  from string import upper,join<br>ImportError: cannot import name ‘upper’ from ‘string’</p>
+</blockquote>
+</li>
+</ul>
+<p>This error showed up when I ignored the version of python I used which was 3.7.12. For ROSE, python of version 2.7.3 is a prerequisite, or functions in the same module might be different in other versions.</p>
+<ul>
+<li>Error in R graphic settings<blockquote>
+<p>Error in png(filename = plotFileName, height = 600, width = 600) :<br>X11 is not available<br>Execution halted</p>
+</blockquote>
+</li>
+</ul>
+<p>  This error rised from the script <em>ROSE_callSuper.R</em> .<br>  It was solved by reinstall the R in the conda environment.</p>
+<p>Official tool website:<br><a target="_blank" rel="noopener" href="http://younglab.wi.mit.edu/super_enhancer_code.html">http://younglab.wi.mit.edu/super_enhancer_code.html</a><br>References:<br><a target="_blank" rel="noopener" href="https://www.cell.com/fulltext/S0092-8674(13)00392-9">Master Transcription Factors and Mediator Establish Super-Enhancers at Key Cell Identity Genes</a><br><a target="_blank" rel="noopener" href="https://www.cell.com/fulltext/S0092-8674(13)00393-0">Selective Inhibition of Tumor Oncogenes by Disruption of Super-Enhancers</a></p>
+
     </div>
 
     
@@ -269,21 +289,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/IGV/" rel="tag"># IGV</a>
-              <a href="/tags/genome-browser/" rel="tag"># genome browser</a>
+              <a href="/tags/enahncer-ROSE/" rel="tag"># enahncer, ROSE</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/11/04/Proteomic-sequencing-in-Alzheimer-s-disease/" rel="prev" title="Proteomic sequencing in Alzheimer's disease">
-                  <i class="fa fa-chevron-left"></i> Proteomic sequencing in Alzheimer's disease
+                <a href="/2022/12/22/Build-your-personal-website-with-github-hexo/" rel="prev" title="Build your personal website with github & hexo">
+                  <i class="fa fa-chevron-left"></i> Build your personal website with github & hexo
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/12/20/color-inspiration-resources/" rel="next" title="Web resources to get color palette inspiration">
-                  Web resources to get color palette inspiration <i class="fa fa-chevron-right"></i>
+                <a href="/2022/12/29/awk-tricks-in-shell/" rel="next" title="awk tricks in shell">
+                  awk tricks in shell <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
