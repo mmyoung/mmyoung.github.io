@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="Lin&#39;s blog">
 <meta property="og:description" content="This is about the basic steps of building your own website with only a github account as prerequisite.Start building your knowledgebase!!!">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
-<meta property="og:image" content="https://2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
+<meta property="og:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
+<meta property="og:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
 <meta property="article:published_time" content="2022-12-22T06:52:13.000Z">
 <meta property="article:modified_time" content="2023-01-05T04:48:26.000Z">
 <meta property="article:author" content="Lin">
 <meta property="article:tag" content="github">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
+<meta name="twitter:image" content="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png">
 
 
 <link rel="canonical" href="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/">
@@ -239,7 +239,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <div style="text-align:center"><img src="//2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png" width="500" height="350"></div>
+        <div style="text-align:center"><img src="/2022/12/22/Build-your-personal-website-with-github-hexo/blogging.png" width="500" height="350"></div>
 
 <p>This is about the basic steps of building your own website with only a github account as prerequisite.<br>Start building your knowledgebase!!!</p>
 <span id="more"></span>
@@ -261,7 +261,7 @@
 <li><strong>Configure the computer</strong><ol>
 <li>Connect the device with github repository<br>In git bash terminal, execute following command:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cd</span> ~/.ssh  ## check the existed ssh key in your local computer if there is one</span><br></pre></td></tr></table></figure>
 Reminder <em>No such file or directory</em> means you haven’t used git before and you need to create the ssh key with the following command:<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh-keygen -t rsa -C</span> &quot;your-email-address&quot;</span><br></pre></td></tr></table></figure>
-Then a file ~/.ssh/id_rsa.pub will be created and the ssh key is the cotent in it.<br>You just need to copy and paste all the content in that file into github, the connection will be done. This is where to paste in github:<br>Go to <strong>account setting -&gt; SSH and GPG keys -&gt; New SSH key</strong><img src="//2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
+Then a file ~/.ssh/id_rsa.pub will be created and the ssh key is the cotent in it.<br>You just need to copy and paste all the content in that file into github, the connection will be done. This is where to paste in github:<br>Go to <strong>account setting -&gt; SSH and GPG keys -&gt; New SSH key</strong><img src="/2022/12/22/Build-your-personal-website-with-github-hexo/github_ssh_key.png">
 *Note*: <font color="#F44336">Title</font> is the name you give to your connected device; <font color="#F44336">Key</font> area is where you paste the ssh key.
 Then, go to your local device, and run:
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh -T git</span>@github.com</span><br></pre></td></tr></table></figure>
