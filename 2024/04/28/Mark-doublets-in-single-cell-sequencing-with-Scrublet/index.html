@@ -20,16 +20,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.  (source : https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;AWK)">
+<meta name="description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mark doublets in single-cell sequencing with Scrublet">
 <meta property="og:url" content="https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/index.html">
 <meta property="og:site_name" content="Lin&#39;s blog">
-<meta property="og:description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.  (source : https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;AWK)">
+<meta property="og:description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/Mark%20doublets%20in%20sc%20with%20Scrublet-1.png">
 <meta property="article:published_time" content="2024-04-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-06T04:47:17.962Z">
+<meta property="article:modified_time" content="2026-08-06T04:49:23.472Z">
 <meta property="article:author" content="Lin">
 <meta property="article:tag" content="single-cell">
 <meta property="article:tag" content="Scrublet">
@@ -217,7 +217,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2026-08-06 12:47:17" itemprop="dateModified" datetime="2026-08-06T12:47:17+08:00">2026-08-06</time>
+        <time title="Modified: 2026-08-06 12:49:23" itemprop="dateModified" datetime="2026-08-06T12:49:23+08:00">2026-08-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -241,7 +241,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.</p>
 <center><img src="/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/Mark doublets in sc with Scrublet-1.png" width="500" height="300"></center>
-<center>(source : https://en.wikipedia.org/wiki/AWK)</center>
+<center>
 
 
 <span id="more"></span>
@@ -277,7 +277,7 @@
 <h2 id="4-Threshold-setting"><a href="#4-Threshold-setting" class="headerlink" title="4. Threshold setting"></a>4. Threshold setting</h2><p>After computing doublet scores, a threshold <code>\theta</code> is chosen from the distribution of <code>\lambda(y_i)</code>. Observed transcriptomes with <code>\lambda(x_i) &gt; \theta</code> are predicted as doublets.</p>
 <h2 id="Take-home-message"><a href="#Take-home-message" class="headerlink" title="Take-home message"></a>Take-home message</h2><p>Scrublet is useful when you want a principled, data-driven way to identify doublets before downstream analysis. It is especially helpful when the single-cell library contains enough cells for simulation-based scoring.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. Cell Systems, 2019.</p>
-
+</center>
     </div>
 
     
