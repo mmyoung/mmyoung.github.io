@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="This page is a compact English guide to power, effect size, sample size, and Olink &#x2F; multi-omics study design. It is meant to be practical: short formulas, concrete examples, and pilot-study intuition">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Study Design">
+<meta property="og:url" content="https://mmyoung.github.io/study-design/index.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="This page is a compact English guide to power, effect size, sample size, and Olink &#x2F; multi-omics study design. It is meant to be practical: short formulas, concrete examples, and pilot-study intuition">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-06T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T04:20:34.135Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/study-design/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":"","permalink":"https://mmyoung.github.io/study-design/index.html","path":"study-design/index.html","title":"Study Design"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Study Design | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-study-design"><a href="/study-design/" rel="section"><i class="fa fa-flask fa-fw"></i>Study Design</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Core-idea"><span class="nav-number">1.</span> <span class="nav-text">1. Core idea</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Key-relationships"><span class="nav-number">2.</span> <span class="nav-text">2. Key relationships</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Sample-size-how-many-people-do-I-need"><span class="nav-number">3.</span> <span class="nav-text">3. Sample size: how many people do I need?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Power-do-I-have-enough-samples"><span class="nav-number">4.</span> <span class="nav-text">4. Power: do I have enough samples?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Effect-size-how-should-I-estimate-it"><span class="nav-number">5.</span> <span class="nav-text">5. Effect size: how should I estimate it?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-1-pilot-study"><span class="nav-number">5.1.</span> <span class="nav-text">Method 1: pilot study</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-2-literature"><span class="nav-number">5.2.</span> <span class="nav-text">Method 2: literature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method-3-biological-meaning"><span class="nav-number">5.3.</span> <span class="nav-text">Method 3: biological meaning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Olink-study-design-why-is-it-more-complicated"><span class="nav-number">6.</span> <span class="nav-text">6. Olink study design: why is it more complicated?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-CRP-example"><span class="nav-number">6.1.</span> <span class="nav-text">Simple CRP example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Quick-pilot-study-checklist"><span class="nav-number">7.</span> <span class="nav-text">7. Quick pilot-study checklist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Olink-note"><span class="nav-number">8.</span> <span class="nav-text">8. Olink note</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Study Design
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <p>This page is a compact English guide to <strong>power, effect size, sample size, and Olink / multi-omics study design</strong>. It is meant to be practical: short formulas, concrete examples, and pilot-study intuition.</p>
+
+<h2 id="1-Core-idea"><a href="#1-Core-idea" class="headerlink" title="1. Core idea"></a>1. Core idea</h2><p>In most planning problems, you fix three of the four inputs and solve for the fourth:</p>
+<ul>
+<li>effect size</li>
+<li>sample size</li>
+<li>alpha</li>
+<li>power</li>
+</ul>
+<h2 id="2-Key-relationships"><a href="#2-Key-relationships" class="headerlink" title="2. Key relationships"></a>2. Key relationships</h2><ul>
+<li>Larger effect size usually means fewer samples.</li>
+<li>Higher power usually means more samples.</li>
+<li>Smaller alpha usually means more samples.</li>
+<li>Higher variance usually means more samples.</li>
+<li>More dropout or QC failure means you should inflate the enrollment target.</li>
+</ul>
+<h2 id="3-Sample-size-how-many-people-do-I-need"><a href="#3-Sample-size-how-many-people-do-I-need" class="headerlink" title="3. Sample size: how many people do I need?"></a>3. Sample size: how many people do I need?</h2><p>A common planning setup is:</p>
+<ul>
+<li>alpha = 0.05</li>
+<li>power = 0.80</li>
+<li>effect size d = 0.5</li>
+</ul>
+<p>R code:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">library(pwr)</span><br><span class="line"></span><br><span class="line">pwr.t.test(</span><br><span class="line">  d = <span class="number">0.5</span>,</span><br><span class="line">  sig.level = <span class="number">0.05</span>,</span><br><span class="line">  power = <span class="number">0.8</span>,</span><br><span class="line">  type = <span class="string">&quot;two.sample&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Expected result:</p>
+<ul>
+<li><code>n ≈ 64 / group</code></li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li>This is the required analyzable sample size per group under the two-sample t-test model.</li>
+</ul>
+<h2 id="4-Power-do-I-have-enough-samples"><a href="#4-Power-do-I-have-enough-samples" class="headerlink" title="4. Power: do I have enough samples?"></a>4. Power: do I have enough samples?</h2><p>If the sample size is fixed, power tells you how likely the study is to detect the assumed effect.</p>
+<p>Example:</p>
+<ul>
+<li><code>n = 20 / group</code></li>
+<li><code>d = 0.5</code></li>
+<li><code>alpha = 0.05</code></li>
+</ul>
+<p>R code:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">library(pwr)</span><br><span class="line"></span><br><span class="line">pwr.t.test(</span><br><span class="line">  d = <span class="number">0.5</span>,</span><br><span class="line">  n = <span class="number">20</span>,</span><br><span class="line">  sig.level = <span class="number">0.05</span>,</span><br><span class="line">  type = <span class="string">&quot;two.sample&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Expected result:</p>
+<ul>
+<li><code>Power ≈ 0.34</code></li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li>Only about 34% probability of detecting a real difference with that design.</li>
+</ul>
+<h2 id="5-Effect-size-how-should-I-estimate-it"><a href="#5-Effect-size-how-should-I-estimate-it" class="headerlink" title="5. Effect size: how should I estimate it?"></a>5. Effect size: how should I estimate it?</h2><p>This is usually the most important step in study design.</p>
+<h3 id="Method-1-pilot-study"><a href="#Method-1-pilot-study" class="headerlink" title="Method 1: pilot study"></a>Method 1: pilot study</h3><p>The most recommended approach.</p>
+<p>Example pilot:</p>
+<ul>
+<li>Control: <code>10 ± 2</code></li>
+<li>Treatment: <code>12 ± 2</code></li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><code>d = (12 - 10) / 2 = 1.0</code></li>
+</ul>
+<p>This effect size can be used for the main study planning.</p>
+<h3 id="Method-2-literature"><a href="#Method-2-literature" class="headerlink" title="Method 2: literature"></a>Method 2: literature</h3><p>Use a similar published study.</p>
+<p>Example:</p>
+<ul>
+<li>Olink IL6</li>
+<li><code>log2FC ≈ 1</code></li>
+<li><code>SD ≈ 1.5</code></li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><code>d ≈ 1 / 1.5 = 0.67</code></li>
+</ul>
+<h3 id="Method-3-biological-meaning"><a href="#Method-3-biological-meaning" class="headerlink" title="Method 3: biological meaning"></a>Method 3: biological meaning</h3><p>Start from the smallest change that is scientifically meaningful, then combine it with historical variance.</p>
+<p>Practical note:</p>
+<ul>
+<li>A single pilot estimate is usually not enough.</li>
+<li>It is better to run optimistic, base, and conservative scenarios.</li>
+</ul>
+<h2 id="6-Olink-study-design-why-is-it-more-complicated"><a href="#6-Olink-study-design-why-is-it-more-complicated" class="headerlink" title="6. Olink study design: why is it more complicated?"></a>6. Olink study design: why is it more complicated?</h2><p>Olink is not just one protein. It often means 3000+ proteins, so sample size depends on more than a simple t-test.</p>
+<p>Important factors:</p>
+<ul>
+<li>multiple testing</li>
+<li>FDR</li>
+<li>assay variance</li>
+<li>missing values</li>
+<li>paired or unpaired design</li>
+<li>repeated measures</li>
+</ul>
+<p>For mixed models or multi-protein designs, simulation-based power analysis is often the most realistic approach.</p>
+<h3 id="Simple-CRP-example"><a href="#Simple-CRP-example" class="headerlink" title="Simple CRP example"></a>Simple CRP example</h3><p>Suppose:</p>
+<ul>
+<li>target protein: CRP</li>
+<li>expected difference: <code>0.5 NPX</code></li>
+<li>historical SD: <code>0.8 NPX</code></li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><code>d = 0.5 / 0.8 = 0.625</code></li>
+</ul>
+<p>R code:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">library(pwr)</span><br><span class="line"></span><br><span class="line">pwr.t.test(</span><br><span class="line">  d = <span class="number">0.625</span>,</span><br><span class="line">  power = <span class="number">0.8</span>,</span><br><span class="line">  sig.level = <span class="number">0.05</span>,</span><br><span class="line">  type = <span class="string">&quot;two.sample&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Expected result:</p>
+<ul>
+<li><code>n ≈ 42 / group</code></li>
+</ul>
+<p>Interpretation:</p>
+<ul>
+<li>This is a useful first-pass estimate for a single protein.</li>
+<li>Real Olink studies often need more samples after accounting for FDR and missingness.</li>
+</ul>
+<h2 id="7-Quick-pilot-study-checklist"><a href="#7-Quick-pilot-study-checklist" class="headerlink" title="7. Quick pilot-study checklist"></a>7. Quick pilot-study checklist</h2><ul>
+<li>Define the primary endpoint first.</li>
+<li>Choose the smallest meaningful effect.</li>
+<li>Estimate variance from pilot data or the closest available source.</li>
+<li>Set alpha, power, and sidedness before collecting data.</li>
+<li>Adjust for dropout, QC failure, and multiple testing.</li>
+<li>Use simulation when the design is too complex for a closed-form formula.</li>
+</ul>
+<h2 id="8-Olink-note"><a href="#8-Olink-note" class="headerlink" title="8. Olink note"></a>8. Olink note</h2><p>Olink NPX values are log2-scale relative abundance values, so effect sizes and variance should be interpreted on that scale.</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

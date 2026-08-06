@@ -82,6 +82,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-study-design"><a href="/study-design/" rel="section"><i class="fa fa-flask fa-fw"></i>Study Design</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
   </ul>
@@ -126,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -175,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2023/02/24/Fun-fact/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -188,7 +189,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/24/Fun-fact/" class="post-title-link" itemprop="url">International I Hate Coriander Day</a>
+          <a href="/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -198,10 +199,116 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-02-24 21:26:40 / Modified: 22:45:33" itemprop="dateCreated datePublished" datetime="2023-02-24T21:26:40+08:00">2023-02-24</time>
+      <time title="Created: 2024-04-28 10:24:44" itemprop="dateCreated datePublished" datetime="2024-04-28T10:24:44+08:00">2024-04-28</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2026-08-06 12:24:01" itemprop="dateModified" datetime="2026-08-06T12:24:01+08:00">2026-08-06</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p style="text-align:center; font-size:1.2rem"> <b> Mark doublet in single-cell sequencing data with Scrublet </b> </p>
+
+<p>This tool is defaultly used in AllCools workflow in snmC-seq data analysis. This article is to briefly describe the main steps and ideas used by this tool.</p>
+<h4 id="The-workflow-of-Scrublet"><a href="#The-workflow-of-Scrublet" class="headerlink" title="The workflow of Scrublet"></a>The workflow of Scrublet</h4><p>![ workflow ](./Mark doublets in sc with Scrublet-1.png)</p>
+<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ol>
+<li>Default preprocessing</li>
+</ol>
+<p> Starting with a background-filtered, UMI-based counts matrix for the observed cells, then perform normalization, gene filtering, and principal components analysis (PCA):</p>
+<p> a. Normalize each cell by its total counts, setting the post-normalization total to the average total of all cells. </p>
+<p> b. Identify highly variable genes.</p>
+<p> c. Z-score standardize the highly variable genes.</p>
+<p> d. Run PCA (unweighted). Store the eigenvectors for transformation of simulated doublets.</p>
+<ol start="2">
+<li>Doublet simulation</li>
+</ol>
+<p> Doublets are simulated by adding the unnormalized counts from ramdomly sampled observed transcriptomes. Doublets transcriptomes are then transformed into the same PCA space as the observed transcriptomes through the following steps:</p>
+<p> a. Normalize gene expression for each simulated doublet.</p>
+<p> b. Apply the gene filter from step b of “preprocessing”.</p>
+<p> c. Standardize the simulated data using the same gene means and standard deviations as measured in the observed transcriptomes.</p>
+<p> d. Apply the eigenvectors from step d of “preprocessing” to embed simulated doublets in the same PCA space as the observed transcriptomes.</p>
+<ol start="3">
+<li>KNN classifier</li>
+</ol>
+<p> KNN graph is built using Euclidean distance in the combined PCA embedding of the observed and simulated cells. Next, $\lambda(x_i)$ and $\lambda(y_i)$, the doublet scores for the observed transcriptomes $x_i$ and simulated doublets $y_i$, respectively, are calculated by finding the fraction of each transcriptome’s neighbour that are simulateed doublets and calculating the Bayesian Likelihood.</p>
+<ol start="4">
+<li><p>Setting the doublet score threshold</p>
+<p> After computing the doublet scores, a threshold $\theta$ is set based on the distribution of $\lambda(y_i)$, and observed transcriptomes with $\lambda(x_i)$ &gt; $\theta$ are predicted as doublets.</p>
+</li>
+</ol>
+<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p>Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. 2019. Cell Systems</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2023/02/25/Fun-fact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lin's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/25/Fun-fact/" class="post-title-link" itemprop="url">International I Hate Coriander Day</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-25 11:26:40" itemprop="dateCreated datePublished" datetime="2023-02-25T11:26:40+08:00">2023-02-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2023-02-24 22:45:34" itemprop="dateModified" datetime="2023-02-24T22:45:34+08:00">2023-02-24</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -227,7 +334,7 @@
 <p>February 24 is International I Hate Coriander Day.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/02/24/Fun-fact/#more" rel="contents">
+              <a class="btn" href="/2023/02/25/Fun-fact/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -258,7 +365,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2023/01/31/Connection-timed-out-ERROR-with-git-push/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2023/02/01/Connection-timed-out-ERROR-with-git-push/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -271,7 +378,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/01/31/Connection-timed-out-ERROR-with-git-push/" class="post-title-link" itemprop="url">Connection timed out ERROR with git push</a>
+          <a href="/2023/02/01/Connection-timed-out-ERROR-with-git-push/" class="post-title-link" itemprop="url">Connection timed out ERROR with git push</a>
         </h2>
 
         <div class="post-meta-container">
@@ -281,10 +388,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-01-31 10:15:45 / Modified: 14:00:51" itemprop="dateCreated datePublished" datetime="2023-01-31T10:15:45+08:00">2023-01-31</time>
+      <time title="Created: 2023-02-01 00:15:45" itemprop="dateCreated datePublished" datetime="2023-02-01T00:15:45+08:00">2023-02-01</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2023-01-31 14:00:52" itemprop="dateModified" datetime="2023-01-31T14:00:52+08:00">2023-01-31</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -314,7 +427,7 @@
 <p>One solution proved to be able to repair “connection timed out” ERROR  arising from <code>git push</code> command on windows system.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/01/31/Connection-timed-out-ERROR-with-git-push/#more" rel="contents">
+              <a class="btn" href="/2023/02/01/Connection-timed-out-ERROR-with-git-push/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -345,7 +458,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/29/awk-tricks-in-shell/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/30/awk-tricks-in-shell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -358,7 +471,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/29/awk-tricks-in-shell/" class="post-title-link" itemprop="url">awk tricks in shell</a>
+          <a href="/2022/12/30/awk-tricks-in-shell/" class="post-title-link" itemprop="url">awk tricks in shell</a>
         </h2>
 
         <div class="post-meta-container">
@@ -369,14 +482,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-12-29 17:47:16" itemprop="dateCreated datePublished" datetime="2022-12-29T17:47:16+08:00">2022-12-29</time>
+      <time title="Created: 2022-12-30 07:47:16" itemprop="dateCreated datePublished" datetime="2022-12-30T07:47:16+08:00">2022-12-30</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2023-01-02 22:21:25" itemprop="dateModified" datetime="2023-01-02T22:21:25+08:00">2023-01-02</time>
+        <time title="Modified: 2023-01-02 22:21:26" itemprop="dateModified" datetime="2023-01-02T22:21:26+08:00">2023-01-02</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -404,7 +517,7 @@
 <p>Introduce some important built-in functions in awk and useful tricks in data analysis.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/12/29/awk-tricks-in-shell/#more" rel="contents">
+              <a class="btn" href="/2022/12/30/awk-tricks-in-shell/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -435,7 +548,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/29/Super-enhancer-analysis/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/30/Super-enhancer-analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -448,7 +561,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/29/Super-enhancer-analysis/" class="post-title-link" itemprop="url">Super enhancer analysis</a>
+          <a href="/2022/12/30/Super-enhancer-analysis/" class="post-title-link" itemprop="url">Super enhancer analysis</a>
         </h2>
 
         <div class="post-meta-container">
@@ -459,14 +572,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-12-29 17:46:41" itemprop="dateCreated datePublished" datetime="2022-12-29T17:46:41+08:00">2022-12-29</time>
+      <time title="Created: 2022-12-30 07:46:41" itemprop="dateCreated datePublished" datetime="2022-12-30T07:46:41+08:00">2022-12-30</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2023-01-05 12:32:48" itemprop="dateModified" datetime="2023-01-05T12:32:48+08:00">2023-01-05</time>
+        <time title="Modified: 2023-01-05 12:32:50" itemprop="dateModified" datetime="2023-01-05T12:32:50+08:00">2023-01-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -495,7 +608,7 @@
 <p>This post explores the most widely used super-enhancer identification tool ROSE.<br>And some errors I ran into in practice using ROSE.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/12/29/Super-enhancer-analysis/#more" rel="contents">
+              <a class="btn" href="/2022/12/30/Super-enhancer-analysis/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -526,7 +639,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/22/Build-your-personal-website-with-github-hexo/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/23/Build-your-personal-website-with-github-hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -539,7 +652,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/22/Build-your-personal-website-with-github-hexo/" class="post-title-link" itemprop="url">Build your personal website with github & hexo</a>
+          <a href="/2022/12/23/Build-your-personal-website-with-github-hexo/" class="post-title-link" itemprop="url">Build your personal website with github & hexo</a>
         </h2>
 
         <div class="post-meta-container">
@@ -550,14 +663,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-12-22 14:52:13" itemprop="dateCreated datePublished" datetime="2022-12-22T14:52:13+08:00">2022-12-22</time>
+      <time title="Created: 2022-12-23 04:52:13" itemprop="dateCreated datePublished" datetime="2022-12-23T04:52:13+08:00">2022-12-23</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2023-01-05 12:48:24" itemprop="dateModified" datetime="2023-01-05T12:48:24+08:00">2023-01-05</time>
+        <time title="Modified: 2023-01-05 12:48:26" itemprop="dateModified" datetime="2023-01-05T12:48:26+08:00">2023-01-05</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -584,7 +697,7 @@
 <p>This is about the basic steps of building your own website with only a github account as prerequisite.<br>Start building your knowledgebase!!!</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/12/22/Build-your-personal-website-with-github-hexo/#more" rel="contents">
+              <a class="btn" href="/2022/12/23/Build-your-personal-website-with-github-hexo/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -615,7 +728,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/20/color-inspiration-resources/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/12/21/color-inspiration-resources/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -628,7 +741,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/20/color-inspiration-resources/" class="post-title-link" itemprop="url">Web resources to get color palette inspiration</a>
+          <a href="/2022/12/21/color-inspiration-resources/" class="post-title-link" itemprop="url">Web resources to get color palette inspiration</a>
         </h2>
 
         <div class="post-meta-container">
@@ -638,16 +751,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2022-12-20 21:12:36" itemprop="dateCreated datePublished" datetime="2022-12-20T21:12:36+08:00">2022-12-20</time>
+      <time title="Created: 2022-12-21 11:12:36 / Modified: 13:28:40" itemprop="dateCreated datePublished" datetime="2022-12-21T11:12:36+08:00">2022-12-21</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-12-21 13:28:39" itemprop="dateModified" datetime="2022-12-21T13:28:39+08:00">2022-12-21</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -673,7 +780,7 @@
 <p>When you struggle on the colors visualizing your results, always good to get some inspiration from color repository.These websites might be useful.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/12/20/color-inspiration-resources/#more" rel="contents">
+              <a class="btn" href="/2022/12/21/color-inspiration-resources/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -704,7 +811,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/01/25/IGV-genome-browser-usage/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2022/01/26/IGV-genome-browser-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -717,7 +824,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/25/IGV-genome-browser-usage/" class="post-title-link" itemprop="url">IGV genome browser usage</a>
+          <a href="/2022/01/26/IGV-genome-browser-usage/" class="post-title-link" itemprop="url">IGV genome browser usage</a>
         </h2>
 
         <div class="post-meta-container">
@@ -728,14 +835,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-01-25 21:32:27" itemprop="dateCreated datePublished" datetime="2022-01-25T21:32:27+08:00">2022-01-25</time>
+      <time title="Created: 2022-01-26 11:32:27" itemprop="dateCreated datePublished" datetime="2022-01-26T11:32:27+08:00">2022-01-26</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-28 20:58:37" itemprop="dateModified" datetime="2022-01-28T20:58:37+08:00">2022-01-28</time>
+        <time title="Modified: 2022-01-28 20:58:38" itemprop="dateModified" datetime="2022-01-28T20:58:38+08:00">2022-01-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -763,7 +870,7 @@
 <li>   Heatmap with DNA methylation array data.</li></ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/01/25/IGV-genome-browser-usage/#more" rel="contents">
+              <a class="btn" href="/2022/01/26/IGV-genome-browser-usage/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -794,7 +901,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2021/11/03/Proteomic-sequencing-in-Alzheimer-s-disease/">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2021/11/04/Proteomic-sequencing-in-Alzheimer-s-disease/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -807,7 +914,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/03/Proteomic-sequencing-in-Alzheimer-s-disease/" class="post-title-link" itemprop="url">Proteomic sequencing in Alzheimer's disease</a>
+          <a href="/2021/11/04/Proteomic-sequencing-in-Alzheimer-s-disease/" class="post-title-link" itemprop="url">Proteomic sequencing in Alzheimer's disease</a>
         </h2>
 
         <div class="post-meta-container">
@@ -818,14 +925,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-11-03 20:53:49" itemprop="dateCreated datePublished" datetime="2021-11-03T20:53:49+08:00">2021-11-03</time>
+      <time title="Created: 2021-11-04 09:53:49" itemprop="dateCreated datePublished" datetime="2021-11-04T09:53:49+08:00">2021-11-04</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-09 23:10:23" itemprop="dateModified" datetime="2022-01-09T23:10:23+08:00">2022-01-09</time>
+        <time title="Modified: 2022-01-09 23:10:24" itemprop="dateModified" datetime="2022-01-09T23:10:24+08:00">2022-01-09</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -854,7 +961,7 @@
           <p>This blog is a simple summary for the published proteomic sequencing data in Alzheimer’s disease. The sample number, brain region used for sequencing and specific methods are recorded for further reference.<br>This summary is based on the researches published untill the blog release date.</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/11/03/Proteomic-sequencing-in-Alzheimer-s-disease/#more" rel="contents">
+              <a class="btn" href="/2021/11/04/Proteomic-sequencing-in-Alzheimer-s-disease/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -887,7 +994,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
