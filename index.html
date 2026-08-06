@@ -137,7 +137,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -260,7 +260,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/" class="post-title-link" itemprop="url">Mark doublets in single-cell sequencing with Scrublet</a>
         </h2>
 
         <div class="post-meta-container">
@@ -271,15 +271,24 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-04-28 10:24:44" itemprop="dateCreated datePublished" datetime="2024-04-28T10:24:44+08:00">2024-04-28</time>
+      <time title="Created: 2024-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-28T00:00:00+08:00">2024-04-28</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2026-08-06 12:24:01" itemprop="dateModified" datetime="2026-08-06T12:24:01+08:00">2026-08-06</time>
+        <time title="Modified: 2026-08-06 12:35:33" itemprop="dateModified" datetime="2026-08-06T12:35:33+08:00">2026-08-06</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tool-usage/" itemprop="url" rel="index"><span itemprop="name">tool usage</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -291,37 +300,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p style="text-align:center; font-size:1.2rem"> <b> Mark doublet in single-cell sequencing data with Scrublet </b> </p>
-
-<p>This tool is defaultly used in AllCools workflow in snmC-seq data analysis. This article is to briefly describe the main steps and ideas used by this tool.</p>
-<h4 id="The-workflow-of-Scrublet"><a href="#The-workflow-of-Scrublet" class="headerlink" title="The workflow of Scrublet"></a>The workflow of Scrublet</h4><p>![ workflow ](./Mark doublets in sc with Scrublet-1.png)</p>
-<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ol>
-<li>Default preprocessing</li>
-</ol>
-<p> Starting with a background-filtered, UMI-based counts matrix for the observed cells, then perform normalization, gene filtering, and principal components analysis (PCA):</p>
-<p> a. Normalize each cell by its total counts, setting the post-normalization total to the average total of all cells. </p>
-<p> b. Identify highly variable genes.</p>
-<p> c. Z-score standardize the highly variable genes.</p>
-<p> d. Run PCA (unweighted). Store the eigenvectors for transformation of simulated doublets.</p>
-<ol start="2">
-<li>Doublet simulation</li>
-</ol>
-<p> Doublets are simulated by adding the unnormalized counts from ramdomly sampled observed transcriptomes. Doublets transcriptomes are then transformed into the same PCA space as the observed transcriptomes through the following steps:</p>
-<p> a. Normalize gene expression for each simulated doublet.</p>
-<p> b. Apply the gene filter from step b of “preprocessing”.</p>
-<p> c. Standardize the simulated data using the same gene means and standard deviations as measured in the observed transcriptomes.</p>
-<p> d. Apply the eigenvectors from step d of “preprocessing” to embed simulated doublets in the same PCA space as the observed transcriptomes.</p>
-<ol start="3">
-<li>KNN classifier</li>
-</ol>
-<p> KNN graph is built using Euclidean distance in the combined PCA embedding of the observed and simulated cells. Next, $\lambda(x_i)$ and $\lambda(y_i)$, the doublet scores for the observed transcriptomes $x_i$ and simulated doublets $y_i$, respectively, are calculated by finding the fraction of each transcriptome’s neighbour that are simulateed doublets and calculating the Bayesian Likelihood.</p>
-<ol start="4">
-<li><p>Setting the doublet score threshold</p>
-<p> After computing the doublet scores, a threshold $\theta$ is set based on the distribution of $\lambda(y_i)$, and observed transcriptomes with $\lambda(x_i)$ &gt; $\theta$ are predicted as doublets.</p>
-</li>
-</ol>
-<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p>Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. 2019. Cell Systems</p>
-
+          <p>Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.</p>
+<p>![Scrublet workflow](./Mark doublets in sc with Scrublet-1.png)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

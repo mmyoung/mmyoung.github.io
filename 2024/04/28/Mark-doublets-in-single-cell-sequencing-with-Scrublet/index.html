@@ -20,16 +20,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Mark doublet in single-cell sequencing data with Scrublet    This tool is defaultly used in AllCools workflow in snmC-seq data analysis. This article is to briefly describe the main steps and ideas">
+<meta name="description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis. ![Scrublet workflow](.&#x2F;Mark doublets in sc with S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:title" content="Mark doublets in single-cell sequencing with Scrublet">
 <meta property="og:url" content="https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/index.html">
 <meta property="og:site_name" content="Lin&#39;s blog">
-<meta property="og:description" content="Mark doublet in single-cell sequencing data with Scrublet    This tool is defaultly used in AllCools workflow in snmC-seq data analysis. This article is to briefly describe the main steps and ideas">
+<meta property="og:description" content="Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis. ![Scrublet workflow](.&#x2F;Mark doublets in sc with S">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-28T02:24:44.259Z">
-<meta property="article:modified_time" content="2026-08-06T04:24:01.866Z">
+<meta property="article:published_time" content="2024-04-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-06T04:35:33.503Z">
 <meta property="article:author" content="Lin">
+<meta property="article:tag" content="single-cell">
+<meta property="article:tag" content="Scrublet">
+<meta property="article:tag" content="doublet">
 <meta name="twitter:card" content="summary">
 
 
@@ -37,10 +40,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/","path":"2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/","path":"2024/04/28/Mark-doublets-in-single-cell-sequencing-with-Scrublet/","title":"Mark doublets in single-cell sequencing with Scrublet"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Lin's blog</title>
+<title>Mark doublets in single-cell sequencing with Scrublet | Lin's blog</title>
   
 
 
@@ -118,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-workflow-of-Scrublet"><span class="nav-number">1.</span> <span class="nav-text">The workflow of Scrublet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Steps"><span class="nav-number">2.</span> <span class="nav-text">Steps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Workflow"><span class="nav-number">1.</span> <span class="nav-text">Workflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Default-preprocessing"><span class="nav-number">2.</span> <span class="nav-text">1. Default preprocessing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Doublet-simulation"><span class="nav-number">3.</span> <span class="nav-text">2. Doublet simulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-KNN-classifier"><span class="nav-number">4.</span> <span class="nav-text">3. KNN classifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Threshold-setting"><span class="nav-number">5.</span> <span class="nav-text">4. Threshold setting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Take-home-message"><span class="nav-number">6.</span> <span class="nav-text">Take-home message</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -142,7 +145,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -194,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Mark doublets in single-cell sequencing with Scrublet
         </h1>
 
         <div class="post-meta-container">
@@ -205,15 +208,24 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-04-28 10:24:44" itemprop="dateCreated datePublished" datetime="2024-04-28T10:24:44+08:00">2024-04-28</time>
+      <time title="Created: 2024-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-28T00:00:00+08:00">2024-04-28</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2026-08-06 12:24:01" itemprop="dateModified" datetime="2026-08-06T12:24:01+08:00">2026-08-06</time>
+        <time title="Modified: 2026-08-06 12:35:33" itemprop="dateModified" datetime="2026-08-06T12:35:33+08:00">2026-08-06</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/tool-usage/" itemprop="url" rel="index"><span itemprop="name">tool usage</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -225,36 +237,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p style="text-align:center; font-size:1.2rem"> <b> Mark doublet in single-cell sequencing data with Scrublet </b> </p>
+        <p>Scrublet is a practical tool for flagging doublets in single-cell sequencing data. It is commonly used in the AllCools workflow for snmC-seq analysis.</p>
+<p>![Scrublet workflow](./Mark doublets in sc with Scrublet-1.png)</p>
+<span id="more"></span>
 
-<p>This tool is defaultly used in AllCools workflow in snmC-seq data analysis. This article is to briefly describe the main steps and ideas used by this tool.</p>
-<h4 id="The-workflow-of-Scrublet"><a href="#The-workflow-of-Scrublet" class="headerlink" title="The workflow of Scrublet"></a>The workflow of Scrublet</h4><p>![ workflow ](./Mark doublets in sc with Scrublet-1.png)</p>
-<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ol>
+<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>Scrublet follows four main steps:</p>
+<ol>
 <li>Default preprocessing</li>
-</ol>
-<p> Starting with a background-filtered, UMI-based counts matrix for the observed cells, then perform normalization, gene filtering, and principal components analysis (PCA):</p>
-<p> a. Normalize each cell by its total counts, setting the post-normalization total to the average total of all cells. </p>
-<p> b. Identify highly variable genes.</p>
-<p> c. Z-score standardize the highly variable genes.</p>
-<p> d. Run PCA (unweighted). Store the eigenvectors for transformation of simulated doublets.</p>
-<ol start="2">
 <li>Doublet simulation</li>
+<li>KNN classification</li>
+<li>Threshold setting</li>
 </ol>
-<p> Doublets are simulated by adding the unnormalized counts from ramdomly sampled observed transcriptomes. Doublets transcriptomes are then transformed into the same PCA space as the observed transcriptomes through the following steps:</p>
-<p> a. Normalize gene expression for each simulated doublet.</p>
-<p> b. Apply the gene filter from step b of “preprocessing”.</p>
-<p> c. Standardize the simulated data using the same gene means and standard deviations as measured in the observed transcriptomes.</p>
-<p> d. Apply the eigenvectors from step d of “preprocessing” to embed simulated doublets in the same PCA space as the observed transcriptomes.</p>
-<ol start="3">
-<li>KNN classifier</li>
+<h2 id="1-Default-preprocessing"><a href="#1-Default-preprocessing" class="headerlink" title="1. Default preprocessing"></a>1. Default preprocessing</h2><p>Start with a background-filtered, UMI-based count matrix for the observed cells, then perform normalization, gene filtering, and PCA:</p>
+<ol>
+<li>Normalize each cell by total counts, using the average total across cells as the target.</li>
+<li>Identify highly variable genes.</li>
+<li>Z-score standardize the highly variable genes.</li>
+<li>Run unweighted PCA and store the eigenvectors for simulated doublets.</li>
 </ol>
-<p> KNN graph is built using Euclidean distance in the combined PCA embedding of the observed and simulated cells. Next, $\lambda(x_i)$ and $\lambda(y_i)$, the doublet scores for the observed transcriptomes $x_i$ and simulated doublets $y_i$, respectively, are calculated by finding the fraction of each transcriptome’s neighbour that are simulateed doublets and calculating the Bayesian Likelihood.</p>
-<ol start="4">
-<li><p>Setting the doublet score threshold</p>
-<p> After computing the doublet scores, a threshold $\theta$ is set based on the distribution of $\lambda(y_i)$, and observed transcriptomes with $\lambda(x_i)$ &gt; $\theta$ are predicted as doublets.</p>
-</li>
+<h2 id="2-Doublet-simulation"><a href="#2-Doublet-simulation" class="headerlink" title="2. Doublet simulation"></a>2. Doublet simulation</h2><p>Doublets are simulated by adding unnormalized counts from randomly sampled observed transcriptomes. The simulated transcriptomes are then transformed into the same PCA space as the observed cells:</p>
+<ol>
+<li>Normalize gene expression for each simulated doublet.</li>
+<li>Apply the same gene filter used in preprocessing.</li>
+<li>Standardize the simulated data with the gene means and standard deviations from the observed transcriptomes.</li>
+<li>Apply the preprocessing eigenvectors to embed the simulated doublets in the same PCA space.</li>
 </ol>
-<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p>Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. 2019. Cell Systems</p>
+<h2 id="3-KNN-classifier"><a href="#3-KNN-classifier" class="headerlink" title="3. KNN classifier"></a>3. KNN classifier</h2><p>A KNN graph is built using Euclidean distance in the combined PCA embedding of observed cells and simulated doublets. Then the doublet scores are computed for both observed transcriptomes and simulated doublets.</p>
+<p>In notation:</p>
+<ul>
+<li><code>\lambda(x_i)</code> is the score for observed transcriptome <code>x_i</code></li>
+<li><code>\lambda(y_i)</code> is the score for simulated doublet <code>y_i</code></li>
+</ul>
+<p>These scores are based on the fraction of doublet neighbors and the Bayesian likelihood.</p>
+<h2 id="4-Threshold-setting"><a href="#4-Threshold-setting" class="headerlink" title="4. Threshold setting"></a>4. Threshold setting</h2><p>After computing doublet scores, a threshold <code>\theta</code> is chosen from the distribution of <code>\lambda(y_i)</code>. Observed transcriptomes with <code>\lambda(x_i) &gt; \theta</code> are predicted as doublets.</p>
+<h2 id="Take-home-message"><a href="#Take-home-message" class="headerlink" title="Take-home message"></a>Take-home message</h2><p>Scrublet is useful when you want a principled, data-driven way to identify doublets before downstream analysis. It is especially helpful when the single-cell library contains enough cells for simulation-based scoring.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. Cell Systems, 2019.</p>
 
     </div>
 
@@ -263,6 +280,11 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/single-cell/" rel="tag"># single-cell</a>
+              <a href="/tags/Scrublet/" rel="tag"># Scrublet</a>
+              <a href="/tags/doublet/" rel="tag"># doublet</a>
+          </div>
 
         
 
