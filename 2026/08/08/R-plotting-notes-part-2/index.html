@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="This second part groups the more advanced and presentation-style plots from the original Evernote note.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos">
+<meta property="og:url" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/index.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="This second part groups the more advanced and presentation-style plots from the original Evernote note.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/B6202176-E37B-48C4-98C7-226C4F15CBAE.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png">
+<meta property="article:published_time" content="2026-08-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-08T08:00:44.925Z">
+<meta property="article:author" content="Lin">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="ggplot2">
+<meta property="article:tag" content="circlize">
+<meta property="article:tag" content="visualization">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/","path":"2026/08/08/R-plotting-notes-part-2/","title":"R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos | Lin's blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-plot-archive"><a href="/categories/r-plot-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Plot Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Correlation-plots-and-Venn-diagrams"><span class="nav-number">1.</span> <span class="nav-text">1. Correlation plots and Venn diagrams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Annotating-a-regression-equation"><span class="nav-number">2.</span> <span class="nav-text">2. Annotating a regression equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Lollipop-plots"><span class="nav-number">3.</span> <span class="nav-text">3. Lollipop plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Odds-ratio-bar-plots"><span class="nav-number">4.</span> <span class="nav-text">4. Odds ratio bar plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Donut-plot"><span class="nav-number">5.</span> <span class="nav-text">5. Donut plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Facets-with-independent-axes"><span class="nav-number">6.</span> <span class="nav-text">6. Facets with independent axes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Stacked-bar-plots-with-custom-palettes"><span class="nav-number">7.</span> <span class="nav-text">7. Stacked bar plots with custom palettes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Circos-plot"><span class="nav-number">8.</span> <span class="nav-text">8. Circos plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Take-home-message"><span class="nav-number">9.</span> <span class="nav-text">Take-home message</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lin's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-08-08 00:00:00 / Modified: 16:00:44" itemprop="dateCreated datePublished" datetime="2026-08-08T00:00:00+08:00">2026-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/R-plot-archive/" itemprop="url" rel="index"><span itemprop="name">R plot archive</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>This second part groups the more advanced and presentation-style plots from the original Evernote note.</p>
+<span id="more"></span>
+
+<h2 id="1-Correlation-plots-and-Venn-diagrams"><a href="#1-Correlation-plots-and-Venn-diagrams" class="headerlink" title="1. Correlation plots and Venn diagrams"></a>1. Correlation plots and Venn diagrams</h2><p>The note starts with examples of correlation-focused visualization and then moves to a Venn diagram example.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cpairs(trtdata, trtdata.o, panel.colors = trtdata.col,</span><br><span class="line">       gap = <span class="number">0.3</span>, main = <span class="string">&#x27;Scatterplot Matrices for Soybean Traits by Correlation&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png" alt="Correlation matrix and Venn diagram"></p>
+<h2 id="2-Annotating-a-regression-equation"><a href="#2-Annotating-a-regression-equation" class="headerlink" title="2. Annotating a regression equation"></a>2. Annotating a regression equation</h2><p>One practical trick is to place a fitted equation directly on the figure.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">regression1 &lt;- c1b +</span><br><span class="line">  geom_text(aes(x = <span class="number">6</span>, y = <span class="number">360</span>, label = regeq1),</span><br><span class="line">            color = <span class="string">&#x27;black&#x27;</span>, size = <span class="number">5</span>, parse = <span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/B6202176-E37B-48C4-98C7-226C4F15CBAE.png" alt="Regression equation annotation"></p>
+<h2 id="3-Lollipop-plots"><a href="#3-Lollipop-plots" class="headerlink" title="3. Lollipop plots"></a>3. Lollipop plots</h2><p>A lollipop plot is a compact way to show proportions or ratios.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot(lollipop_data, aes(x = x, y = value)) +</span><br><span class="line">  geom_segment(aes(x = x, xend = x, y = <span class="number">0</span>, yend = value), color = <span class="string">&#x27;skyblue&#x27;</span>) +</span><br><span class="line">  geom_point(aes(color = variable), size = <span class="number">3</span>, alpha = <span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png" alt="Lollipop plot"></p>
+<h2 id="4-Odds-ratio-bar-plots"><a href="#4-Odds-ratio-bar-plots" class="headerlink" title="4. Odds ratio bar plots"></a>4. Odds ratio bar plots</h2><p>The note includes a standard odds-ratio bar plot and a cleaner version with values displayed inside the bars.</p>
+<p><img src="/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png" alt="Odds ratio bar plot"></p>
+<p><img src="/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png" alt="Improved odds ratio bar plot"></p>
+<h2 id="5-Donut-plot"><a href="#5-Donut-plot" class="headerlink" title="5. Donut plot"></a>5. Donut plot</h2><p>A donut plot can be built with <code>coord_polar()</code> after preparing cumulative proportions.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ggplot(data, aes(ymax = ymax, ymin = ymin, xmax = <span class="number">4</span>, xmin = <span class="number">3</span>, fill = category)) +</span><br><span class="line">  geom_rect() +</span><br><span class="line">  coord_polar(theta = <span class="string">&#x27;y&#x27;</span>) +</span><br><span class="line">  xlim(<span class="built_in">c</span>(<span class="number">2</span>, <span class="number">4</span>)) +</span><br><span class="line">  theme_void()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png" alt="Donut plot"></p>
+<h2 id="6-Facets-with-independent-axes"><a href="#6-Facets-with-independent-axes" class="headerlink" title="6. Facets with independent axes"></a>6. Facets with independent axes</h2><p>When <code>facet_grid()</code> is too restrictive, <code>ggforce::facet_row()</code> gives more freedom for per-panel scales.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p + ggforce::facet_row(vars(gene_group), scales = <span class="string">&#x27;free&#x27;</span>, space = <span class="string">&#x27;free&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png" alt="facet_row example"></p>
+<h2 id="7-Stacked-bar-plots-with-custom-palettes"><a href="#7-Stacked-bar-plots-with-custom-palettes" class="headerlink" title="7. Stacked bar plots with custom palettes"></a>7. Stacked bar plots with custom palettes</h2><p>The note ends with a useful helper for generating a multi-level color palette for stacked bars.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot(df, aes(color)) +</span><br><span class="line">  geom_bar(aes(fill = group), colour = <span class="string">&#x27;grey&#x27;</span>) +</span><br><span class="line">  scale_fill_manual(<span class="string">&#x27;Subject&#x27;</span>, values = colours, guide = <span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png" alt="Stacked bar plot with custom palette"></p>
+<h2 id="8-Circos-plot"><a href="#8-Circos-plot" class="headerlink" title="8. Circos plot"></a>8. Circos plot</h2><p>Finally, the note shows a practical <code>circlize</code> example for genomic tracks.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">circos.genomicTrackPlotRegion(bed_list, panel.fun = <span class="keyword">function</span>(region, value, ...) &#123;</span><br><span class="line">  circos.genomicLines(region, value, type = <span class="string">&#x27;l&#x27;</span>, col = col[i], ...)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png" alt="Circos plot"></p>
+<h2 id="Take-home-message"><a href="#Take-home-message" class="headerlink" title="Take-home message"></a>Take-home message</h2><p>This part is mostly about presentation. The core lesson is that a good plot is usually built in layers: start with the data structure, then add scale control, labels, color, and layout only after the main message is clear.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/R/" rel="tag"># R</a>
+              <a href="/tags/ggplot2/" rel="tag"># ggplot2</a>
+              <a href="/tags/circlize/" rel="tag"># circlize</a>
+              <a href="/tags/visualization/" rel="tag"># visualization</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/08/06/Study-Design-Power-Effect-Size-and-Sample-Size/" rel="prev" title="Study Design: Power, Effect Size, and Sample Size">
+                  <i class="fa fa-chevron-left"></i> Study Design: Power, Effect Size, and Sample Size
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/08/08/R-plotting-notes-part-1/" rel="next" title="R Plotting Notes I: Base Graphics, Volcano Plots, Heatmaps, and Boxplots">
+                  R Plotting Notes I: Base Graphics, Volcano Plots, Heatmaps, and Boxplots <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
