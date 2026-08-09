@@ -20,15 +20,25 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="This second part groups the more advanced and presentation-style plots from the original Evernote note.">
+<meta name="description" content="This second gallery collects the more advanced examples from the original note: correlation plots, genomic-style tracks, composite figures, and a small color reference shelf.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos">
+<meta property="og:title" content="R Plot Gallery II: Correlation, Genomic Tracks, Facets, Circos, and Color References">
 <meta property="og:url" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/index.html">
 <meta property="og:site_name" content="Lin&#39;s blog">
-<meta property="og:description" content="This second part groups the more advanced and presentation-style plots from the original Evernote note.">
+<meta property="og:description" content="This second gallery collects the more advanced examples from the original note: correlation plots, genomic-style tracks, composite figures, and a small color reference shelf.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/EA8B529A-D25D-4C66-B949-5FA4E1EB9988.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/04739DA0-0583-4CE6-8FD0-9FC934DFE5D9.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/E68B8419-7D49-4DBD-8DCE-094483872CF6.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png">
-<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/B6202176-E37B-48C4-98C7-226C4F15CBAE.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/519BB96E-F30E-4119-8FB6-59EA8E529294.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/32F7BB03-1E3F-4073-B1A7-CEA7D0CBB449.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/2BB53905-66C6-48C6-AB6C-EC4B2771E357.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/5C8B30F2-E3C6-4B74-9961-0186830A69B2.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/8DAFD102-C14F-48D2-8348-2FDEA2E47ACC.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/761D21DE-336D-40BF-8213-0EDD8B2E1DDB.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/BFADDD65-87F3-4A11-A66D-18011B1DBA68.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/D2A1E1CC-E91A-4EB0-82DC-29E6F8E17FFA.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png">
@@ -36,25 +46,35 @@
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png">
 <meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/D445F173-53E5-4525-8257-832035E3B300.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/BAB1F7B8-3D3D-45D8-8662-E0EA9DB85981.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/B78ED818-1B51-4813-9DDA-5AF02272DE3C.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/08D87F8D-A8D6-447F-8A83-B5170742C5F1.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/C98DB5D5-F351-498F-BE4C-06EC68AAB2D9.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F9FE4B87-152F-4761-8266-35A4D816A9DA.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/27A3B0CF-80BF-458C-BFF1-CC9B9983CE4E.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/6E8E3670-BAFB-48BB-B7D9-3DA5BA1E25FE.png">
+<meta property="og:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/F47B527F-8C5B-41F0-8EE3-882003AADD95.png">
 <meta property="article:published_time" content="2026-08-07T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-08T08:00:44.925Z">
+<meta property="article:modified_time" content="2026-08-09T12:36:48.882Z">
 <meta property="article:author" content="Lin">
 <meta property="article:tag" content="R">
 <meta property="article:tag" content="ggplot2">
 <meta property="article:tag" content="circlize">
 <meta property="article:tag" content="visualization">
+<meta property="article:tag" content="gallery">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png">
+<meta name="twitter:image" content="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/EA8B529A-D25D-4C66-B949-5FA4E1EB9988.png">
 
 
 <link rel="canonical" href="https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/","path":"2026/08/08/R-plotting-notes-part-2/","title":"R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/2026/08/08/R-plotting-notes-part-2/","path":"2026/08/08/R-plotting-notes-part-2/","title":"R Plot Gallery II: Correlation, Genomic Tracks, Facets, Circos, and Color References"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos | Lin's blog</title>
+<title>R Plot Gallery II: Correlation, Genomic Tracks, Facets, Circos, and Color References | Lin's blog</title>
   
 
 
@@ -100,7 +120,7 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
-        <li class="menu-item menu-item-r-plot-archive"><a href="/categories/r-plot-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Plot Archive</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
   </ul>
@@ -133,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Correlation-plots-and-Venn-diagrams"><span class="nav-number">1.</span> <span class="nav-text">1. Correlation plots and Venn diagrams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Annotating-a-regression-equation"><span class="nav-number">2.</span> <span class="nav-text">2. Annotating a regression equation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Lollipop-plots"><span class="nav-number">3.</span> <span class="nav-text">3. Lollipop plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Odds-ratio-bar-plots"><span class="nav-number">4.</span> <span class="nav-text">4. Odds ratio bar plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Donut-plot"><span class="nav-number">5.</span> <span class="nav-text">5. Donut plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Facets-with-independent-axes"><span class="nav-number">6.</span> <span class="nav-text">6. Facets with independent axes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Stacked-bar-plots-with-custom-palettes"><span class="nav-number">7.</span> <span class="nav-text">7. Stacked bar plots with custom palettes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Circos-plot"><span class="nav-number">8.</span> <span class="nav-text">8. Circos plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Take-home-message"><span class="nav-number">9.</span> <span class="nav-text">Take-home message</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Correlation-and-scatter-style-plots"><span class="nav-number">1.</span> <span class="nav-text">Correlation and scatter-style plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Peak-CNV-and-genomic-style-plots"><span class="nav-number">2.</span> <span class="nav-text">Peak, CNV, and genomic-style plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lollipop-odds-ratio-donut-and-facet-plots"><span class="nav-number">3.</span> <span class="nav-text">Lollipop, odds ratio, donut, and facet plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Circos-and-composite-figures"><span class="nav-number">4.</span> <span class="nav-text">Circos and composite figures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Color-reference-shelf"><span class="nav-number">5.</span> <span class="nav-text">Color reference shelf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gallery-note"><span class="nav-number">6.</span> <span class="nav-text">Gallery note</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -157,7 +177,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -209,7 +229,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          R Plotting Notes II: Correlation, Lollipop Plots, Odds Ratio Bars, Donuts, Facets, and Circos
+          R Plot Gallery II: Correlation, Genomic Tracks, Facets, Circos, and Color References
         </h1>
 
         <div class="post-meta-container">
@@ -219,10 +239,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-08-08 00:00:00 / Modified: 16:00:44" itemprop="dateCreated datePublished" datetime="2026-08-08T00:00:00+08:00">2026-08-08</time>
+      <time title="Created: 2026-08-08 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-08T00:00:00+08:00">2026-08-08</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2026-08-09 20:36:48" itemprop="dateModified" datetime="2026-08-09T20:36:48+08:00">2026-08-09</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -243,41 +269,55 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>This second part groups the more advanced and presentation-style plots from the original Evernote note.</p>
+        <p>This second gallery collects the more advanced examples from the original note: correlation plots, genomic-style tracks, composite figures, and a small color reference shelf.</p>
 <span id="more"></span>
 
-<h2 id="1-Correlation-plots-and-Venn-diagrams"><a href="#1-Correlation-plots-and-Venn-diagrams" class="headerlink" title="1. Correlation plots and Venn diagrams"></a>1. Correlation plots and Venn diagrams</h2><p>The note starts with examples of correlation-focused visualization and then moves to a Venn diagram example.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cpairs(trtdata, trtdata.o, panel.colors = trtdata.col,</span><br><span class="line">       gap = <span class="number">0.3</span>, main = <span class="string">&#x27;Scatterplot Matrices for Soybean Traits by Correlation&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Correlation-and-scatter-style-plots"><a href="#Correlation-and-scatter-style-plots" class="headerlink" title="Correlation and scatter-style plots"></a>Correlation and scatter-style plots</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ggplot(df, aes(x = miR_expr, y = gene_expr)) +</span><br><span class="line">  geom_point() +</span><br><span class="line">  stat_smooth(method = <span class="string">&quot;lm&quot;</span>) +</span><br><span class="line">  theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br><span class="line"></span><br><span class="line">ggplot(data, aes(x = gene, y = value, color = subtype)) +</span><br><span class="line">  geom_violin(width = <span class="number">1</span>, position = position_dodge(<span class="number">0.9</span>))</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png" alt="Correlation matrix and Venn diagram"></p>
-<h2 id="2-Annotating-a-regression-equation"><a href="#2-Annotating-a-regression-equation" class="headerlink" title="2. Annotating a regression equation"></a>2. Annotating a regression equation</h2><p>One practical trick is to place a fitted equation directly on the figure.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">regression1 &lt;- c1b +</span><br><span class="line">  geom_text(aes(x = <span class="number">6</span>, y = <span class="number">360</span>, label = regeq1),</span><br><span class="line">            color = <span class="string">&#x27;black&#x27;</span>, size = <span class="number">5</span>, parse = <span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/EA8B529A-D25D-4C66-B949-5FA4E1EB9988.png" width="720"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/04739DA0-0583-4CE6-8FD0-9FC934DFE5D9.png" width="720"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/E68B8419-7D49-4DBD-8DCE-094483872CF6.png" width="720"></center>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/B6202176-E37B-48C4-98C7-226C4F15CBAE.png" alt="Regression equation annotation"></p>
-<h2 id="3-Lollipop-plots"><a href="#3-Lollipop-plots" class="headerlink" title="3. Lollipop plots"></a>3. Lollipop plots</h2><p>A lollipop plot is a compact way to show proportions or ratios.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot(lollipop_data, aes(x = x, y = value)) +</span><br><span class="line">  geom_segment(aes(x = x, xend = x, y = <span class="number">0</span>, yend = value), color = <span class="string">&#x27;skyblue&#x27;</span>) +</span><br><span class="line">  geom_point(aes(color = variable), size = <span class="number">3</span>, alpha = <span class="number">0.8</span>)</span><br></pre></td></tr></table></figure>
+<p>The original note also includes a correlation-style plot with a custom legend layout and a shaded reference band.</p>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png" width="420"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/519BB96E-F30E-4119-8FB6-59EA8E529294.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/32F7BB03-1E3F-4073-B1A7-CEA7D0CBB449.png" width="760"></center>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png" alt="Lollipop plot"></p>
-<h2 id="4-Odds-ratio-bar-plots"><a href="#4-Odds-ratio-bar-plots" class="headerlink" title="4. Odds ratio bar plots"></a>4. Odds ratio bar plots</h2><p>The note includes a standard odds-ratio bar plot and a cleaner version with values displayed inside the bars.</p>
-<p><img src="/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png" alt="Odds ratio bar plot"></p>
-<p><img src="/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png" alt="Improved odds ratio bar plot"></p>
-<h2 id="5-Donut-plot"><a href="#5-Donut-plot" class="headerlink" title="5. Donut plot"></a>5. Donut plot</h2><p>A donut plot can be built with <code>coord_polar()</code> after preparing cumulative proportions.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ggplot(data, aes(ymax = ymax, ymin = ymin, xmax = <span class="number">4</span>, xmin = <span class="number">3</span>, fill = category)) +</span><br><span class="line">  geom_rect() +</span><br><span class="line">  coord_polar(theta = <span class="string">&#x27;y&#x27;</span>) +</span><br><span class="line">  xlim(<span class="built_in">c</span>(<span class="number">2</span>, <span class="number">4</span>)) +</span><br><span class="line">  theme_void()</span><br></pre></td></tr></table></figure>
+<h2 id="Peak-CNV-and-genomic-style-plots"><a href="#Peak-CNV-and-genomic-style-plots" class="headerlink" title="Peak, CNV, and genomic-style plots"></a>Peak, CNV, and genomic-style plots</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +</span><br><span class="line">  geom_point() +</span><br><span class="line">  stat_smooth(method = <span class="string">&quot;lm&quot;</span>) +</span><br><span class="line">  labs(y = <span class="string">&quot;CNV&quot;</span>, x = i, title = label) +</span><br><span class="line">  theme(plot.title = element_text(hjust = <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png" alt="Donut plot"></p>
-<h2 id="6-Facets-with-independent-axes"><a href="#6-Facets-with-independent-axes" class="headerlink" title="6. Facets with independent axes"></a>6. Facets with independent axes</h2><p>When <code>facet_grid()</code> is too restrictive, <code>ggforce::facet_row()</code> gives more freedom for per-panel scales.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p + ggforce::facet_row(vars(gene_group), scales = <span class="string">&#x27;free&#x27;</span>, space = <span class="string">&#x27;free&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/2BB53905-66C6-48C6-AB6C-EC4B2771E357.png" width="780"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/5C8B30F2-E3C6-4B74-9961-0186830A69B2.png" width="780"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/8DAFD102-C14F-48D2-8348-2FDEA2E47ACC.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/761D21DE-336D-40BF-8213-0EDD8B2E1DDB.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/BFADDD65-87F3-4A11-A66D-18011B1DBA68.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/D2A1E1CC-E91A-4EB0-82DC-29E6F8E17FFA.png" width="760"></center>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png" alt="facet_row example"></p>
-<h2 id="7-Stacked-bar-plots-with-custom-palettes"><a href="#7-Stacked-bar-plots-with-custom-palettes" class="headerlink" title="7. Stacked bar plots with custom palettes"></a>7. Stacked bar plots with custom palettes</h2><p>The note ends with a useful helper for generating a multi-level color palette for stacked bars.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot(df, aes(color)) +</span><br><span class="line">  geom_bar(aes(fill = group), colour = <span class="string">&#x27;grey&#x27;</span>) +</span><br><span class="line">  scale_fill_manual(<span class="string">&#x27;Subject&#x27;</span>, values = colours, guide = <span class="string">&#x27;none&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Lollipop-odds-ratio-donut-and-facet-plots"><a href="#Lollipop-odds-ratio-donut-and-facet-plots" class="headerlink" title="Lollipop, odds ratio, donut, and facet plots"></a>Lollipop, odds ratio, donut, and facet plots</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ggplot(lollipop_data, aes(x = x, y = value)) +</span><br><span class="line">  geom_segment(aes(x = x, xend = x, y = <span class="number">0</span>, yend = value), color = <span class="string">&quot;skyblue&quot;</span>) +</span><br><span class="line">  geom_point(aes(color = variable), size = <span class="number">3</span>, alpha = <span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">ggplot(barplot_data, aes(x = value - <span class="number">1</span>, y = sig.group, fill = variable)) +</span><br><span class="line">  geom_col(alpha = <span class="number">0.8</span>, position = <span class="string">&quot;dodge&quot;</span>)</span><br><span class="line"></span><br><span class="line">ggplot(data, aes(ymax = ymax, ymin = ymin, xmax = <span class="number">4</span>, xmin = <span class="number">3</span>, fill = category)) +</span><br><span class="line">  geom_rect() +</span><br><span class="line">  coord_polar(theta = <span class="string">&quot;y&quot;</span>) +</span><br><span class="line">  theme_void()</span><br><span class="line"></span><br><span class="line">p + ggforce::facet_row(vars(gene_group), scales = <span class="string">&quot;free&quot;</span>, space = <span class="string">&quot;free&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png" alt="Stacked bar plot with custom palette"></p>
-<h2 id="8-Circos-plot"><a href="#8-Circos-plot" class="headerlink" title="8. Circos plot"></a>8. Circos plot</h2><p>Finally, the note shows a practical <code>circlize</code> example for genomic tracks.</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">circos.genomicTrackPlotRegion(bed_list, panel.fun = <span class="keyword">function</span>(region, value, ...) &#123;</span><br><span class="line">  circos.genomicLines(region, value, type = <span class="string">&#x27;l&#x27;</span>, col = col[i], ...)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png" width="520"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png" width="860"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png" width="860"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png" width="620"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png" width="820"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png" width="820"></center>
 
-<p><img src="/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png" alt="Circos plot"></p>
-<h2 id="Take-home-message"><a href="#Take-home-message" class="headerlink" title="Take-home message"></a>Take-home message</h2><p>This part is mostly about presentation. The core lesson is that a good plot is usually built in layers: start with the data structure, then add scale control, labels, color, and layout only after the main message is clear.</p>
+<h2 id="Circos-and-composite-figures"><a href="#Circos-and-composite-figures" class="headerlink" title="Circos and composite figures"></a>Circos and composite figures</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">circos.genomicTrackPlotRegion(bed_list, panel.fun = <span class="keyword">function</span>(region, value, ...) &#123;</span><br><span class="line">  circos.genomicLines(region, value, type = <span class="string">&quot;l&quot;</span>, col = col[i], ...)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">library(cowplot)</span><br><span class="line">ggdraw() +</span><br><span class="line">  draw_plot(p4, x = <span class="number">0</span>, y = <span class="number">0</span>, width = <span class="number">.9</span>, height = <span class="number">.25</span>) +</span><br><span class="line">  draw_plot(p1, x = <span class="number">0</span>, y = <span class="number">.25</span>, width = <span class="number">1</span>, height = <span class="number">.25</span>) +</span><br><span class="line">  draw_plot(p2, x = <span class="number">0</span>, y = <span class="number">.5</span>, width = <span class="number">1</span>, height = <span class="number">.25</span>) +</span><br><span class="line">  draw_plot(p3, x = <span class="number">0</span>, y = <span class="number">.75</span>, width = <span class="number">1</span>, height = <span class="number">.25</span>)</span><br></pre></td></tr></table></figure>
+
+<center><img src="/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/D445F173-53E5-4525-8257-832035E3B300.png" width="760"></center>
+
+<h2 id="Color-reference-shelf"><a href="#Color-reference-shelf" class="headerlink" title="Color reference shelf"></a>Color reference shelf</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library(<span class="string">&quot;scales&quot;</span>)</span><br><span class="line">show_col(mypal)</span><br><span class="line"></span><br><span class="line">mycolors &lt;- brewer.pal(<span class="number">9</span>, <span class="string">&quot;YlGnBu&quot;</span>)</span><br><span class="line">rev(colorRampPalette(brewer.pal(<span class="number">10</span>, <span class="string">&quot;RdBu&quot;</span>))(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+
+<center><img src="/2026/08/08/R-plotting-notes-part-2/BAB1F7B8-3D3D-45D8-8662-E0EA9DB85981.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/B78ED818-1B51-4813-9DDA-5AF02272DE3C.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/08D87F8D-A8D6-447F-8A83-B5170742C5F1.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/C98DB5D5-F351-498F-BE4C-06EC68AAB2D9.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/F9FE4B87-152F-4761-8266-35A4D816A9DA.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/27A3B0CF-80BF-458C-BFF1-CC9B9983CE4E.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/6E8E3670-BAFB-48BB-B7D9-3DA5BA1E25FE.png" width="760"></center>
+<center><img src="/2026/08/08/R-plotting-notes-part-2/F47B527F-8C5B-41F0-8EE3-882003AADD95.png" width="760"></center>
+
+<h2 id="Gallery-note"><a href="#Gallery-note" class="headerlink" title="Gallery note"></a>Gallery note</h2><p>The goal here is not to explain every parameter, but to keep the reusable figure ideas in one place: correlation plots, peak and CNV tracks, lollipops, odds ratios, donuts, facet layouts, circos plots, and color references.</p>
 
     </div>
 
@@ -291,20 +331,18 @@
               <a href="/tags/ggplot2/" rel="tag"># ggplot2</a>
               <a href="/tags/circlize/" rel="tag"># circlize</a>
               <a href="/tags/visualization/" rel="tag"># visualization</a>
+              <a href="/tags/gallery/" rel="tag"># gallery</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2026/08/06/Study-Design-Power-Effect-Size-and-Sample-Size/" rel="prev" title="Study Design: Power, Effect Size, and Sample Size">
-                  <i class="fa fa-chevron-left"></i> Study Design: Power, Effect Size, and Sample Size
+                <a href="/2026/08/08/R-plotting-notes-part-1/" rel="prev" title="R Plot Gallery I: Volcano, Heatmap, and Boxplot">
+                  <i class="fa fa-chevron-left"></i> R Plot Gallery I: Volcano, Heatmap, and Boxplot
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/08/08/R-plotting-notes-part-1/" rel="next" title="R Plotting Notes I: Base Graphics, Volcano Plots, Heatmaps, and Boxplots">
-                  R Plotting Notes I: Base Graphics, Volcano Plots, Heatmaps, and Boxplots <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
