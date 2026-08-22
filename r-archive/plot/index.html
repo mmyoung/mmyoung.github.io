@@ -127,7 +127,7 @@
       document.title = `${plot.title} | R Archive`;
       title.textContent = plot.title;
       meta.textContent = `Figure ${plot.id} · code below`;
-      image.src = plot.image;
+      image.src = `../assets/${plot.image.split('/').pop()}`;
       image.alt = plot.alt;
       heading.textContent = plot.title;
       subtitle.textContent = plot.subtitle || '';

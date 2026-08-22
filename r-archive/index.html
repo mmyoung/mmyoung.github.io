@@ -87,7 +87,7 @@
       link.setAttribute('aria-label', `Open ${plot.title}`);
 
       const img = document.createElement('img');
-      img.src = plot.image;
+      img.src = `assets/${plot.image.split('/').pop()}`;
       img.alt = plot.alt || plot.title;
       img.loading = 'lazy';
 
