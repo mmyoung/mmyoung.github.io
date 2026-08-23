@@ -1,0 +1,97 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Advanced, add a second y axis" />
+  <title>Advanced, add a second y axis | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Advanced, add a second y axis</h1>
+      <p class="subtitle">Advanced, add a second y axis</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 07</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png" alt="Advanced, add a second y axis cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png" alt="Screenshot 2024-12-05 at 10.40.01 AM.png" loading="lazy" /><figcaption>Screenshot 2024-12-05 at 10.40.01 AM.png</figcaption></figure>
+<pre><code class="language-bash">## to add the histone mark distribution into the dotplot
+mark_distribution &lt;-
+data.frame(pos=unlist(epi_tss_distri[c(1,3,5,7,9,11,13,15,17,19)]),
+value=unlist(epi_tss_distri[c(2,4,6,8,10,12,14,16,18,20)]),
+histone_mark=rep(c(&#39;ATAC&#39;,&#39;H3K4me2&#39;,&#39;H3K4me3&#39;,&#39;H3K9me2&#39;,&#39;H3K27me3&#39;,&#39;H3K9ac&#39;,&#39;H3K27ac&#39;,&#39;H3K36me3&#39;,&#39;H3K36ac&#39;,&#39;DNAmethy&#39;),each=2501))
+
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Filter the dataframe based on specified conditions
+
+scale_factor=max(ratio_df$odd_ratio)/max(mark_distribution$value)/5
+
+(ratio_df %&gt;%
+filter(C_group == &quot;C4&quot;, n_c4_peaks &gt; 40) %&gt;%
+
+# Create the ggplot
+ggplot(aes(x = median, y = odd_ratio)) +
+
+# Add points with colors based on &#39;tf_color&#39;
+geom_point(aes(color = tf_color)) +
+
+# Add a line using data from &#39;mark_distribution&#39; with proper scaling for the secondary axis
+geom_line(data = mark_distribution, aes(x = pos, y = value * scale_factor), color = &quot;darkgrey&quot;) +
+
+# Create separate plots for each &#39;histone_mark&#39; with free y-axis scaling
+facet_wrap(. ~ histone_mark, scales = &quot;free_y&quot;) +
+
+# Customize the color scheme manually
+scale_color_manual(values = c(&quot;group1&quot; = &quot;#f28482&quot;,
+&quot;group2&quot; = &quot;#f6bd60&quot;,
+&quot;group3&quot; = &quot;#84a59d&quot;)) +
+
+# Apply minimal theme for a clean look
+theme_minimal() +
+
+# Add text labels with custom positioning
+geom_text(aes(x = -Inf, y = Inf, label = both_stats),
+data = summ, hjust = -0.1, vjust = 1.1, size = 3) +
+
+# Set the x-axis label
+scale_x_continuous(name = &quot;Distance to CDS Start&quot;,limits = c(-1000,500)) +
+
+# Customize the y-axis with dual scaling
+scale_y_continuous(
+
+# Primary y-axis label
+name = &quot;Proportion of DAPpeak Overlap with Markers/BG&quot;,
+
+# Secondary y-axis with custom scaling and label
+sec.axis = sec_axis(~ ./scale_factor,
+name = &quot;Epi-mark Peak Frequency&quot;)
+) +
+
+# Customize the strip text size in facet_wrap
+theme(strip.text = element_text(size = 12))) %&gt;%
+ggsave(filename=&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/multiDAPseq_explore/analysis/tf_tss_distance_vs_enrichment_dotplot_with_epimark.pdf&quot;,width=12,height = 8)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

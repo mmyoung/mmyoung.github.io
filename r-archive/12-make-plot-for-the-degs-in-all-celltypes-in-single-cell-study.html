@@ -1,0 +1,46 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Make plot for the DEGs in all celltypes in single-cell study" />
+  <title>Make plot for the DEGs in all celltypes in single-cell study | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Make plot for the DEGs in all celltypes in single-cell study</h1>
+      <p class="subtitle">Make plot for the DEGs in all celltypes in single-cell study</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 12</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Upset%20plot/image.png" alt="Make plot for the DEGs in all celltypes in single-cell study cover" loading="lazy" /></figure>
+      <article class="content"><h3>Make plot for the DEGs in all celltypes in single-cell study</h3>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Upset%20plot/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
+<pre><code class="language-r">library(ComplexHeatmap)
+## plot for foldchange of 0.3
+m = make_comb_mat(DEG_ls)
+options(repr.plot.width = 18, repr.plot.height = 5, repr.plot.res = 300)
+## only plot the sets that have more than 10 elements
+UpSet(m[set_size(m)&gt;10],comb_order = order(comb_size(m[set_size(m)&gt;10]),decreasing = TRUE))</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

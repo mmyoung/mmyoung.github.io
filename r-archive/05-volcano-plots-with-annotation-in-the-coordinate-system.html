@@ -1,0 +1,74 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Volcano plots with annotation in the coordinate system" />
+  <title>Volcano plots with annotation in the coordinate system | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Volcano plots with annotation in the coordinate system</h1>
+      <p class="subtitle">Volcano plots with annotation in the coordinate system</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 05</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Volcano plots with annotation in the coordinate system cover" loading="lazy" /></figure>
+      <article class="content"><h3>Volcano plots with annotation in the coordinate system, example is based on edgeR results</h3>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Screenshot 2024-05-24 at 10.26.38 PM.png" loading="lazy" /><figcaption>Screenshot 2024-05-24 at 10.26.38 PM.png</figcaption></figure>
+<pre><code class="language-r">edger_volcanoplot&lt;- 
+function(edger_res,title){
+  p &lt;-
+    ggplot(data=edger_res$table, aes(x=logFC, y =-log10(PValue)))+
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&gt;0.05 | abs(edger_res$table$logFC)&lt;1),color=&quot;#828C8C&quot;)+    
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &gt; 1),color=&quot;#bb3e03&quot;) +
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &lt; (-1)),color=&quot;#004fff&quot;) +
+     geom_hline(yintercept = -log10(0.05),lty=4,lwd=0.6,alpha=0.8)+
+     geom_vline(xintercept = c(-1,1),lty=4,lwd=0.6,alpha=0.8)+
+     theme_bw()+
+     theme(panel.border = element_blank(),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           axis.line = element_line(colour = &#39;black&#39;),
+           axis.title.x = element_text(size = 12),
+           axis.title.y = element_text(size = 12)     )+
+     labs(x=&#39;log2FC&#39;,y=&#39;-log10 (Pvalue)&#39;,title=title)+
+     theme(legend.position=&#39;none&#39;)
+  up_gene_num &lt;- 
+    sum(edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &gt; 1)
+  down_gene_num &lt;- 
+    sum(edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &lt; (-1))
+  
+  p &lt;- 
+  p+annotate(&quot;text&quot;,x=layer_scales(p)$x$range$range[2]*0.8,y=layer_scales(p)$y$range$range[2]*0.8,label=paste0(&quot;up: &quot;,up_gene_num))+
+    annotate(&quot;text&quot;,x=layer_scales(p)$x$range$range[1]*0.8,y=layer_scales(p)$y$range$range[2]*0.8,label=paste0(&quot;down: &quot;,down_gene_num))+
+    theme(plot.title = element_text(hjust = 0.5,vjust = 0.5))
+  
+    ggsave(filename=paste0(title,&quot;.pdf&quot;),p,
+           width = 4,height = 5)
+}
+
+edger_volcanoplot(et13,title = &quot;M3 vs M1&quot;)</code></pre>
+<h3>facet with different groups and add p values in each plot</h3>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,75 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="03-complexheatmap-tf-target 1" />
+  <title>03-complexheatmap-tf-target 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>03-complexheatmap-tf-target 1</h1>
+      <p class="subtitle">03-complexheatmap-tf-target 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 03</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png" alt="03-complexheatmap-tf-target 1 cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png" alt="Screenshot 2024-11-05 at 3.24.30 PM.png" loading="lazy" /><figcaption>Screenshot 2024-11-05 at 3.24.30 PM.png</figcaption></figure>
+<pre><code class="language-r">library(data.table)
+library(org.At.tair.db)
+library(clusterProfiler)
+library(tidyverse)
+library(ComplexHeatmap)
+
+for(cell_type in c(&quot;mesophyll&quot;, &quot;mature-endodermis&quot;, &quot;lignified-endodermis&quot;, &quot;mature-xylem&quot;, &quot;suberized-endodermis&quot;)) {
+  TF_target_df &lt;- read.csv(
+    paste0(&quot;/Volumes/project/gzy8899/references/multiDAPseq_from_Sharon/&quot;, cell_type, &quot;_enriched_tfs.target_gene_lists.csv&quot;),
+    header = TRUE
+  )
+  TF_target_df$tf_name &lt;- ifelse((TF_target_df$tf_name == &quot;&quot;) | is.na(TF_target_df$tf_name), TF_target_df$tf, TF_target_df$tf_name)
+  TF_target_df$alias &lt;- ifelse(is.na(TF_target_df$alias) | (TF_target_df$alias == &quot;&quot;), TF_target_df$gene, TF_target_df$alias)
+
+  mat_plot &lt;- reshape2::dcast(TF_target_df, alias ~ tf, value.var = &quot;avg_log2FC&quot;) %&gt;%
+    column_to_rownames(var = &quot;alias&quot;)
+  mat_plot[is.na(mat_plot)] &lt;- 0
+  mat_plot &lt;- mat_plot[apply(mat_plot, 1, sum) &gt; 5, ]
+
+  h = Heatmap(
+    mat_plot,
+    name = &quot;IsTarget&quot;,
+    cluster_rows = TRUE,
+    cluster_columns = TRUE,
+    row_km = 6,
+    column_km = 7,
+    row_names_gp = gpar(fontsize = 8),
+    column_names_gp = gpar(fontsize = 8)
+  )
+  draw(h)
+}
+</code></pre>
+<div class="actions">
+  <a class="button" href="./">Back to archive</a>
+  <a class="button" href="/">Back to home</a>
+</div>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

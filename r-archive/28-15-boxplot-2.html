@@ -1,0 +1,55 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="15-boxplot 2" />
+  <title>15-boxplot 2 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>15-boxplot 2</h1>
+      <p class="subtitle">15-boxplot 2</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 28</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_barplot_vital_gene.png" alt="15-boxplot 2 cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_barplot_vital_gene.png" alt="merge_barplot_vital_gene.png" loading="lazy" /><figcaption>merge_barplot_vital_gene.png</figcaption></figure>
+<pre><code class="language-r">p &lt;-
+ggplot(PRC_expr,aes(x=gene,y=value,fill=subtype))+
+  geom_violin(width=1,position = position_dodge(0.9)) +
+           geom_boxplot(width=0.2, color=&quot;grey&quot;, alpha=0.4,position = position_dodge(0.9))+
+           #facet_grid(.~gene_group,scales = &quot;free&quot;,space = &quot;free&quot;)+
+           scale_fill_manual(values = list(&quot;ACIMP&quot;=&quot;#E41A1C&quot;,&quot;ICIMP&quot;=&quot;#377EB8&quot;,&quot;negCIMP&quot;=&quot;#4DAF4A&quot;))+
+           scale_y_continuous(name = &quot;log2(RSEM + 1)&quot;)+
+           theme_bw()+
+           theme(legend.position = &quot;top&quot;,
+                 panel.grid.minor = element_blank(),
+                 panel.grid.major = element_blank(),
+                 axis.title = element_text(size=12,color=&quot;black&quot;),
+                 axis.text.y = element_text(size=9,color = &quot;black&quot;),
+                 axis.text.x = element_text(size = 9,colour = &quot;black&quot;,
+                                            vjust = 0.5,hjust = 0.5))
+p + ggforce::facet_row(vars(gene_group), scales = &#39;free&#39;, space = &#39;free&#39;)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

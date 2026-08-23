@@ -1,0 +1,48 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="iso_soc_DEG_bed_for_pygenometrack.bed" />
+  <title>iso_soc_DEG_bed_for_pygenometrack.bed | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>iso_soc_DEG_bed_for_pygenometrack.bed</h1>
+      <p class="subtitle">iso_soc_DEG_bed_for_pygenometrack.bed</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 18</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="iso_soc_DEG_bed_for_pygenometrack.bed cover" loading="lazy" /></figure>
+      <article class="content"><p><a href="Genometracks/iso_soc_DEG_bed_for_pygenometrack.bed" target="_blank" rel="noreferrer">iso_soc_DEG_bed_for_pygenometrack.bed</a></p>
+<pre><code class="language-powershell">#!/bin/bash
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig
+awk -F &quot;\t&quot; &#39;BEGIN{OFS=&quot;\t&quot;}{print $8,$9,$10,$7,$6,$11,$2}&#39; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/isoVSsoc_DEG_total_list.txt|sed &quot;1d&quot; |sed s/\\//&quot;&quot;/g|sed s/&quot; &quot;/&quot;&quot;/g &gt;iso_soc_DEG_bed_for_pygenometrack.bed
+
+while read chr start end gene celltype strand fc ;do
+    pyGenomeTracks --tracks ./iso_soc_DEG_normalized_track_plot/${celltype}_track.ini --region $chr:$start-$(($end+1)) -o ./iso_soc_DEG_normalized_track_plot/plots/${celltype}_${gene}.png --title ${celltype}&quot; isoVSsoc logFC: &quot;${fc}
+done &lt; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/iso_soc_DEG_bed_for_pygenometrack.bed</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Screenshot 2026-08-22 at 9.01.42 PM.png" loading="lazy" /><figcaption>Screenshot 2026-08-22 at 9.01.42 PM.png</figcaption></figure>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

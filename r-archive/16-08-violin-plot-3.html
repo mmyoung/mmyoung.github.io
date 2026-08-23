@@ -1,0 +1,48 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="08-violin-plot 3" />
+  <title>08-violin-plot 3 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>08-violin-plot 3</h1>
+      <p class="subtitle">08-violin-plot 3</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 16</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-24_at_11.52.27_AM.png" alt="08-violin-plot 3 cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-24_at_11.52.27_AM.png" alt="Screenshot 2024-10-24 at 11.52.27 AM.png" loading="lazy" /><figcaption>Screenshot 2024-10-24 at 11.52.27 AM.png</figcaption></figure>
+<pre><code class="language-r">## make plot for those genes in all celltypes
+pdf(file = &quot;./Vlnplot_for_overlapping_DEGs_in_all_celltypes.pdf&quot;,width=8,height=4,onefile=TRUE)
+for(i in seq_len(nrow(gene_for_plot))){
+    p &lt;- make_vlnplot(genes=gene_for_plot[i,&quot;V1&quot;],
+                 celltype=names(pseudo_de),
+            label_df=subset(isoVSsoc_DEG_ls,gene==gene_for_plot[i,&quot;V1&quot;]))
+    print(p)
+}
+dev.off()</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="To plot the DEG number in each celltype between conditions and the celltype number" />
+  <title>To plot the DEG number in each celltype between conditions and the celltype number | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>To plot the DEG number in each celltype between conditions and the celltype number</h1>
+      <p class="subtitle">To plot the DEG number in each celltype between conditions and the celltype number</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 08</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/image.png" alt="To plot the DEG number in each celltype between conditions and the celltype number cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
+<pre><code class="language-r">options(repr.plot.width = 10, repr.plot.height = 4, repr.plot.res = 300)
+seu_obj_recluster@meta.data %&gt;%
+  group_by(celltype,sampleID) %&gt;%
+  count() %&gt;%
+  group_by(sampleID) %&gt;%
+  mutate(percent=100*n/sum(n)) %&gt;%
+  ungroup() %&gt;%
+  mutate(celltype_color=case_when(celltype == &quot;Sst-Inh&quot; ~ &quot;#C8C8C8&quot;, 
+                                        celltype == &quot;L5 IT&quot; ~ &quot;#FDDCFF&quot;,
+                                        celltype == &quot;L5 ET&quot; ~ &quot;#B28D9A&quot;,
+                                        celltype == &quot;L4 IT&quot; ~ &quot;#C77963&quot;,
+                                        celltype == &quot;CGE-Inh&quot; ~ &quot;#CEFF00&quot;,
+                                        celltype == &quot;L2/3 IT&quot; ~ &quot;#D9F0A3&quot;,
+                                        celltype == &quot;L6 CT&quot; ~ &quot;#0094C2&quot;,
+                                        celltype == &quot;ASC&quot; ~ &quot;#00B7FF&quot;,
+                                        celltype == &quot;Pvalb-Inh&quot; ~ &quot;#0640FF&quot;,
+                                        celltype == &quot;Micro&quot; ~ &quot;#21F4CC&quot;,
+                                        celltype == &quot;ODC&quot; ~ &quot;#0DFF00&quot;,
+                                        celltype == &quot;BG&quot; ~ &quot;#ADBF00&quot;
+                                       ))%&gt;%
+  ggplot(aes(x=sampleID,y=percent, fill=celltype_color)) +
+  geom_col() +
+  scale_fill_identity(guide = &quot;legend&quot;, labels = unique(seu_obj_recluster@meta.data$celltype)) +
+  ggtitle(&quot;Percentage of cell types per sample&quot;) +
+  theme_minimal() +
+  labs(x = &quot;Sample ID&quot;, y = &quot;Percentage&quot;, fill = &quot;Cell Type&quot;)</code></pre>
+<h3>To plot the DEG number in each celltype between conditions and the celltype number</h3>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

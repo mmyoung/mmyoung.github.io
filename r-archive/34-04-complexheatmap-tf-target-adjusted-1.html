@@ -1,0 +1,84 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="04-complexheatmap-tf-target-adjusted 1" />
+  <title>04-complexheatmap-tf-target-adjusted 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>04-complexheatmap-tf-target-adjusted 1</h1>
+      <p class="subtitle">04-complexheatmap-tf-target-adjusted 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 34</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png" alt="04-complexheatmap-tf-target-adjusted 1 cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png" alt="Screenshot 2024-11-05 at 3.25.54 PM.png" loading="lazy" /><figcaption>Screenshot 2024-11-05 at 3.25.54 PM.png</figcaption></figure>
+<pre><code class="language-r">cell_type &lt;- &quot;mesophyll&quot;
+TF_target_df &lt;- read.csv(
+  paste0(&quot;/Volumes/project/gzy8899/references/multiDAPseq_from_Sharon/&quot;, cell_type, &quot;_enriched_tfs.target_gene_lists.csv&quot;),
+  header = TRUE
+)
+TF_target_df$tf_name &lt;- ifelse((TF_target_df$tf_name == &quot;&quot;) | is.na(TF_target_df$tf_name), TF_target_df$tf, TF_target_df$tf_name)
+TF_target_df$alias &lt;- ifelse(is.na(TF_target_df$alias) | (TF_target_df$alias == &quot;&quot;), TF_target_df$gene, TF_target_df$alias)
+
+mat_plot &lt;- reshape2::dcast(TF_target_df, gene ~ tf, value.var = &quot;avg_log2FC&quot;) %&gt;%
+  column_to_rownames(var = &quot;gene&quot;)
+mat_plot[is.na(mat_plot)] &lt;- 0
+
+set.seed(0034)
+h = Heatmap(
+  mat_plot,
+  name = &quot;IsTarget&quot;,
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  row_km = 6,
+  column_km = 7,
+  row_names_gp = gpar(fontsize = 8),
+  column_names_gp = gpar(fontsize = 8)
+)
+draw_h = draw(h)
+rcl.list = row_order(draw_h)
+
+GO_ls &lt;- lapply(rcl.list, function(x) {
+  enrichGO(row.names(mat_plot)[x], OrgDb = org.At.tair.db, keyType = &quot;TAIR&quot;, ont = &quot;ALL&quot;)@result
+})
+
+text_box &lt;- do.call(rbind, lapply(GO_ls, function(x) {
+  x[x$pvalue &lt; 0.05, c(&quot;Description&quot;, &quot;geneID&quot;)]
+})) %&gt;%
+  separate_rows(geneID) %&gt;%
+  pivot_wider(names_from = &quot;Description&quot;, values_from = &quot;Description&quot;, values_fill = 0, values_fn = function(x) 1) %&gt;%
+  column_to_rownames(var = &quot;geneID&quot;)
+
+h1 = Heatmap(mat_plot[unlist(rcl.list), ], name = &quot;avg_log2FC&quot;)
+h2 = Heatmap(text_box[rownames(mat_plot), ], show_row_names = FALSE, show_heatmap_legend = FALSE)
+h1 + h2
+</code></pre>
+<div class="actions">
+  <a class="button" href="./">Back to archive</a>
+  <a class="button" href="/">Back to home</a>
+</div>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

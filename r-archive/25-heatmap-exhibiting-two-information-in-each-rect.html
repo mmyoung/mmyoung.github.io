@@ -1,0 +1,64 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Heatmap exhibiting two information in each rect" />
+  <title>Heatmap exhibiting two information in each rect | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Heatmap exhibiting two information in each rect</h1>
+      <p class="subtitle">Heatmap exhibiting two information in each rect</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 25</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/112B7E69-1FE1-4960-9441-44A159A7306B.png" alt="Heatmap exhibiting two information in each rect cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/112B7E69-1FE1-4960-9441-44A159A7306B.png" alt="112B7E69-1FE1-4960-9441-44A159A7306B.png" loading="lazy" /><figcaption>112B7E69-1FE1-4960-9441-44A159A7306B.png</figcaption></figure>
+<p>Heamap labeling p-value and corr coefficient in each rect</p>
+<pre><code class="language-r">library(tidyverse)
+library(reshape2)
+a &lt;- matrix(rnorm(90), 9, 10)
+colnames(a) &lt;- letters[1:10]
+rownames(a) &lt;- letters[1:9]
+data &lt;- melt(a)
+data &lt;- data %&gt;%
+  mutate(text = case_when(  # 一定要 get 到 case_when() 函数奥秘
+    value &gt; 0 ~ paste(round(value, 2), &quot;\n*&quot;), # round() 只保留两位小数
+    value &lt;= 0 ~ paste(round(value, 2), &quot;\n**&quot;)))
+data$new_Var1 &lt;- factor(data$Var1, levels = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;)) # 重新排序因子，决定坐标轴出图顺序
+data$new_Var2 &lt;- factor(data$Var2, levels = rev(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;))) # 同上ggplot(data, aes(new_Var1, new_Var2)) +
+  geom_tile(aes(fill = value), colour = &quot;grey&quot;, size = 1)+
+  scale_fill_gradient2(low = &quot;#5C5DAF&quot;,mid = &quot;white&quot;,high = &quot;#EA2E2D&quot;) + # 这里可以用 windowns 小工具 takecolor 取色，看中哪个文章就吸哪个文章
+  # 比如这篇 https://www.nature.com/articles/nmeth.1902
+  geom_text(aes(label=text),col =&quot;black&quot;,size = 5) +
+  theme_minimal() + # 不要背景
+  theme(axis.title.x=element_blank(), # 去掉 title
+        axis.ticks.x=element_blank(), # 去掉x 轴
+        axis.title.y=element_blank(), # 去掉 y 轴
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 14, face = &quot;bold&quot;), # 调整x轴文字，字体加粗
+        axis.text.y = element_text(size = 14, face = &quot;bold&quot;)) + #调整y轴文字
+  labs(fill =paste0(&quot; * p &lt; 0&quot;,&quot;\n\n&quot;,&quot;** p &gt; 0&quot;,&quot;\n\n&quot;,&quot;Correlation&quot;)) +   # 修改 legend 内容
+  scale_x_discrete(position = &quot;top&quot;) # 将 X 轴放置在最上面</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

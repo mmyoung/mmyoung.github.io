@@ -1,0 +1,85 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ggplot based heatmap data example" />
+  <title>ggplot based heatmap data example | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>ggplot based heatmap data example</h1>
+      <p class="subtitle">ggplot based heatmap data example</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 22</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/Screenshot_2025-05-29_at_4.43.31_PM.png" alt="ggplot based heatmap data example cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/Screenshot_2025-05-29_at_4.43.31_PM.png" alt="Screenshot 2025-05-29 at 4.43.31 PM.png" loading="lazy" /><figcaption>Screenshot 2025-05-29 at 4.43.31 PM.png</figcaption></figure>
+<pre><code class="language-r">data %&gt;% 
+group_by(tf_name) %&gt;%
+mutate(group_n=n()) %&gt;%
+filter(group_n==2) %&gt;%
+arrange(tf_name,group) %&gt;%
+    mutate(
+        Description = factor(Description, levels = unique(Description)),
+        # Create combined TF-group identifier
+        tf_group = paste(tf_name, group, sep = &quot;_&quot;),
+        # Order TFs so distal and promoter are adjacent
+        tf_group = factor(tf_group, levels = unique(tf_group[order(tf_name, group)]))
+    ) %&gt;%
+    ggplot(aes(x = tf_group, y = Description)) +
+    geom_tile(aes(fill = p.adjust, color = group), size = 1,linewidth = 0.5) +
+    scale_fill_gradient(low = &quot;red&quot;, high = &quot;white&quot;, trans = &quot;log10&quot;, name = &quot;p.adjust&quot;) +
+    scale_color_manual(values = c(&quot;distal&quot; = &quot;#3a5a40&quot;, &quot;promoter&quot; = &quot;#a5a58d&quot;), 
+                      name = &quot;Target Type&quot;,
+                      guide = guide_legend(
+                    override.aes = list(
+                        fill = &quot;white&quot;,  # Set fill to white or transparent
+                        color = c(&quot;#3a5a40&quot;, &quot;#a5a58d&quot;),
+                        size = 1.5  # Make border more visible
+            ))) +
+    facet_wrap(.~tf_name,nrow = 1,scales = &quot;free_x&quot;,strip.position = &quot;bottom&quot;)+
+    theme_minimal() +
+    theme(
+    panel.border = element_blank(),
+    panel.background = element_blank(),
+    # Add only right border to each panel
+    panel.grid = element_blank(),  # Remove grid if desired
+    strip.background = element_blank()
+  ) +
+  theme(
+        # Make x-axis text invisible but keep spacing
+        axis.text.x = element_text(color = &quot;transparent&quot;),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        axis.text.y = element_text(size = 10,color=&quot;black&quot;),
+        # Strip styling
+        strip.text = element_text(size = 10,angle=90,hjust = 1)
+    )+
+  # Manually add right borders using geom_vline at panel edges
+  geom_vline(xintercept = Inf, color = &quot;black&quot;, linetype=&quot;dashed&quot;,size = 0.5)+
+    labs(x = &quot;Transcription Factor (Target Type)&quot;, y = &quot;GO Terms&quot;</code></pre>
+<h3>plot exhibiting the number of DEGs in each time point in each cell type</h3>
+<p>start with DEG analysis results from DESeq2, with extra column denoting time points and celltype. The tricky part is to impute the 0 values in the matrix, because otherwise there will be no square plotted in an empty cell.</p>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,76 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="16-line-plot 1" />
+  <title>16-line-plot 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>16-line-plot 1</h1>
+      <p class="subtitle">16-line-plot 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 30</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Line%20plot/EE842D4A-8E16-4AA0-A58B-44AE3793A011.png" alt="16-line-plot 1 cover" loading="lazy" /></figure>
+      <article class="content"><pre><code class="language-r">library(ggplot2)
+library(pheatmap)
+library(reshape2)
+data &lt;- read.table(&quot;test.txt&quot;,header = T, row.names = 1,check.names = F)
+head(data)
+
+# 使用pheatmap绘制基因表达热图，并进行层次聚类分成不同的cluster
+p &lt;- pheatmap(data, show_rownames = F, cellwidth =40, cluster_cols = F,
+         cutree_rows = 6,gaps_col = c(2,4,6), angle_col = 45,fontsize = 12)
+         
+# 获取聚类后的基因顺序
+row_cluster = cutree(p$tree_row,k=6)
+# 对聚类后的数据进行重新排序
+newOrder = data[p$tree_row$order,]
+newOrder[,ncol(newOrder)+1]= row_cluster[match(rownames(newOrder),names(row_cluster))]
+colnames(newOrder)[ncol(newOrder)]=&quot;Cluster&quot;
+# 查看聚类后cluster的基本信息
+unique(newOrder$Cluster)
+table(newOrder$Cluster)
+# 将新排序后的数据保存输出
+newOrder$Cluster = paste0(&quot;cluster&quot;,newOrder$Cluster)
+write.table(newOrder, &quot;expr_DE.pheatmap.cluster.txt&quot;,sep=&quot;\t&quot;,quote = F,row.names = T,col.names = T)
+# 绘制每个cluster的基因聚类趋势图
+newOrder$gene = rownames(newOrder)
+head(newOrder)
+# 将短数据格式转换为长数据格式
+data_new = melt(newOrder)
+
+# 绘制基因表达趋势折线图
+ggplot(data_new,aes(variable, value, group=gene)) + geom_line(color=&quot;gray90&quot;,size=0.8) +
+  geom_hline(yintercept =0,linetype=2) +
+  stat_summary(aes(group=1),fun.y=mean, geom=&quot;line&quot;, size=1.2, color=&quot;#c51b7d&quot;) +
+  facet_wrap(Cluster~.) +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text = element_text(size=8, face = &quot;bold&quot;),
+        strip.text = element_text(size = 8, face = &quot;bold&quot;))</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Line%20plot/EE842D4A-8E16-4AA0-A58B-44AE3793A011.png" alt="EE842D4A-8E16-4AA0-A58B-44AE3793A011.png" loading="lazy" /><figcaption>EE842D4A-8E16-4AA0-A58B-44AE3793A011.png</figcaption></figure>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

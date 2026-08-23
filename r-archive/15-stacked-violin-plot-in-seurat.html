@@ -1,0 +1,64 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stacked violin plot in seurat" />
+  <title>Stacked violin plot in seurat | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Stacked violin plot in seurat</h1>
+      <p class="subtitle">Stacked violin plot in seurat</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 15</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/image.png" alt="Stacked violin plot in seurat cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
+<pre><code class="language-r">your_font_size &lt;- 15
+a &lt;- VlnPlot(lastone, features = &#39;Col2a1&#39;, split.by = &#39;group&#39;, 
+		pt.size = 0.0, combine = T, split.plot = T, 
+		cols =c(&quot;#e31a1c&quot;, &quot;#ffda79&quot;)) + 
+		theme_bw() + 
+		theme(legend.title = element_blank()) +
+    stat_summary(fun = median, fun.min = median, fun.max = median,
+                 geom = &quot;crossbar&quot;, 
+                 width = 0.6,
+                 position = position_dodge(width = .70)) +
+     xlab(&quot;Clusters&quot;) + 
+     ylab(&quot;Gene Expression&quot;) + 
+     stat_compare_means(aes(label = ifelse(p &lt; 1.e-4, sprintf(&quot;p = %2.1e&quot;,
+         as.numeric(..p.format..)), sprintf(&quot;p = %5.4f&quot;, as.numeric(..p.format..)))), 
+         method = &quot;wilcox.test&quot;, paired = T) + 
+     stat_compare_means(size = your_font_size, label = &quot;p.signif&quot;)+
+     stat_summary(fun = &quot;mean&quot;, ## add mean dots
+               geom = &quot;point&quot;,
+               color = &quot;grey&quot;,
+               position = position_dodge(width = .90))+
+     theme(text = element_text(size = 20, angle = 45))+
+    guides(fill = guide_legend(override.aes = list(linetype = 0)),
+           color = guide_legend(override.aes = list(linetype = 0)))</code></pre>
+<p>Stacked violin plot in seurat</p>
+<p><a href="https://github.com/ycl6/StackedVlnPlot" target="_blank" rel="noreferrer">https://github.com/ycl6/StackedVlnPlot</a></p>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

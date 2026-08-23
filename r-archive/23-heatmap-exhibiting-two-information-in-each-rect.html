@@ -1,0 +1,121 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="heatmap exhibiting two information in each rect" />
+  <title>heatmap exhibiting two information in each rect | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>heatmap exhibiting two information in each rect</h1>
+      <p class="subtitle">heatmap exhibiting two information in each rect</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 23</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" alt="heatmap exhibiting two information in each rect cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" alt="BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" loading="lazy" /><figcaption>BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png</figcaption></figure>
+<p>heatmap exhibiting two information in each rect</p>
+<pre><code class="language-r">library(ComplexHeatmap)
+library(circlize)
+library(tidyr)
+options(stringsAsFactors = FALSE)
+complexheatmap_data_pre &lt;- summary_res %&gt;%
+  mutate(del_frequency=del_sample/total_sample,amp_frequency=amp_sample/total_sample)
+##长数据转为宽数据
+up &lt;- complexheatmap_data_pre[,c(&quot;gene&quot;,&quot;subtype&quot;,&quot;amp_frequency&quot;)] %&gt;%
+  spread(subtype,amp_frequency) %&gt;%
+  column_to_rownames(var = &quot;gene&quot;)
+up &lt;- up[m6A_regulator$human_m6A_regulators[-21],]
+head(up)
+#            Basal      Her2       LumA      LumB
+#METTL3   0.1407407 0.2686567 0.11807229 0.3541667
+#METTL14  0.1333333 0.1194030 0.07228916 0.1614583
+#WTAP     0.2444444 0.1791045 0.06746988 0.1666667
+#KIAA1429 0.8444444 0.6865672 0.48915663 0.7916667
+#CBLL1    0.5111111 0.2388060 0.18313253 0.1979167
+#ZC3H13   0.1037037 0.1343284 0.07228916 0.0781250
+dn &lt;- complexheatmap_data_pre[,c(&quot;gene&quot;,&quot;subtype&quot;,&quot;del_frequency&quot;)] %&gt;%
+  spread(subtype,del_frequency) %&gt;%
+  column_to_rownames(var = &quot;gene&quot;)
+dn &lt;- dn[m6A_regulator$human_m6A_regulators[-21],]
+head(dn)
+#             Basal       Her2       LumA       LumB
+#METTL3   0.60000000 0.20895522 0.11566265 0.20312500
+#METTL14  0.53333333 0.47761194 0.18554217 0.36458333
+#WTAP     0.32592593 0.40298507 0.31084337 0.42187500
+#KIAA1429 0.02962963 0.04477612 0.02409639 0.02083333
+#CBLL1    0.08888889 0.28358209 0.13012048 0.23958333
+#ZC3H13   0.63703704 0.52238806 0.35421687 0.61458333
+UpColor &lt;- colorRamp2(breaks = c(0, 1), colors = c(&quot;#FFFADD&quot;,&quot;#AB221F&quot;))
+DnColor &lt;- colorRamp2(breaks = c(0, 1), colors = c(&quot;#FFFADD&quot;,&quot;#3878C1&quot;))
+row_an &lt;- HeatmapAnnotation(type = c(rep(&quot;W&quot;, 11), rep(&quot;E&quot;, 2), rep(&quot;R&quot;, 14)),
+                            show_annotation_name = F,
+                            col = list(type = c( &quot;W&quot; = &quot;#FAC67A&quot;, &quot;E&quot; = &quot;#51B743&quot;,&quot;R&quot; = &quot;#5AC9FA&quot;)),
+                            show_legend = T,
+                            annotation_legend_param = list(title = &quot;m6A group&quot;,nrow = 1),
+                            which = &quot;row&quot;
+                            )
+DiagFunc &lt;-
+  function(up, down){
+  function(j, i, x, y, width, height, fill){
+    grid.polygon(unit.c(x - 0.5*width, x - 0.5*width, x + 0.5*width),
+                 unit.c(y - 0.5*height, y + 0.5*height, y + 0.5*height),
+                 gp = gpar(fill = UpColor(up[i, j]), col = &quot;grey&quot;))
+    grid.polygon(unit.c(x + 0.5*width, x + 0.5*width, x - 0.5*width),
+                 unit.c(y + 0.5*height, y - 0.5*height, y - 0.5*height),
+                 gp = gpar(fill = DnColor(dn[i, j]), col = &quot;grey&quot;))
+  }
+  }
+p1 &lt;- Heatmap(up,
+              column_title = &quot;&quot;,
+              rect_gp = gpar(type = &quot;none&quot;),
+              show_heatmap_legend = F,
+              cluster_rows = F,
+              cluster_columns = F, ##绘制空的热图框
+              left_annotation = row_an, ##添加左侧注释信息
+              cell_fun = DiagFunc(up = up, down = dn),## 绘制表格内的内容
+              column_names_rot = 0
+              )
+p1
+lgd &lt;- list(Legend(title = &quot;CNV Gain&quot;, ## 注释的标题
+                   col_fun = UpColor, ## 注释的颜色
+                   at = c(0,0.5,1), ## 注释刻度的分组
+                   direction = &quot;horizontal&quot;## 注释的方向
+                   ),
+            Legend(title = &quot;CNV Loss&quot;, ## 注释的标题
+                   col_fun = DnColor, ## 注释的颜色
+                   at = c(0,0.5,1), ## 注释刻度的分组
+                   direction = &quot;horizontal&quot;## 注释的方向
+                   )
+            )
+#热图和注释融合到一起
+setwd(&quot;E:\\20191213-new_project\\数据分析\\CNV&quot;)
+pdf(&quot;complexplot.pdf&quot;,width = 6,height = 10)
+draw(p1, annotation_legend_list = lgd,
+     annotation_legend_side = &quot;bottom&quot;,
+     heatmap_legend_side = &quot;bottom&quot;,
+     merge_legend = TRUE)
+dev.off()</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,62 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="17-donut-plot 1" />
+  <title>17-donut-plot 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>17-donut-plot 1</h1>
+      <p class="subtitle">17-donut-plot 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 31</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Donut%20plot/B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png" alt="17-donut-plot 1 cover" loading="lazy" /></figure>
+      <article class="content"><pre><code class="language-r"># load library
+library(ggplot2)
+# Create test data.
+data &lt;- data.frame(  category=c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),  count=c(10, 60, 30)) 
+# Compute percentages
+data$fraction &lt;- data$count / sum(data$count)
+# Compute the cumulative percentages (top of each rectangle)
+data$ymax &lt;- cumsum(data$fraction)
+# Compute the bottom of each rectangle
+data$ymin &lt;- c(0, head(data$ymax, n=-1))
+# Compute label position
+data$labelPosition &lt;- (data$ymax + data$ymin) / 2
+# Compute a good label
+data$label &lt;- paste0(data$category, &quot;\n value: &quot;, data$count)
+# Make the plot
+ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) + 
+    geom_rect() + 
+    geom_label( x=3.5, aes(y=labelPosition, label=label), size=6) + 
+    scale_fill_brewer(palette=4) + 
+    coord_polar(theta=&quot;y&quot;) + 
+    xlim(c(2, 4)) + 
+    theme_void() + 
+    theme(legend.position = &quot;none&quot;)</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Donut%20plot/B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png" alt="B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png" loading="lazy" /><figcaption>B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png</figcaption></figure>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

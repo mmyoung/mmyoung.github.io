@@ -1,0 +1,90 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="01-complexheatmap 1" />
+  <title>01-complexheatmap 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>01-complexheatmap 1</h1>
+      <p class="subtitle">01-complexheatmap 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 01</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="01-complexheatmap 1 cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="Screenshot 2024-01-17 at 11.56.13 AM.png" loading="lazy" /><figcaption>Screenshot 2024-01-17 at 11.56.13 AM.png</figcaption></figure>
+<pre><code class="language-r">plot_mat &lt;-
+  plot_mat[row_order, ] %&gt;%
+  filter(row.names(.) %in% unique(kept_tfs))
+dim(plot_mat)
+head(plot_mat)
+
+colSplit &lt;- c(rep(&quot;active&quot;, 32), rep(&quot;repressive&quot;, 16))
+mypal &lt;- c(pal_npg(&quot;nrc&quot;, alpha = 0.8)(10), &quot;#e9c46a&quot;, &quot;#588157&quot;)
+show_col(mypal)
+names(mypal) &lt;- unique(sapply(str_split(colnames(plot_mat), &quot;-&quot;), &quot;[[&quot;, 1))
+
+H3_labels &lt;- split(1:48, str_split(colnames(plot_mat), &quot;-&quot;, simplify = TRUE)[, 1])
+names(H3_labels) &lt;- str_replace_all(names(H3_labels), &quot;H3&quot;, &quot;&quot;)
+names(H3_labels)[2] &lt;- &quot;5mC&quot;
+
+column_ha = HeatmapAnnotation(
+  H3_mark = anno_block(
+    align_to = H3_labels,
+    panel_fun = function(index, nm) {
+      grid.rect(gp = gpar(fill = &quot;white&quot;))
+      grid.text(nm, 0.5, 0.5)
+    }
+  ),
+  group = sapply(str_split(colnames(plot_mat), &quot;-&quot;), &quot;[[&quot;, 2),
+  col = list(
+    group = c(&quot;C1&quot; = &quot;#4c72b0&quot;, &quot;C2&quot; = &quot;#dd8452&quot;, &quot;C3&quot; = &quot;#55a868&quot;, &quot;C4&quot; = &quot;#c44e52&quot;),
+    histone_mark = mypal
+  )
+)
+
+col_fun = colorRamp2(
+  c(0.07, 0.5, 1, 3, 5, 7),
+  c(&quot;#2166AC&quot;, &quot;#4393C3&quot;, &quot;#FFFFFF&quot;, &quot;#F4A582&quot;, &quot;#D6604D&quot;, &quot;#B2182B&quot;)
+)
+
+h = Heatmap(
+  as.matrix(plot_mat),
+  name = &quot;TF_frac+0.01/\nBG_frac+0.01&quot;,
+  top_annotation = column_ha,
+  cluster_rows = FALSE,
+  cluster_columns = FALSE,
+  show_column_names = FALSE,
+  column_split = colSplit,
+  col = col_fun
+)
+h
+</code></pre>
+<div class="actions">
+  <a class="button" href="./">Back to archive</a>
+  <a class="button" href="/">Back to home</a>
+</div>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

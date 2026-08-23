@@ -1,0 +1,58 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="To add breaks in the y-axis" />
+  <title>To add breaks in the y-axis | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>To add breaks in the y-axis</h1>
+      <p class="subtitle">To add breaks in the y-axis</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 08</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="To add breaks in the y-axis cover" loading="lazy" /></figure>
+      <article class="content"><p>To add breaks in the y-axis</p>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Untitled" loading="lazy" /><figcaption>Untitled</figcaption></figure>
+<pre><code class="language-r">library(scales)
+trans &lt;- function(x){pmin(x,100) + 0.01*pmax(x-100,0)}
+yticks &lt;- c(0, 500,1000, 2000, 4000, 10000, 15000, 20000)
+
+umis_count$trans &lt;- 
+trans(umis_count$row)
+
+umis_count %&gt;% 
+filter(sample==&quot;AU&quot; &amp; umis&gt;10) %&gt;%
+ggplot(aes(x=umis, y=trans)) + 
+  geom_col()+
+  geom_vline(aes(xintercept=1291),color=&quot;#e76f51&quot;,linetype=&quot;dashed&quot;)+
+  scale_x_continuous(limits=c(0,20000))+
+  scale_y_continuous(name=&quot;cell counts&quot;,expand=c(0,0),limits=c(0,NA), breaks=trans(yticks), labels=yticks)+
+  theme_minimal()+
+  theme(axis.text=element_text(size=12),axis.title=element_text(size=14))</code></pre>
+<h3>Make barplot for celltype distribution in single-cell studies</h3>
+<p>a trick is to use a column that stores the color code for each celltype is to use scale_fill_identity</p>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

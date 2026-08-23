@@ -1,0 +1,113 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="分组绘制条形图 (barplot and facet )" />
+  <title>分组绘制条形图 (barplot and facet ) | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>分组绘制条形图 (barplot and facet )</h1>
+      <p class="subtitle">分组绘制条形图 (barplot and facet )</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 09</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2024-10-10_at_5.41.58_PM.png" alt="分组绘制条形图 (barplot and facet ) cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2024-10-10_at_5.41.58_PM.png" alt="Screenshot 2024-10-10 at 5.41.58 PM.png" loading="lazy" /><figcaption>Screenshot 2024-10-10 at 5.41.58 PM.png</figcaption></figure>
+<pre><code class="language-r">p1 &lt;- seu_obj_recluster@meta.data %&gt;%
+    count(celltype) %&gt;%
+    filter(celltype!=&quot;NA&quot;) %&gt;%
+    ggplot(aes(x=celltype,y=n))+
+    geom_bar(stat = &quot;identity&quot;,fill=&quot;darkgrey&quot;)+
+    labs(x=&quot;&quot;,y=&quot;# of cells&quot;)+
+    theme_minimal()+
+    theme(axis.text.x=element_text(angle=90,hjust=1),
+         plot.margin = unit(c(0,0,0,0), &quot;cm&quot;))
+p2 &lt;- do.call(rbind,Map(cbind, pseudo_de, new_clumn = names(pseudo_de))) %&gt;%
+mutate(diff=case_when(p_val&lt;0.05 &amp; avg_log2FC&gt;0.3 ~ &quot;up&quot;,
+                     p_val&lt;0.05 &amp; avg_log2FC&lt; (-0.3) ~ &quot;down&quot;,
+                     .default = &quot;nonsig&quot;)
+      ) %&gt;%
+count(new_clumn,diff) %&gt;%
+mutate(plot_y=ifelse(diff==&quot;down&quot;,(-1)*n,n)) %&gt;%
+filter(new_clumn!=&quot;NA&quot;,diff!=&quot;nonsig&quot;) %&gt;%
+ggplot(aes(x=new_clumn,y=plot_y,fill=diff))+
+geom_bar(stat = &quot;identity&quot;)+
+geom_hline(yintercept = 0)+
+geom_text(aes(label = abs(plot_y)), vjust = 0.5,size=3)+
+labs(x=&quot;&quot;,y=&quot;# of DEGs&quot;,fill=&quot;iso/soc&quot;)+
+scale_fill_manual(values=c(&quot;#85a0ab&quot;,&quot;#eb9c81&quot;))+
+scale_y_continuous(breaks=c(-300,-200,-100,0,100,200),labels=c(300,200,100,0,100,200))+
+theme_classic()+
+theme(panel.grid = element_blank(),
+      axis.text.x = element_blank(),
+      axis.ticks.x = element_blank(),
+     plot.margin = unit(c(1,0,0,0), &quot;cm&quot;))
+
+pdf(&quot;./scaleBio_RNA_rat_brain/DEG_FC0.3_counts_barplot.pdf&quot;,width = 5,height=3)
+p2/p1 + plot_layout(heights = c(2, 1))
+dev.off()</code></pre>
+<h1>分组绘制条形图 (barplot and facet )</h1>
+<pre><code class="language-r">
+library(ggplot2)
+library(reshape2)
+library(Rmisc)
+setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
+TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
+t_TPM &lt;- as.data.frame(t(TPM))
+for (i in colnames(t_TPM)[-1]){
+  t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
+}
+t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;)))
+melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
+# 获取各个基因表达量的平均值
+df_mean &lt;- aggregate(melted_TPM$value, list(Group=melted_TPM$Sample,
+                        gene=melted_TPM$variable), mean, na.rm=T)
+# 获取各个基因表达量的标准差
+df_sd &lt;- aggregate(melted_TPM$value, list(Group=melted_TPM$Sample,
+                        gene=melted_TPM$variable), sd, na.rm=T)
+# 合并mean和sd
+colnames(df_mean)[3] &lt;- &quot;mean&quot;
+colnames(df_sd)[3] &lt;- &quot;sd&quot;
+df_stat &lt;- merge(df_mean, df_sd, by=c(&quot;Group&quot;, &quot;gene&quot;))
+str(df_stat)
+##接下来用df_stat统计的信息作图。
+p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+
+  geom_bar(stat=&quot;identity&quot;, position = &quot;dodge&quot;)+
+  geom_errorbar(aes(x=Group, ymin=mean-sd, ymax=mean+sd),color=&quot;black&quot;,width=.3) +
+  scale_fill_brewer(palette = &quot;Paired&quot;)+
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ #去掉横轴标题、刻度和刻度值
+  theme(axis.title.y=element_blank())+ ###去掉y轴标题
+  theme(axis.text.y = element_text(size = 25, face = &quot;bold&quot;, angle = 0,family = &quot;Times&quot;))+
+  theme(plot.title = element_text(size = 30,hjust = 0.5, face = &quot;bold&quot;,family = &quot;Times&quot;))+ ##vjust,hjust这里一直调不好就用默认的吧
+  theme(axis.ticks=element_line(colour=&quot;black&quot;,size=1,linetype=1,lineend=1),axis.ticks.length=unit(.4,&quot;lines&quot;))+ ##设置边框特征，刻度长度
+  theme(legend.position = 0)+ ##去掉legend
+  coord_flip() + ##将箱线图转置
+  facet_grid(~gene,scale = &quot;free&quot;)+ ##根据variable分面，固定坐标刻度一致
+  theme(strip.text = element_text(colour = &#39;black&#39;, face = &#39;bold.italic&#39;, family=&quot;Times&quot;, size = rel(2.5)), strip.background = element_blank()) + ###strip.text设置分面标签的字体，颜色和大小，strip.background设置分面背景，这里去掉分面名上的灰色背景
+  theme(panel.background = element_blank(),panel.border = element_rect(color=&quot;Black&quot;,fill=NA,size=2))
+ggsave(p,file=paste(&quot;merge_barplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
+ggsave(p,file=paste(&quot;merge_barplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

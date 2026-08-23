@@ -1,0 +1,103 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="15-boxplot 1" />
+  <title>15-boxplot 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>15-boxplot 1</h1>
+      <p class="subtitle">15-boxplot 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 27</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="15-boxplot 1 cover" loading="lazy" /></figure>
+      <article class="content"><pre><code class="language-r">library(ggplot2)
+library(reshape2)
+setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
+TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
+t_TPM &lt;- as.data.frame(t(TPM))
+for (i in colnames(t_TPM)[-1]){
+  t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
+}
+t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;))
+melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
+p&lt;-ggplot(melted_TPM,aes(x=factor(Sample),y=value,fill=variable))+
+  geom_boxplot(color=&quot;black&quot;,size=1)+ ###设置box外边框颜色和粗细
+  geom_smooth(method = &quot;loess&quot;, se=FALSE, aes(group=variable,color=variable))+ ###添加拟合曲线，不展示置信区间
+  scale_color_brewer(palette = &quot;Paired&quot;)+ ###boxplot配色
+  scale_fill_brewer(palette = &quot;Paired&quot;)+ ###拟合曲线配色
+  labs(title=&quot;Gene Expression Level&quot;,x=&quot;&quot;, y = &quot;&quot;) +
+  theme(axis.text.x = element_text(size = 40, face = &quot;bold&quot;, vjust = 1, hjust = 1, angle = 45,family = &quot;Times&quot;))+
+  theme(axis.text.y = element_text(size = 40, face = &quot;bold&quot;, vjust = 1, hjust = 0.5, angle = 0,family = &quot;Times&quot;))+
+  theme(plot.title = element_text(size = 40,hjust = 0.5, face = &quot;bold&quot;,family = &quot;Times&quot;))+
+  theme(axis.ticks=element_line(colour=&quot;black&quot;,size=2,linetype=1,lineend=1),axis.ticks.length=unit(.8,&quot;lines&quot;),axis.ticks.margin=unit(.4,&quot;cm&quot;))+ #axis.ticks设置外边框颜色，粗细（size）；axis.ticks.length设置坐标轴刻度线长度，与数值距离。
+  theme(legend.title=element_blank(),legend.text=element_text(size=30),legend.key.size=unit(1.5,&#39;cm&#39;))+ ###取消legend的title，设置legend大小
+  theme(panel.background = element_blank(),panel.grid.major = element_blank(),panel.border = element_rect(color=&quot;Black&quot;,fill=NA,size=3))+
+  ylim(0,6)
+ggsave(p,file=paste(&quot;merge_boxplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
+ggsave(p,file=paste(&quot;merge_boxplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="merge_boxplot_vital_gene.png" loading="lazy" /><figcaption>merge_boxplot_vital_gene.png</figcaption></figure>
+<pre><code class="language-r">library(ggplot2)
+library(reshape2)
+library(Rmisc)
+setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
+TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
+t_TPM &lt;- as.data.frame(t(TPM))
+for (i in colnames(t_TPM)[-1]){
+  t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
+}
+t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;)))
+melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
+# 获取各个基因表达量的平均值
+df_mean &lt;- aggregate(melted_TPM$value, list(Group=melted_TPM$Sample,
+                        gene=melted_TPM$variable), mean, na.rm=T)
+# 获取各个基因表达量的标准差
+df_sd &lt;- aggregate(melted_TPM$value, list(Group=melted_TPM$Sample,
+                        gene=melted_TPM$variable), sd, na.rm=T)
+# 合并mean和sd
+colnames(df_mean)[3] &lt;- &quot;mean&quot;
+colnames(df_sd)[3] &lt;- &quot;sd&quot;
+df_stat &lt;- merge(df_mean, df_sd, by=c(&quot;Group&quot;, &quot;gene&quot;))
+str(df_stat)
+##接下来用df_stat统计的信息作图。
+p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+
+  geom_bar(stat=&quot;identity&quot;, position = &quot;dodge&quot;)+
+  geom_errorbar(aes(x=Group, ymin=mean-sd, ymax=mean+sd),color=&quot;black&quot;,width=.3) +
+  scale_fill_brewer(palette = &quot;Paired&quot;)+
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ #去掉横轴标题、刻度和刻度值
+  theme(axis.title.y=element_blank())+ ###去掉y轴标题
+  theme(axis.text.y = element_text(size = 25, face = &quot;bold&quot;, angle = 0,family = &quot;Times&quot;))+
+  theme(plot.title = element_text(size = 30,hjust = 0.5, face = &quot;bold&quot;,family = &quot;Times&quot;))+ ##vjust,hjust这里一直调不好就用默认的吧
+  theme(axis.ticks=element_line(colour=&quot;black&quot;,size=1,linetype=1,lineend=1),axis.ticks.length=unit(.4,&quot;lines&quot;))+ ##设置边框特征，刻度长度
+  theme(legend.position = 0)+ ##去掉legend
+  coord_flip() + ##将箱线图转置
+  facet_grid(~gene,scale = &quot;free&quot;)+ ##根据variable分面，固定坐标刻度一致
+  theme(strip.text = element_text(colour = &#39;black&#39;, face = &#39;bold.italic&#39;, family=&quot;Times&quot;, size = rel(2.5)), strip.background = element_blank()) + ###strip.text设置分面标签的字体，颜色和大小，strip.background设置分面背景，这里去掉分面名上的灰色背景
+  theme(panel.background = element_blank(),panel.border = element_rect(color=&quot;Black&quot;,fill=NA,size=2))
+ggsave(p,file=paste(&quot;merge_barplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
+ggsave(p,file=paste(&quot;merge_barplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

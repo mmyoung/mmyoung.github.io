@@ -1,0 +1,92 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Modified violin plots in single-cell study" />
+  <title>Modified violin plots in single-cell study | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Modified violin plots in single-cell study</h1>
+      <p class="subtitle">Modified violin plots in single-cell study</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 15</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-20_at_10.48.20_PM.png" alt="Modified violin plots in single-cell study cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-20_at_10.48.20_PM.png" alt="Screenshot 2024-10-20 at 10.48.20 PM.png" loading="lazy" /><figcaption>Screenshot 2024-10-20 at 10.48.20 PM.png</figcaption></figure>
+<pre><code class="language-r">library(Seurat)
+library(ggplot2)
+library(cowplot)
+
+# Load Seurat obj
+pbmc &lt;- readRDS(&quot;data/pbmc_2k_v3_Seurat.rds&quot;)
+
+features &lt;- c(&quot;CD79A&quot;, &quot;MS4A1&quot;, &quot;CD8A&quot;, &quot;CD8B&quot;, &quot;LYZ&quot;, &quot;LGALS3&quot;, &quot;S100A8&quot;, &quot;GNLY&quot;,
+              &quot;NKG7&quot;, &quot;KLRB1&quot;, &quot;FCGR3A&quot;, &quot;FCER1A&quot;, &quot;CST3&quot;)
+
+a &lt;- VlnPlot(pbmc, features, stack = TRUE, sort = TRUE) +
+        theme(legend.position = &quot;none&quot;) + ggtitle(&quot;Identity on y-axis&quot;)
+
+b &lt;- VlnPlot(pbmc, features, stack = TRUE, sort = TRUE, flip = TRUE) +
+        theme(legend.position = &quot;none&quot;) + ggtitle(&quot;Identity on x-axis&quot;)</code></pre>
+<p><strong>Modified violin plots in single-cell study</strong></p>
+<pre><code class="language-r">make_vlnplot &lt;- 
+function(genes=NULL,celltype=NULL,label_df=NULL){
+    VlnPlot(seu_obj, 
+        features = genes,
+        idents=celltype,
+        split.by = &quot;group&quot;,
+        pt.size = 0.0,
+        #split.plot = T,
+        log=TRUE  )&amp;
+        scale_fill_manual(values=c(&quot;iso&quot;=&quot;#e31a1c&quot;,&quot;soc&quot;=&quot;#ffda79&quot;)) &amp;
+        annotate(&quot;text&quot;,x=label_df$new_clumn,y=Inf,label=label_df$P_label,vjust=1,hjust=0.5) &amp;
+        stat_summary(fun = median, fun.min = median, fun.max = median,
+                 geom = &quot;crossbar&quot;, 
+                 width = 0.6,
+                 position = position_dodge(width = .70)) &amp;
+                xlab(&quot;&quot;) &amp;
+                ylab(&quot;Gene Expression&quot;) &amp;
+          stat_summary(fun = &quot;mean&quot;,
+               geom = &quot;point&quot;,
+               color = &quot;black&quot;,
+               position = position_dodge(width = .90)) &amp;
+    guides(fill = guide_legend(override.aes = list(linetype = 0,size = 0)),
+               color = guide_legend(override.aes = list(linetype = 0,size=0)))
+}</code></pre>
+<p>combine all the DEGs in all celltypes</p>
+<pre><code class="language-r">do.call(rbind,Map(cbind, DEG_ls, new_clumn = names(DEG_ls))) %&gt;%
+  mutate(gene = str_split(row.names(.), &quot;\\.&quot;, simplify = TRUE)[, 2]) %&gt;%
+    filter(gene != &quot;&quot;) %&gt;%
+    left_join(gene_coord,by=c(&quot;gene&quot;=&quot;gene&quot;)) %&gt;%
+    write.table(&quot;isoVSsoc_DEG_total_list.txt&quot;,sep=&quot;\t&quot;,quote=F,row.names=F)
+    
+isoVSsoc_DEG_ls &lt;- read.table(&quot;isoVSsoc_DEG_total_list.txt&quot;,sep=&quot;\t&quot;,stringsAsFactors = F,header=T)
+
+isoVSsoc_DEG_ls$P_label&lt;- 
+    symnum(isoVSsoc_DEG_ls$p_val_adj, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05,1),
+       symbols = c(&quot;****&quot;, &quot;***&quot;, &quot;**&quot;, &quot;*&quot;, &quot;ns&quot;),
+       abbr.colnames = FALSE, na = &quot;&quot;)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

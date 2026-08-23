@@ -1,0 +1,64 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grouped barplot and facet" />
+  <title>Grouped barplot and facet | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Grouped barplot and facet</h1>
+      <p class="subtitle">Grouped barplot and facet</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 11</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2026-08-10_at_7.40.24_PM.png" alt="Grouped barplot and facet cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2026-08-10_at_7.40.24_PM.png" alt="Screenshot 2026-08-10 at 7.40.24 PM.png" loading="lazy" /><figcaption>Screenshot 2026-08-10 at 7.40.24 PM.png</figcaption></figure>
+<p>barplot filling different palette in each column</p>
+<pre><code class="language-r">ColourPalleteMulti &lt;- function(df, group, subgroup){
+
+  # Find how many colour categories to create and the number of colours in each
+  categories &lt;- aggregate(as.formula(paste(subgroup, group, sep=&quot;~&quot; )), df, function(x) length(unique(x)))
+  category.start &lt;- (scales::hue_pal(l = 100)(nrow(categories))) # Set the top of the colour pallete
+  category.end  &lt;- (scales::hue_pal(l = 40)(nrow(categories))) # set the bottom
+  # Build Colour pallette
+  colours &lt;- unlist(lapply(1:nrow(categories),
+                          function(i){
+                            colorRampPalette(colors = c(category.start[i], category.end[i]))(categories[i,2])}))
+  return(colours)}
+
+library(ggplot2)
+# Create data
+df &lt;- diamonds
+df$group &lt;- paste0(df$color, &quot;-&quot;, df$clarity, sep = &quot;&quot;)
+
+# Build the colour pallete
+colours &lt;-ColourPalleteMulti(df, &quot;color&quot;, &quot;clarity&quot;)
+
+# Plot resultss
+ggplot(df, aes(color)) +
+  geom_bar(aes(fill = group), colour = &quot;grey&quot;) +
+  scale_fill_manual(&quot;Subject&quot;, values=colours, guide = &quot;none&quot;) ## or just assign the color codes to &quot;values&quot;</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

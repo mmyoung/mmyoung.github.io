@@ -1,0 +1,107 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="correlation plot with sample clustering information" />
+  <title>correlation plot with sample clustering information | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>correlation plot with sample clustering information</h1>
+      <p class="subtitle">correlation plot with sample clustering information</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 26</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" alt="correlation plot with sample clustering information cover" loading="lazy" /></figure>
+      <article class="content"><figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" alt="2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" loading="lazy" /><figcaption>2DC8751B-5D8C-4AF8-8F05-C64D92311040.png</figcaption></figure>
+<p>correlation plot with sample clustering information</p>
+<pre><code class="language-r">library(vegan)
+library(dplyr)
+library(corrplot)
+par(omi = c(0.3, 0.3, 0.3, 0.3),
+    cex = 1.2,
+    family = &#39;Times New Roman&#39;) # windows系统可能需要安装其他字体包
+M &lt;- cor(decostand(mtcars,method=&quot;hellinger&quot;,na.rm=T))#计算相关系数矩阵
+corrplot(M, method = &quot;circle&quot;, type = &#39;upper&#39;)
+head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+# 准备数据set.seed(20190420)
+n &lt;- ncol(mtcars)
+grp &lt;- c(&#39;Cluster_1&#39;, &#39;Cluster_2&#39;, &#39;Cluster_3&#39;) # 分组名称
+sp &lt;- c(rep(0.0008, 6), rep(0.007, 2), rep(0.03, 3), rep(0.13, 22)) # P值
+gx &lt;- c(-4.5, -2.5, 1) # 分组的X坐标
+gy &lt;- c(n-1, n-5, 2.5) # 分组的Y坐标
+df &lt;- data.frame(
+  grp = rep(grp, each = n), # 分组名称，每个重复n次
+  gx = rep(gx, each = n), # 组X坐标，每个重复n次
+  gy = rep(gy, each = n), # 组Y坐标，每个重复n次
+  x = rep(0:(n - 1) - 0.5, 3), # 变量连接点X坐标
+  y = rep(n:1, 3), # 变量连接点Y坐标
+  p = sample(sp), # 对人工生成p值进行随机抽样
+  r = sample(c(rep(0.8, 4), rep(0.31, 7), rep(0.12, 22)))
+  # 对人工生成r值进行随机抽样)
+length(rep(grp, each = n))length(rep(gx, each = n))length(rep(gy, each = n))length(rep(0:(n - 1) - 0.5, 3))length(rep(n:1, 3))length(sample(sp))length(sample(c(rep(0.8, 4), rep(0.31, 7), rep(0.12, 22))) )
+# 这一部分代码是按照原图图例说明处理线条宽度和颜色映射
+df &lt;- df %&gt;%
+  mutate(
+    lcol = ifelse(p &lt;= 0.001, &#39;#1B9E77&#39;, NA),
+    # p值小于0.001时，颜色为绿色，下面依次类推
+    lcol = ifelse(p &gt; 0.001 &amp; p &lt;= 0.01, &#39;#88419D&#39;, lcol),
+    lcol = ifelse(p &gt; 0.01 &amp; p &lt;= 0.05, &#39;#A6D854&#39;, lcol),
+    lcol = ifelse(p &gt; 0.05, &#39;#B3B3B3&#39;, lcol),
+    lwd = ifelse(r &gt;= 0.5, 14, NA),
+    # r &gt;= 0.5 时，线性宽度为14，下面依次类推
+    lwd = ifelse(r &gt;= 0.25 &amp; r &lt; 0.5, 7, lwd),
+    lwd = ifelse(r &lt; 0.25, 1, lwd)
+  )
+  
+  segments(df$gx, df$gy, df$x, df$y, lty = &#39;solid&#39;, lwd = df$lwd,
+         col = df$lcol, xpd = TRUE) # 绘制连接线
+points(gx, gy, pch = 24, col = &#39;blue&#39;, bg = &#39;blue&#39;, cex = 3, xpd = TRUE)
+# 组标记点text(gx - 0.5, gy, labels = grp, adj = c(1, 0.5), cex = 1.5, xpd = TRUE)# 组名称
+labels01 &lt;- c(&#39;&lt;= 0.001&#39;,&#39;0.001 &lt; x &lt;= 0.01&#39;,&#39;0.01 &lt; x &lt;= 0.05&#39;,&#39;&gt; 0.05&#39;)
+labels02 &lt;- c(&#39;&gt;= 0.5&#39;, &#39;0.25 - 0.5&#39;, &#39;&lt; 0.25&#39;)
+labels_x &lt;- rep(-6, 4)
+labels_y &lt;- seq(4.6, 2.6, length.out = 4)text(-6.5, 5.2, &#39;P-value&#39;, adj = c(0, 0.5), cex = 1.2, font = 2, xpd = TRUE)text(labels_x, labels_y, labels01, adj = c(0, 0.5), cex = 1.2, xpd = TRUE)points(labels_x - 0.5, labels_y, pch = 20, col = c(&#39;#1B9E77&#39;, &#39;#88419D&#39;,&#39;#A6D854&#39;, &#39;#B3B3B3&#39;),
+       cex = 3, xpd = TRUE)
+lines_x &lt;- c(-6.5, -3, 0.5)
+lines_y &lt;- rep(1.2, 3)text(-6.5, 1.9, &quot;Mantel&#39;s r&quot;, adj = c(0, 0.5), cex = 1.2, font = 2, xpd = TRUE)text(lines_x + 1.5, lines_y, labels02, adj = c(0, 0.5), cex = 1.2, xpd = TRUE)segments(lines_x, lines_y, lines_x + 1, lines_y, lwd = c(14, 7, 2.5), lty = &#39;solid&#39;,
+         col = &#39;#B3B3B3&#39;, xpd = TRUE)
+
+segments(-6.9, 5.6, -2.8, 5.6, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)segments(-2.8, 5.6, -2.8, 1.8, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)segments(-2.8, 1.8, 3.6, 1.8, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)segments(3.6, 1.8, 3.6, 0.7, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)segments(3.6, 0.7, -6.9, 0.7, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)segments(-6.9, 0.7, -6.9, 5.6, lty = &#39;solid&#39;, lwd = 1.2,
+         col = &#39;grey50&#39;, xpd = TRUE)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>

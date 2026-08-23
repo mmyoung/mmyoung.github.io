@@ -1,0 +1,94 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="18-lollipop-plot 1" />
+  <title>18-lollipop-plot 1 | R archive</title>
+  <link rel="stylesheet" href="archive.css" />
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>18-lollipop-plot 1</h1>
+      <p class="subtitle">18-lollipop-plot 1</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 32</span>
+      <span>1 image</span>
+      <span>1 code block</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="18-lollipop-plot 1 cover" loading="lazy" /></figure>
+      <article class="content"><pre><code class="language-r"># Library
+library(tidyverse)
+# Create data
+value1=abs(rnorm(26))*2
+data=data.frame(x=LETTERS[1:26], value1=value1, value2=value1+1+rnorm(26, sd=1) )
+# Reorder data using average?
+data = data %&gt;% rowwise() %&gt;% mutate( mymean = mean(c(value1,value2) )) %&gt;% arrange(mymean) %&gt;% mutate(x=factor(x, x))
+# plot
+ggplot(data) +
+  geom_segment( aes(x=x, xend=x, y=value1, yend=value2), color=&quot;grey&quot;) +
+  geom_point( aes(x=x, y=value1), color=rgb(0.2,0.7,0.1,0.5), size=3 ) +
+  geom_point( aes(x=x, y=value2), color=rgb(0.7,0.2,0.1,0.5), size=3 ) +
+  coord_flip()
+# With a bit more style
+ggplot(data) +
+  geom_segment( aes(x=x, xend=x, y=value1, yend=value2), color=&quot;grey&quot;) +
+  geom_point( aes(x=x, y=value1), color=rgb(0.2,0.7,0.1,0.5), size=3 ) +
+  geom_point( aes(x=x, y=value2), color=rgb(0.7,0.2,0.1,0.5), size=3 ) +
+  coord_flip()+
+  theme_light() +
+  theme(
+    legend.position = &quot;none&quot;,
+    panel.border = element_blank(),
+  ) +
+  xlab(&quot;&quot;) +
+  ylab(&quot;Value of Y&quot;)</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" loading="lazy" /><figcaption>E8599C96-2DC1-41F7-AB3A-8E897D419B99.png</figcaption></figure>
+<pre><code class="language-r">library(reshape2)
+CIMP_num_in_sig&lt;-
+  data.frame(unclass(table(Full_CGI_anno$signal_group,Full_CGI_anno$group)))
+CIMP_num_in_sig$CGIs &lt;- rowSums(CIMP_num_in_sig)
+lollipop_data&lt;- apply(CIMP_num_in_sig,2,function(x){x/sum(x)}) %&gt;%
+  as.data.frame() %&gt;%
+  mutate(sig.group=row.names(.)) %&gt;%
+  select(sig.group,A_CIMP,IDH_CIMP,CGIs) %&gt;%
+  melt() ## make the data 
+lollipop_data$x &lt;- c(seq(1,5),seq(1,5)+0.1, seq(1,5)+0.2) ## add x axis postions manually 
+lollipop_data
+p&lt;-
+  ggplot(lollipop_data,aes(x=x,y=value))+
+  geom_segment( aes(x=x, xend=x, y=0, yend=value), color=&quot;skyblue&quot;)+
+  geom_point( aes(color=variable), size=3, alpha=0.8) +
+  scale_y_continuous(limits = c(0,1),name = &quot;Ratio&quot;,expand = c(0,0))+
+  scale_color_manual(name=&quot;group&quot;,
+                     values = list(&quot;CGIs&quot;=&quot;#7d8597&quot;,&quot;A_CIMP&quot;=&quot;#4755B8&quot;,&quot;IDH_CIMP&quot;=&quot;#FFCE33&quot;))+
+  scale_x_discrete(limits=c(1.1,2.1,3.1,4.1,5.1),labels=c(&quot;multi&quot;,&quot;sig.1&quot;,&quot;sig.2&quot;,&quot;sig.3&quot;,&quot;sig.4&quot;))+
+  theme_bw() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.text = element_text(size = 12,colour = &quot;black&quot;),
+    axis.title.y = element_text(size=12),
+    plot.margin = unit(c(1,1,1,1), &quot;cm&quot;)
+  ) +
+  xlab(&quot;&quot;)</code></pre>
+
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="/">Back to home</a>
+      </div></article>
+    </section>
+  </main>
+</body>
+</html>
