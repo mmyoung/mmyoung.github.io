@@ -2,98 +2,417 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="An R plot gallery built from the notebook export. The homepage shows only images, and each image opens a plot page with its code.">
-  <title>R Archive | Gallery</title>
-  <style>
-    :root {
-      --bg: #fbf7f1;
-      --panel: rgba(255,255,255,.84);
-      --panel-strong: #ffffff;
-      --line: #e8ddd0;
-      --text: #2f2923;
-      --muted: #7d7166;
-      --shadow: 0 14px 34px rgba(56, 45, 33, .06);
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(207, 189, 166, .22), transparent 28%),
-        radial-gradient(circle at top right, rgba(191, 213, 214, .18), transparent 24%),
-        var(--bg);
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
-    .topbar {
-      padding: 22px 0 14px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 16px;
-    }
-    .eyebrow { margin: 0; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-    h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.1; }
-    .meta { margin: 0; color: var(--muted); font-size: .95rem; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
-      padding: 10px 0 28px;
-    }
-    .gallery-thumb {
-      display: block;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--panel-strong);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      aspect-ratio: 1 / 1;
-    }
-    .gallery-thumb:hover { transform: translateY(-2px); border-color: #d7c8b7; box-shadow: 0 18px 36px rgba(56, 45, 33, .09); }
-    .gallery-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
-    @media (max-width: 720px) {
-      .container { padding: 0 14px; }
-      .topbar { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-    }
-  </style>
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="R Archive | Used codes                    R archive       Used codes       A compact gallery rebuilt from the exported Notion notebook. Click any card to open the page with its code and">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/r-archive/index.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="R Archive | Used codes                    R archive       Used codes       A compact gallery rebuilt from the exported Notion notebook. Click any card to open the page with its code and">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png">
+<meta property="og:image" content="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EssGSEA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EssGSEA%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png">
+<meta property="og:image" content="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EData%20manipulation%20in%20R%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EData%20manipulation%20in%20R%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E">
+<meta property="og:image" content="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EBiology%20analysis%20pipeline%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EBiology%20analysis%20pipeline%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Upset%20plot/image.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Violin%20plot/image.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Ideogram%20plots/Screenshot_2024-10-31_at_4.47.47_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Permutation%20test/Screenshot_2024-11-06_at_11.19.57_AM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png">
+<meta property="og:image" content="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EAthaliana%20biology%20related%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EAthaliana%20biology%20related%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/heatmap/image.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Line%20plot/EE842D4A-8E16-4AA0-A58B-44AE3793A011.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/Donut%20plot/B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.108Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.108Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/r-archive/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/r-archive/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/r-archive/index.html","path":"r-archive/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
-<body>
-  <header class="topbar container">
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Used codes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">ComplexHeatmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">ssGSEA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">Dotplots in R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">Barplot in R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">Data manipulation in R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">Biology analysis pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">Upset plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text">Violin plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.9.</span> <span class="nav-text">Ideogram plots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.10.</span> <span class="nav-text">Permutation test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.11.</span> <span class="nav-text">Genometracks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.12.</span> <span class="nav-text">Athaliana biology related</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.13.</span> <span class="nav-text">HTML reports</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.14.</span> <span class="nav-text">heatmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.15.</span> <span class="nav-text">Boxplot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.16.</span> <span class="nav-text">Line plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.17.</span> <span class="nav-text">Donut plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.18.</span> <span class="nav-text">lollipop plot</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Notebook gallery rebuilt from the exported Notion pages.">
+  <title>R Archive | Used codes</title>
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="gallery-page">
+  <header class="hero container">
     <div>
       <p class="eyebrow">R archive</p>
-      <h1>Notebook plot gallery</h1>
+      <h1>Used codes</h1>
+      <p class="subtitle">A compact gallery rebuilt from the exported Notion notebook. Click any card to open the page with its code and figures.</p>
     </div>
-    <p class="meta">44 plots · images only on the homepage</p>
+    <div class="meta-stack">
+      <span>18 pages</span>
+      <span>35 images</span>
+      <span>62 code blocks</span>
+    </div>
   </header>
 
   <main class="container">
-    <section id="gallery-grid" class="gallery-grid" aria-label="Plot gallery"></section>
+    <section class="panel gallery-panel">
+      <div class="grid"><a class="card" href="01-complexheatmap.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="ComplexHeatmap cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>ComplexHeatmap</h2>
+        <p>ComplexHeatmap</p>
+      </div>
+    </a>
+<a class="card" href="02-ssgsea.html">
+      <div class="card-media"><img src="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EssGSEA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EssGSEA%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="ssGSEA cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>ssGSEA</h2>
+        <p>ssGSEA</p>
+      </div>
+    </a>
+<a class="card" href="03-dotplots-in-r.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Dotplots in R cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Dotplots in R</h2>
+        <p>Dotplots in R</p>
+      </div>
+    </a>
+<a class="card" href="04-barplot-in-r.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Barplot in R cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Barplot in R</h2>
+        <p>Barplot in R</p>
+      </div>
+    </a>
+<a class="card" href="05-data-manipulation-in-r.html">
+      <div class="card-media"><img src="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EData%20manipulation%20in%20R%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EData%20manipulation%20in%20R%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Data manipulation in R cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Data manipulation in R</h2>
+        <p>Data manipulation in R</p>
+      </div>
+    </a>
+<a class="card" href="06-biology-analysis-pipeline.html">
+      <div class="card-media"><img src="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EBiology%20analysis%20pipeline%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EBiology%20analysis%20pipeline%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Biology analysis pipeline cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Biology analysis pipeline</h2>
+        <p>Biology analysis pipeline</p>
+      </div>
+    </a>
+<a class="card" href="07-upset-plot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Upset%20plot/image.png" alt="Upset plot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Upset plot</h2>
+        <p>Upset plot</p>
+      </div>
+    </a>
+<a class="card" href="08-violin-plot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Violin%20plot/image.png" alt="Violin plot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Violin plot</h2>
+        <p>Violin plot</p>
+      </div>
+    </a>
+<a class="card" href="09-ideogram-plots.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Ideogram%20plots/Screenshot_2024-10-31_at_4.47.47_PM.png" alt="Ideogram plots cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Ideogram plots</h2>
+        <p>Ideogram plots</p>
+      </div>
+    </a>
+<a class="card" href="10-permutation-test.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Permutation%20test/Screenshot_2024-11-06_at_11.19.57_AM.png" alt="Permutation test cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Permutation test</h2>
+        <p>Permutation test</p>
+      </div>
+    </a>
+<a class="card" href="11-genometracks.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Genometracks cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Genometracks</h2>
+        <p>Genometracks</p>
+      </div>
+    </a>
+<a class="card" href="12-athaliana-biology-related.html">
+      <div class="card-media"><img src="data:image/svg+xml;charset=UTF-8,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221200%22%20height%3D%22900%22%20viewBox%3D%220%200%201200%20900%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f8f1e7%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23eee4d7%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%221200%22%20height%3D%22900%22%20rx%3D%2232%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%221020%22%20cy%3D%22110%22%20r%3D%22140%22%20fill%3D%22rgba(180%2C158%2C133%2C0.22)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%22790%22%20r%3D%22180%22%20fill%3D%22rgba(117%2C145%2C157%2C0.18)%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22120%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2256%22%20font-weight%3D%22700%22%20fill%3D%22%232f2923%22%3EAthaliana%20biology%20related%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%2270%22%20y%3D%22190%22%20font-family%3D%22Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2228%22%20fill%3D%22%237d7166%22%3EAthaliana%20biology%20related%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E" alt="Athaliana biology related cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Athaliana biology related</h2>
+        <p>Athaliana biology related</p>
+      </div>
+    </a>
+<a class="card" href="13-html-reports.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png" alt="HTML reports cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>HTML reports</h2>
+        <p>HTML reports</p>
+      </div>
+    </a>
+<a class="card" href="14-heatmap.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/heatmap/image.png" alt="heatmap cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>heatmap</h2>
+        <p>heatmap</p>
+      </div>
+    </a>
+<a class="card" href="15-boxplot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="Boxplot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Boxplot</h2>
+        <p>Boxplot</p>
+      </div>
+    </a>
+<a class="card" href="16-line-plot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Line%20plot/EE842D4A-8E16-4AA0-A58B-44AE3793A011.png" alt="Line plot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Line plot</h2>
+        <p>Line plot</p>
+      </div>
+    </a>
+<a class="card" href="17-donut-plot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/Donut%20plot/B78D2A2A-1580-48F1-BFD2-026A6EBC0906.png" alt="Donut plot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>Donut plot</h2>
+        <p>Donut plot</p>
+      </div>
+    </a>
+<a class="card" href="18-lollipop-plot.html">
+      <div class="card-media"><img src="/r-archive/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="lollipop plot cover" loading="lazy"></div>
+      <div class="card-body">
+        <h2>lollipop plot</h2>
+        <p>lollipop plot</p>
+      </div>
+    </a></div>
+    </section>
+  </main>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
   </main>
 
-  <script>
-    const plots = [{"id": "01", "title": "Volcano 1", "subtitle": "Volcano plots", "image": "/2026/08/08/R-plotting-notes-part-1/EA52A791-8A0C-4865-9EE3-6317EAC6C756.png", "alt": "Volcano 1", "code": "with(res, plot(log2FoldChange, -log10(pvalue), pch = 20,\n               main = \"Volcano plot\", xlim = c(-2.5, 2)))\nwith(subset(res, padj < .05),\n     points(log2FoldChange, -log10(pvalue), pch = 20, col = \"red\"))\n\nggplot(data, aes(logFC, -log10(padj), color = sig)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#0072B5\", \"grey\", \"#BC3C28\")) +\n  geom_hline(yintercept = -log10(0.05), linetype = 4) +\n  geom_vline(xintercept = c(-0.5, 0.5), linetype = 4)"}, {"id": "02", "title": "Volcano 2", "subtitle": "Volcano plots", "image": "/2026/08/08/R-plotting-notes-part-1/C9FE71CD-2D53-4C76-8C43-C8DAA41DF208.png", "alt": "Volcano 2", "code": "with(res, plot(log2FoldChange, -log10(pvalue), pch = 20,\n               main = \"Volcano plot\", xlim = c(-2.5, 2)))\nwith(subset(res, padj < .05),\n     points(log2FoldChange, -log10(pvalue), pch = 20, col = \"red\"))\n\nggplot(data, aes(logFC, -log10(padj), color = sig)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#0072B5\", \"grey\", \"#BC3C28\")) +\n  geom_hline(yintercept = -log10(0.05), linetype = 4) +\n  geom_vline(xintercept = c(-0.5, 0.5), linetype = 4)"}, {"id": "03", "title": "Heatmap 1", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/0F623161-6E06-4416-83AC-61E76F7F0BC1.png", "alt": "Heatmap 1", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "04", "title": "Heatmap 2", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/E12445D8-6BE9-4F3D-BC0D-1AFC011CFE41.png", "alt": "Heatmap 2", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "05", "title": "Heatmap 3", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/1B202378-5FB2-4824-9556-CD3C35110C53.png", "alt": "Heatmap 3", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "06", "title": "Boxplot 1", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/4B2EC705-848B-41D1-995E-37FF255B7A9D.png", "alt": "Boxplot 1", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "07", "title": "Boxplot 2", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/AEE98DB0-C1AA-4076-8944-8F81CAA6D2CD.png", "alt": "Boxplot 2", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "08", "title": "Boxplot 3", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/BAF3ADF7-BBE5-4315-B742-6B63DA7BC11A.png", "alt": "Boxplot 3", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "09", "title": "Boxplot 4", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/42BE12CC-1FDC-4F62-A1FC-7DAF408EF0E1.png", "alt": "Boxplot 4", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "10", "title": "Boxplot 5", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/393347FD-C9F0-431A-8D93-D98E0C61B9E6.png", "alt": "Boxplot 5", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "11", "title": "Boxplot 6", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/Image.png", "alt": "Boxplot 6", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "12", "title": "Boxplot 7", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/boxplot_vital_gene.png", "alt": "Boxplot 7", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "13", "title": "Boxplot 8", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/merge_boxplot_vital_gene.png", "alt": "Boxplot 8", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "14", "title": "Annotation 1", "subtitle": "Layout and annotation", "image": "/2026/08/08/R-plotting-notes-part-1/A82DCCA1-D6F4-4BC0-B9A7-AB6275DCCE8C.png", "alt": "Annotation 1", "code": "plot(1:5, 1:5, xlim = c(0, 6), ylim = c(0, 6), type = \"n\")\narrows(x0 = 1, y0 = 1, x1 = 4, y1 = 4)\n\nannotate(\"rect\", xmin = x1[2], xmax = x1[3], ymin = -0.16, ymax = -0.04,\n         alpha = .2, colour = \"black\")"}, {"id": "15", "title": "Annotation 2", "subtitle": "Layout and annotation", "image": "/2026/08/08/R-plotting-notes-part-1/1E49C900-3915-4602-8A45-507D9DA517FB.png", "alt": "Annotation 2", "code": "plot(1:5, 1:5, xlim = c(0, 6), ylim = c(0, 6), type = \"n\")\narrows(x0 = 1, y0 = 1, x1 = 4, y1 = 4)\n\nannotate(\"rect\", xmin = x1[2], xmax = x1[3], ymin = -0.16, ymax = -0.04,\n         alpha = .2, colour = \"black\")"}, {"id": "16", "title": "Composition 1", "subtitle": "Plot composition", "image": "/2026/08/08/R-plotting-notes-part-1/795FC6D4-F5F1-4880-9677-9361D6FD9AEB.webp", "alt": "Composition 1", "code": "library(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "17", "title": "Correlation 1", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/EA8B529A-D25D-4C66-B949-5FA4E1EB9988.png", "alt": "Correlation 1", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "18", "title": "Correlation 2", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/04739DA0-0583-4CE6-8FD0-9FC934DFE5D9.png", "alt": "Correlation 2", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "19", "title": "Correlation 3", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/E68B8419-7D49-4DBD-8DCE-094483872CF6.png", "alt": "Correlation 3", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "20", "title": "Correlation 4", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png", "alt": "Correlation 4", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "21", "title": "Correlation 5", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/519BB96E-F30E-4119-8FB6-59EA8E529294.png", "alt": "Correlation 5", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "22", "title": "Correlation 6", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/32F7BB03-1E3F-4073-B1A7-CEA7D0CBB449.png", "alt": "Correlation 6", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "23", "title": "Genomic track 1", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/2BB53905-66C6-48C6-AB6C-EC4B2771E357.png", "alt": "Genomic track 1", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "24", "title": "Genomic track 2", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/5C8B30F2-E3C6-4B74-9961-0186830A69B2.png", "alt": "Genomic track 2", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "25", "title": "Genomic track 3", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/8DAFD102-C14F-48D2-8348-2FDEA2E47ACC.png", "alt": "Genomic track 3", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "26", "title": "Genomic track 4", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/761D21DE-336D-40BF-8213-0EDD8B2E1DDB.png", "alt": "Genomic track 4", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "27", "title": "Genomic track 5", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/BFADDD65-87F3-4A11-A66D-18011B1DBA68.png", "alt": "Genomic track 5", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "28", "title": "Genomic track 6", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/D2A1E1CC-E91A-4EB0-82DC-29E6F8E17FFA.png", "alt": "Genomic track 6", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "29", "title": "Infographic 1", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png", "alt": "Infographic 1", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "30", "title": "Infographic 2", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png", "alt": "Infographic 2", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "31", "title": "Infographic 3", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png", "alt": "Infographic 3", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "32", "title": "Infographic 4", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png", "alt": "Infographic 4", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "33", "title": "Infographic 5", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png", "alt": "Infographic 5", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "34", "title": "Infographic 6", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png", "alt": "Infographic 6", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "35", "title": "Circos 1", "subtitle": "Circos and composite figures", "image": "/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png", "alt": "Circos 1", "code": "circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {\n  circos.genomicLines(region, value, type = \"l\", col = col[i], ...)\n})\n\nlibrary(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "36", "title": "Circos 2", "subtitle": "Circos and composite figures", "image": "/2026/08/08/R-plotting-notes-part-2/D445F173-53E5-4525-8257-832035E3B300.png", "alt": "Circos 2", "code": "circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {\n  circos.genomicLines(region, value, type = \"l\", col = col[i], ...)\n})\n\nlibrary(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "37", "title": "Color shelf 1", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/BAB1F7B8-3D3D-45D8-8662-E0EA9DB85981.png", "alt": "Color shelf 1", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "38", "title": "Color shelf 2", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/B78ED818-1B51-4813-9DDA-5AF02272DE3C.png", "alt": "Color shelf 2", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "39", "title": "Color shelf 3", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/08D87F8D-A8D6-447F-8A83-B5170742C5F1.png", "alt": "Color shelf 3", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "40", "title": "Color shelf 4", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/C98DB5D5-F351-498F-BE4C-06EC68AAB2D9.png", "alt": "Color shelf 4", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "41", "title": "Color shelf 5", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/F9FE4B87-152F-4761-8266-35A4D816A9DA.png", "alt": "Color shelf 5", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "42", "title": "Color shelf 6", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/27A3B0CF-80BF-458C-BFF1-CC9B9983CE4E.png", "alt": "Color shelf 6", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "43", "title": "Color shelf 7", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/6E8E3670-BAFB-48BB-B7D9-3DA5BA1E25FE.png", "alt": "Color shelf 7", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "44", "title": "Color shelf 8", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/F47B527F-8C5B-41F0-8EE3-882003AADD95.png", "alt": "Color shelf 8", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}];
-    const grid = document.getElementById('gallery-grid');
-    for (const plot of plots) {
-      const link = document.createElement('a');
-      link.className = 'gallery-thumb';
-      link.href = `plot/?id=${plot.id}`;
-      link.setAttribute('aria-label', `Open ${plot.title}`);
+  <footer class="footer">
+    <div class="footer-inner">
 
-      const img = document.createElement('img');
-      img.src = `assets/${plot.image.split('/').pop()}`;
-      img.alt = plot.alt || plot.title;
-      img.loading = 'lazy';
 
-      link.appendChild(img);
-      grid.appendChild(link);
-    }
-  </script>
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Dotplots in R | R archive                    R archive       Dotplots in R       Dotplots in R                 Page 03       3 images       3 code blocks                               Do">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="Dotplots in R | R archive                    R archive       Dotplots in R       Dotplots in R                 Page 03       3 images       3 code blocks                               Do">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-07-24_at_1.18.59_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.104Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.104Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/r-archive/03-dotplots-in-r">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/r-archive/03-dotplots-in-r.html","path":"r-archive/03-dotplots-in-r.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Dotplots in R</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Dotplots in R</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.0.1.</span> <span class="nav-text">Volcano plots with annotation in the coordinate system, example is based on edgeR results</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.0.2.</span> <span class="nav-text">facet with different groups and add p values in each plot</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dotplots in R from the exported Notion notes.">
+  <title>Dotplots in R | R archive</title>
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Dotplots in R</h1>
+      <p class="subtitle">Dotplots in R</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 03</span>
+      <span>3 images</span>
+      <span>3 code blocks</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Dotplots in R cover" loading="lazy"></figure>
+      <article class="content"><h1>Dotplots in R</h1>
+<h3>Volcano plots with annotation in the coordinate system, example is based on edgeR results</h3>
+<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Screenshot 2024-05-24 at 10.26.38 PM.png" loading="lazy"><figcaption>Screenshot 2024-05-24 at 10.26.38 PM.png</figcaption></figure>
+<pre><code class="language-r">edger_volcanoplot&lt;- 
+function(edger_res,title)&#123;
+  p &lt;-
+    ggplot(data=edger_res$table, aes(x=logFC, y =-log10(PValue)))+
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&gt;0.05 | abs(edger_res$table$logFC)&lt;1),color=&quot;#828C8C&quot;)+    
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &gt; 1),color=&quot;#bb3e03&quot;) +
+     geom_point(data=subset(edger_res$table,edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &lt; (-1)),color=&quot;#004fff&quot;) +
+     geom_hline(yintercept = -log10(0.05),lty=4,lwd=0.6,alpha=0.8)+
+     geom_vline(xintercept = c(-1,1),lty=4,lwd=0.6,alpha=0.8)+
+     theme_bw()+
+     theme(panel.border = element_blank(),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           axis.line = element_line(colour = &#39;black&#39;),
+           axis.title.x = element_text(size = 12),
+           axis.title.y = element_text(size = 12)     )+
+     labs(x=&#39;log2FC&#39;,y=&#39;-log10 (Pvalue)&#39;,title=title)+
+     theme(legend.position=&#39;none&#39;)
+  up_gene_num &lt;- 
+    sum(edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &gt; 1)
+  down_gene_num &lt;- 
+    sum(edger_res$table$PValue&lt;0.05 &amp; edger_res$table$logFC &lt; (-1))
+  
+  p &lt;- 
+  p+annotate(&quot;text&quot;,x=layer_scales(p)$x$range$range[2]*0.8,y=layer_scales(p)$y$range$range[2]*0.8,label=paste0(&quot;up: &quot;,up_gene_num))+
+    annotate(&quot;text&quot;,x=layer_scales(p)$x$range$range[1]*0.8,y=layer_scales(p)$y$range$range[2]*0.8,label=paste0(&quot;down: &quot;,down_gene_num))+
+    theme(plot.title = element_text(hjust = 0.5,vjust = 0.5))
+  
+    ggsave(filename=paste0(title,&quot;.pdf&quot;),p,
+           width = 4,height = 5)
+&#125;
+
+edger_volcanoplot(et13,title = &quot;M3 vs M1&quot;)</code></pre>
+<h3>facet with different groups and add p values in each plot</h3>
+<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-07-24_at_1.18.59_PM.png" alt="Screenshot 2024-07-24 at 1.18.59 PM.png" loading="lazy"><figcaption>Screenshot 2024-07-24 at 1.18.59 PM.png</figcaption></figure>
+<pre><code class="language-r">library(tidyr)
+library(dplyr)
+summ &lt;-
+ratio_df %&gt;%
+filter(C_group==&quot;C4&quot;,n_c4_peaks&gt;40) %&gt;%
+group_by(histone_mark) %&gt;%
+summarize(R = cor.test(median, odd_ratio,method = &quot;spearman&quot;,exact=FALSE)$estimate, p = cor.test(median, odd_ratio,method = &quot;spearman&quot;,exact=FALSE)$p.value) %&gt;%
+mutate(R = formatC(R, format = &quot;fg&quot;, digits = 3),
+p = formatC(p, format = &quot;g&quot;, digits = 3)) %&gt;%
+## to make a wide data to a long one
+gather(key = measure, value = value, -histone_mark) %&gt;%
+unite(&quot;stat&quot;, measure, value, sep = &quot; = &quot;) %&gt;%
+## combine two columns together
+group_by(histone_mark) %&gt;%
+summarise(both_stats = paste(stat, collapse = &quot;\n&quot;))## add the correaltion
+
+(ratio_df %&gt;%
+filter(C_group==&quot;C4&quot;,n_c4_peaks&gt;40) %&gt;%
+ggplot(aes(x=median,y=odd_ratio))+
+geom_point(aes(color=tf_color))+
+facet_wrap(.~histone_mark,scale=&quot;free_y&quot;)+
+scale_color_manual(values = c(&quot;group1&quot;=&quot;#f28482&quot;,&quot;group2&quot;=&quot;#f6bd60&quot;,&quot;group3&quot;=&quot;#84a59d&quot;))+
+theme_minimal()+
+geom_text(aes(x = -Inf, y = Inf, label = both_stats), data = summ,
+hjust = -0.1, vjust = 1.1, size = 3)+
+scale_x_continuous(name=&quot;distance to cds start&quot;)+
+scale_y_continuous(name=&quot;proportion of DAPpeak overlap with markers/bg&quot;)+
+theme(strip.text = element_text(size = 12))) %&gt;%
+ggsave(filename=&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/multiDAPseq_explore/analysis/tf_tss_distance_vs_enrichment_dotplot.pdf&quot;,width=10,height = 8)</code></pre>
+<p>Advanced, add a second y axis</p>
+<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png" alt="Screenshot 2024-12-05 at 10.40.01 AM.png" loading="lazy"><figcaption>Screenshot 2024-12-05 at 10.40.01 AM.png</figcaption></figure>
+<pre><code class="language-bash">## to add the histone mark distribution into the dotplot
+mark_distribution &lt;-
+data.frame(pos=unlist(epi_tss_distri[c(1,3,5,7,9,11,13,15,17,19)]),
+value=unlist(epi_tss_distri[c(2,4,6,8,10,12,14,16,18,20)]),
+histone_mark=rep(c(&#39;ATAC&#39;,&#39;H3K4me2&#39;,&#39;H3K4me3&#39;,&#39;H3K9me2&#39;,&#39;H3K27me3&#39;,&#39;H3K9ac&#39;,&#39;H3K27ac&#39;,&#39;H3K36me3&#39;,&#39;H3K36ac&#39;,&#39;DNAmethy&#39;),each=2501))
+
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Filter the dataframe based on specified conditions
+
+scale_factor=max(ratio_df$odd_ratio)/max(mark_distribution$value)/5
+
+(ratio_df %&gt;%
+filter(C_group == &quot;C4&quot;, n_c4_peaks &gt; 40) %&gt;%
+
+# Create the ggplot
+ggplot(aes(x = median, y = odd_ratio)) +
+
+# Add points with colors based on &#39;tf_color&#39;
+geom_point(aes(color = tf_color)) +
+
+# Add a line using data from &#39;mark_distribution&#39; with proper scaling for the secondary axis
+geom_line(data = mark_distribution, aes(x = pos, y = value * scale_factor), color = &quot;darkgrey&quot;) +
+
+# Create separate plots for each &#39;histone_mark&#39; with free y-axis scaling
+facet_wrap(. ~ histone_mark, scales = &quot;free_y&quot;) +
+
+# Customize the color scheme manually
+scale_color_manual(values = c(&quot;group1&quot; = &quot;#f28482&quot;,
+&quot;group2&quot; = &quot;#f6bd60&quot;,
+&quot;group3&quot; = &quot;#84a59d&quot;)) +
+
+# Apply minimal theme for a clean look
+theme_minimal() +
+
+# Add text labels with custom positioning
+geom_text(aes(x = -Inf, y = Inf, label = both_stats),
+data = summ, hjust = -0.1, vjust = 1.1, size = 3) +
+
+# Set the x-axis label
+scale_x_continuous(name = &quot;Distance to CDS Start&quot;,limits = c(-1000,500)) +
+
+# Customize the y-axis with dual scaling
+scale_y_continuous(
+
+# Primary y-axis label
+name = &quot;Proportion of DAPpeak Overlap with Markers/BG&quot;,
+
+# Secondary y-axis with custom scaling and label
+sec.axis = sec_axis(~ ./scale_factor,
+name = &quot;Epi-mark Peak Frequency&quot;)
+) +
+
+# Customize the strip text size in facet_wrap
+theme(strip.text = element_text(size = 12))) %&gt;%
+ggsave(filename=&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/multiDAPseq_explore/analysis/tf_tss_distance_vs_enrichment_dotplot_with_epimark.pdf&quot;,width=12,height = 8)</code></pre></article>
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="../">Home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

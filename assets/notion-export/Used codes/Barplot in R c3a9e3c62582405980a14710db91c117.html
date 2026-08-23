@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Barplot in RTo add breaks in the y-axis  12345678910111213141516library(scales)trans &lt;- function(x)&amp;#123;pmin(x,100) + 0.01*pmax(x-100,0)&amp;#125;yticks &lt;- c(0, 500,1000, 2000, 4000, 10000, 15000,">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="Barplot in RTo add breaks in the y-axis  12345678910111213141516library(scales)trans &lt;- function(x)&amp;#123;pmin(x,100) + 0.01*pmax(x-100,0)&amp;#125;yticks &lt;- c(0, 500,1000, 2000, 4000, 10000, 15000,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlUntitled.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlimage.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlScreenshot_2024-10-10_at_5.41.58_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlScreenshot_2026-08-10_at_7.40.24_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlAEADB68E-151B-481C-9FD8-26FA3B0B3B49.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.050Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.050Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.htmlUntitled.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R%20c3a9e3c62582405980a14710db91c117.html","path":"assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Barplot-in-R"><span class="nav-number">1.</span> <span class="nav-text">Barplot in R</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Make-barplot-for-celltype-distribution-in-single-cell-studies"><span class="nav-number">1.0.1.</span> <span class="nav-text">Make barplot for celltype distribution in single-cell studies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-plot-the-DEG-number-in-each-celltype-between-conditions-and-the-celltype-number"><span class="nav-number">1.0.2.</span> <span class="nav-text">To plot the DEG number in each celltype between conditions and the celltype number</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE-barplot-and-facet"><span class="nav-number">2.</span> <span class="nav-text">分组绘制条形图 (barplot and facet )</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>BARPLOT IN R C3A9E3C62582405980A14710DB91C117</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="Barplot-in-R"><a href="#Barplot-in-R" class="headerlink" title="Barplot in R"></a>Barplot in R</h1><p>To add breaks in the y-axis</p>
+<p><img src="/assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.htmlUntitled.png" alt="Untitled"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">library(scales)</span><br><span class="line">trans &lt;- <span class="keyword">function</span>(x)&#123;pmin(x,<span class="number">100</span>) + <span class="number">0.01</span>*pmax(x-<span class="number">100</span>,<span class="number">0</span>)&#125;</span><br><span class="line">yticks &lt;- <span class="built_in">c</span>(<span class="number">0</span>, <span class="number">500</span>,<span class="number">1000</span>, <span class="number">2000</span>, <span class="number">4000</span>, <span class="number">10000</span>, <span class="number">15000</span>, <span class="number">20000</span>)</span><br><span class="line"></span><br><span class="line">umis_count$trans &lt;- </span><br><span class="line">trans(umis_count$row)</span><br><span class="line"></span><br><span class="line">umis_count %&gt;% </span><br><span class="line">filter(sample==<span class="string">&quot;AU&quot;</span> &amp; umis&gt;<span class="number">10</span>) %&gt;%</span><br><span class="line">ggplot(aes(x=umis, y=trans)) + </span><br><span class="line">  geom_col()+</span><br><span class="line">  geom_vline(aes(xintercept=<span class="number">1291</span>),color=<span class="string">&quot;#e76f51&quot;</span>,linetype=<span class="string">&quot;dashed&quot;</span>)+</span><br><span class="line">  scale_x_continuous(limits=<span class="built_in">c</span>(<span class="number">0</span>,<span class="number">20000</span>))+</span><br><span class="line">  scale_y_continuous(name=<span class="string">&quot;cell counts&quot;</span>,expand=<span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>),limits=<span class="built_in">c</span>(<span class="number">0</span>,<span class="literal">NA</span>), breaks=trans(yticks), labels=yticks)+</span><br><span class="line">  theme_minimal()+</span><br><span class="line">  theme(axis.text=element_text(size=<span class="number">12</span>),axis.title=element_text(size=<span class="number">14</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Make-barplot-for-celltype-distribution-in-single-cell-studies"><a href="#Make-barplot-for-celltype-distribution-in-single-cell-studies" class="headerlink" title="Make barplot for celltype distribution in single-cell studies"></a>Make barplot for celltype distribution in single-cell studies</h3><p>a trick is to use a column that stores the color code for each celltype is to use scale_fill_identity</p>
+<p><img src="/assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.htmlimage.png" alt="image.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">options(repr.plot.width = <span class="number">10</span>, repr.plot.height = <span class="number">4</span>, repr.plot.res = <span class="number">300</span>)</span><br><span class="line">seu_obj_recluster@meta.data %&gt;%</span><br><span class="line">  group_by(celltype,sampleID) %&gt;%</span><br><span class="line">  count() %&gt;%</span><br><span class="line">  group_by(sampleID) %&gt;%</span><br><span class="line">  mutate(percent=<span class="number">100</span>*n/<span class="built_in">sum</span>(n)) %&gt;%</span><br><span class="line">  ungroup() %&gt;%</span><br><span class="line">  mutate(celltype_color=case_when(celltype == <span class="string">&quot;Sst-Inh&quot;</span> ~ <span class="string">&quot;#C8C8C8&quot;</span>, </span><br><span class="line">                                        celltype == <span class="string">&quot;L5 IT&quot;</span> ~ <span class="string">&quot;#FDDCFF&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;L5 ET&quot;</span> ~ <span class="string">&quot;#B28D9A&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;L4 IT&quot;</span> ~ <span class="string">&quot;#C77963&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;CGE-Inh&quot;</span> ~ <span class="string">&quot;#CEFF00&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;L2/3 IT&quot;</span> ~ <span class="string">&quot;#D9F0A3&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;L6 CT&quot;</span> ~ <span class="string">&quot;#0094C2&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;ASC&quot;</span> ~ <span class="string">&quot;#00B7FF&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;Pvalb-Inh&quot;</span> ~ <span class="string">&quot;#0640FF&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;Micro&quot;</span> ~ <span class="string">&quot;#21F4CC&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;ODC&quot;</span> ~ <span class="string">&quot;#0DFF00&quot;</span>,</span><br><span class="line">                                        celltype == <span class="string">&quot;BG&quot;</span> ~ <span class="string">&quot;#ADBF00&quot;</span></span><br><span class="line">                                       ))%&gt;%</span><br><span class="line">  ggplot(aes(x=sampleID,y=percent, fill=celltype_color)) +</span><br><span class="line">  geom_col() +</span><br><span class="line">  scale_fill_identity(guide = <span class="string">&quot;legend&quot;</span>, labels = unique(seu_obj_recluster@meta.data$celltype)) +</span><br><span class="line">  ggtitle(<span class="string">&quot;Percentage of cell types per sample&quot;</span>) +</span><br><span class="line">  theme_minimal() +</span><br><span class="line">  labs(x = <span class="string">&quot;Sample ID&quot;</span>, y = <span class="string">&quot;Percentage&quot;</span>, fill = <span class="string">&quot;Cell Type&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="To-plot-the-DEG-number-in-each-celltype-between-conditions-and-the-celltype-number"><a href="#To-plot-the-DEG-number-in-each-celltype-between-conditions-and-the-celltype-number" class="headerlink" title="To plot the DEG number in each celltype between conditions and the celltype number"></a>To plot the DEG number in each celltype between conditions and the celltype number</h3><p><img src="/assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.htmlScreenshot_2024-10-10_at_5.41.58_PM.png" alt="Screenshot 2024-10-10 at 5.41.58 PM.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">p1 &lt;- seu_obj_recluster@meta.data %&gt;%</span><br><span class="line">    count(celltype) %&gt;%</span><br><span class="line">    filter(celltype!=<span class="string">&quot;NA&quot;</span>) %&gt;%</span><br><span class="line">    ggplot(aes(x=celltype,y=n))+</span><br><span class="line">    geom_bar(stat = <span class="string">&quot;identity&quot;</span>,fill=<span class="string">&quot;darkgrey&quot;</span>)+</span><br><span class="line">    labs(x=<span class="string">&quot;&quot;</span>,y=<span class="string">&quot;# of cells&quot;</span>)+</span><br><span class="line">    theme_minimal()+</span><br><span class="line">    theme(axis.text.x=element_text(angle=<span class="number">90</span>,hjust=<span class="number">1</span>),</span><br><span class="line">         plot.margin = unit(<span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="string">&quot;cm&quot;</span>))</span><br><span class="line">p2 &lt;- do.call(rbind,Map(cbind, pseudo_de, new_clumn = <span class="built_in">names</span>(pseudo_de))) %&gt;%</span><br><span class="line">mutate(diff=case_when(p_val&lt;<span class="number">0.05</span> &amp; avg_log2FC&gt;<span class="number">0.3</span> ~ <span class="string">&quot;up&quot;</span>,</span><br><span class="line">                     p_val&lt;<span class="number">0.05</span> &amp; avg_log2FC&lt; (-<span class="number">0.3</span>) ~ <span class="string">&quot;down&quot;</span>,</span><br><span class="line">                     .default = <span class="string">&quot;nonsig&quot;</span>)</span><br><span class="line">      ) %&gt;%</span><br><span class="line">count(new_clumn,diff) %&gt;%</span><br><span class="line">mutate(plot_y=ifelse(diff==<span class="string">&quot;down&quot;</span>,(-<span class="number">1</span>)*n,n)) %&gt;%</span><br><span class="line">filter(new_clumn!=<span class="string">&quot;NA&quot;</span>,diff!=<span class="string">&quot;nonsig&quot;</span>) %&gt;%</span><br><span class="line">ggplot(aes(x=new_clumn,y=plot_y,fill=diff))+</span><br><span class="line">geom_bar(stat = <span class="string">&quot;identity&quot;</span>)+</span><br><span class="line">geom_hline(yintercept = <span class="number">0</span>)+</span><br><span class="line">geom_text(aes(label = <span class="built_in">abs</span>(plot_y)), vjust = <span class="number">0.5</span>,size=<span class="number">3</span>)+</span><br><span class="line">labs(x=<span class="string">&quot;&quot;</span>,y=<span class="string">&quot;# of DEGs&quot;</span>,fill=<span class="string">&quot;iso/soc&quot;</span>)+</span><br><span class="line">scale_fill_manual(values=<span class="built_in">c</span>(<span class="string">&quot;#85a0ab&quot;</span>,<span class="string">&quot;#eb9c81&quot;</span>))+</span><br><span class="line">scale_y_continuous(breaks=<span class="built_in">c</span>(-<span class="number">300</span>,-<span class="number">200</span>,-<span class="number">100</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">200</span>),labels=<span class="built_in">c</span>(<span class="number">300</span>,<span class="number">200</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">200</span>))+</span><br><span class="line">theme_classic()+</span><br><span class="line">theme(panel.grid = element_blank(),</span><br><span class="line">      axis.text.x = element_blank(),</span><br><span class="line">      axis.ticks.x = element_blank(),</span><br><span class="line">     plot.margin = unit(<span class="built_in">c</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="string">&quot;cm&quot;</span>))</span><br><span class="line"></span><br><span class="line">pdf(<span class="string">&quot;./scaleBio_RNA_rat_brain/DEG_FC0.3_counts_barplot.pdf&quot;</span>,width = <span class="number">5</span>,height=<span class="number">3</span>)</span><br><span class="line">p2/p1 + plot_layout(heights = <span class="built_in">c</span>(<span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+
+<h1 id="分组绘制条形图-barplot-and-facet"><a href="#分组绘制条形图-barplot-and-facet" class="headerlink" title="分组绘制条形图 (barplot and facet )"></a>分组绘制条形图 (barplot and facet )</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">library(ggplot2)</span><br><span class="line">library(reshape2)</span><br><span class="line">library(Rmisc)</span><br><span class="line">setwd(<span class="string">&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;</span>)</span><br><span class="line">TPM&lt;-read.table(<span class="string">&quot;vital_gene.tpm&quot;</span>,row.names=<span class="number">1</span>,stringsAsFactors = <span class="built_in">F</span>)</span><br><span class="line">t_TPM &lt;- as.data.frame(t(TPM))</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> colnames(t_TPM)[-<span class="number">1</span>])&#123;</span><br><span class="line">  t_TPM[,i] &lt;- <span class="built_in">as.numeric</span>(<span class="built_in">as.character</span>(t_TPM[,i]))</span><br><span class="line">&#125;</span><br><span class="line">t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(<span class="built_in">c</span>(<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;In&quot;</span>, <span class="string">&quot;BS&quot;</span>, <span class="string">&quot;BG2&quot;</span>, <span class="string">&quot;G1&quot;</span>, <span class="string">&quot;ePL&quot;</span>, <span class="string">&quot;mPL&quot;</span>, <span class="string">&quot;IPL&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;Z&quot;</span>, <span class="string">&quot;eP&quot;</span>, <span class="string">&quot;mP&quot;</span>, <span class="string">&quot;IP&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;MI&quot;</span>, <span class="string">&quot;MII&quot;</span>, <span class="string">&quot;RS2&quot;</span>, <span class="string">&quot;RS4&quot;</span>, <span class="string">&quot;RS6&quot;</span>, <span class="string">&quot;RS8&quot;</span>)))</span><br><span class="line">melted_TPM &lt;- melt(t_TPM,id.vars=<span class="built_in">c</span>(<span class="string">&quot;Sample&quot;</span>))</span><br><span class="line"><span class="comment"># 获取各个基因表达量的平均值</span></span><br><span class="line">df_mean &lt;- aggregate(melted_TPM$value, <span class="built_in">list</span>(Group=melted_TPM$Sample,</span><br><span class="line">                        gene=melted_TPM$variable), mean, na.rm=<span class="built_in">T</span>)</span><br><span class="line"><span class="comment"># 获取各个基因表达量的标准差</span></span><br><span class="line">df_sd &lt;- aggregate(melted_TPM$value, <span class="built_in">list</span>(Group=melted_TPM$Sample,</span><br><span class="line">                        gene=melted_TPM$variable), sd, na.rm=<span class="built_in">T</span>)</span><br><span class="line"><span class="comment"># 合并mean和sd</span></span><br><span class="line">colnames(df_mean)[<span class="number">3</span>] &lt;- <span class="string">&quot;mean&quot;</span></span><br><span class="line">colnames(df_sd)[<span class="number">3</span>] &lt;- <span class="string">&quot;sd&quot;</span></span><br><span class="line">df_stat &lt;- merge(df_mean, df_sd, by=<span class="built_in">c</span>(<span class="string">&quot;Group&quot;</span>, <span class="string">&quot;gene&quot;</span>))</span><br><span class="line">str(df_stat)</span><br><span class="line"><span class="comment">##接下来用df_stat统计的信息作图。</span></span><br><span class="line">p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+</span><br><span class="line">  geom_bar(stat=<span class="string">&quot;identity&quot;</span>, position = <span class="string">&quot;dodge&quot;</span>)+</span><br><span class="line">  geom_errorbar(aes(x=Group, ymin=mean-sd, ymax=mean+sd),color=<span class="string">&quot;black&quot;</span>,width=<span class="number">.3</span>) +</span><br><span class="line">  scale_fill_brewer(palette = <span class="string">&quot;Paired&quot;</span>)+</span><br><span class="line">  theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ <span class="comment">#去掉横轴标题、刻度和刻度值</span></span><br><span class="line">  theme(axis.title.y=element_blank())+ <span class="comment">###去掉y轴标题</span></span><br><span class="line">  theme(axis.text.y = element_text(size = <span class="number">25</span>, face = <span class="string">&quot;bold&quot;</span>, angle = <span class="number">0</span>,family = <span class="string">&quot;Times&quot;</span>))+</span><br><span class="line">  theme(plot.title = element_text(size = <span class="number">30</span>,hjust = <span class="number">0.5</span>, face = <span class="string">&quot;bold&quot;</span>,family = <span class="string">&quot;Times&quot;</span>))+ <span class="comment">##vjust,hjust这里一直调不好就用默认的吧</span></span><br><span class="line">  theme(axis.ticks=element_line(colour=<span class="string">&quot;black&quot;</span>,size=<span class="number">1</span>,linetype=<span class="number">1</span>,lineend=<span class="number">1</span>),axis.ticks.length=unit(<span class="number">.4</span>,<span class="string">&quot;lines&quot;</span>))+ <span class="comment">##设置边框特征，刻度长度</span></span><br><span class="line">  theme(legend.position = <span class="number">0</span>)+ <span class="comment">##去掉legend</span></span><br><span class="line">  coord_flip() + <span class="comment">##将箱线图转置</span></span><br><span class="line">  facet_grid(~gene,scale = <span class="string">&quot;free&quot;</span>)+ <span class="comment">##根据variable分面，固定坐标刻度一致</span></span><br><span class="line">  theme(strip.text = element_text(colour = <span class="string">&#x27;black&#x27;</span>, face = <span class="string">&#x27;bold.italic&#x27;</span>, family=<span class="string">&quot;Times&quot;</span>, size = rel(<span class="number">2.5</span>)), strip.background = element_blank()) + <span class="comment">###strip.text设置分面标签的字体，颜色和大小，strip.background设置分面背景，这里去掉分面名上的灰色背景</span></span><br><span class="line">  theme(panel.background = element_blank(),panel.border = element_rect(color=<span class="string">&quot;Black&quot;</span>,fill=<span class="literal">NA</span>,size=<span class="number">2</span>))</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_barplot.pdf&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_barplot.png&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.htmlScreenshot_2026-08-10_at_7.40.24_PM.png" alt="Screenshot 2026-08-10 at 7.40.24 PM.png"></p>
+<p>barplot filling different palette in each column</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ColourPalleteMulti &lt;- <span class="keyword">function</span>(df, group, subgroup)&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Find how many colour categories to create and the number of colours in each</span></span><br><span class="line">  categories &lt;- aggregate(as.formula(paste(subgroup, group, sep=<span class="string">&quot;~&quot;</span> )), df, <span class="keyword">function</span>(x) <span class="built_in">length</span>(unique(x)))</span><br><span class="line">  category.start &lt;- (scales::hue_pal(l = <span class="number">100</span>)(nrow(categories))) <span class="comment"># Set the top of the colour pallete</span></span><br><span class="line">  category.end  &lt;- (scales::hue_pal(l = <span class="number">40</span>)(nrow(categories))) <span class="comment"># set the bottom</span></span><br><span class="line">  <span class="comment"># Build Colour pallette</span></span><br><span class="line">  colours &lt;- unlist(lapply(<span class="number">1</span>:nrow(categories),</span><br><span class="line">                          <span class="keyword">function</span>(i)&#123;</span><br><span class="line">                            colorRampPalette(colors = <span class="built_in">c</span>(category.start[i], category.end[i]))(categories[i,<span class="number">2</span>])&#125;))</span><br><span class="line">  <span class="built_in">return</span>(colours)&#125;</span><br><span class="line"></span><br><span class="line">library(ggplot2)</span><br><span class="line"><span class="comment"># Create data</span></span><br><span class="line">df &lt;- diamonds</span><br><span class="line">df$group &lt;- paste0(df$color, <span class="string">&quot;-&quot;</span>, df$clarity, sep = <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build the colour pallete</span></span><br><span class="line">colours &lt;-ColourPalleteMulti(df, <span class="string">&quot;color&quot;</span>, <span class="string">&quot;clarity&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot resultss</span></span><br><span class="line">ggplot(df, aes(color)) +</span><br><span class="line">  geom_bar(aes(fill = group), colour = <span class="string">&quot;grey&quot;</span>) +</span><br><span class="line">  scale_fill_manual(<span class="string">&quot;Subject&quot;</span>, values=colours, guide = <span class="string">&quot;none&quot;</span>) <span class="comment">## or just assign the color codes to &quot;values&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/Barplot in R c3a9e3c62582405980a14710db91c117.htmlAEADB68E-151B-481C-9FD8-26FA3B0B3B49.png" alt="AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png"></p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>BARPLOT IN R C3A9E3C62582405980A14710DB91C117</li>
+          
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

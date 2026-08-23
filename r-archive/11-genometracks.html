@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Genometracks | R archive                    R archive       Genometracks       Genometracks                 Page 11       1 image       7 code blocks                               Genome">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/r-archive/11-genometracks.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="Genometracks | R archive                    R archive       Genometracks       Genometracks                 Page 11       1 image       7 code blocks                               Genome">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.106Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.106Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/r-archive/11-genometracks">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/r-archive/11-genometracks.html","path":"r-archive/11-genometracks.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Genometracks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Genometracks</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Genometracks from the exported Notion notes.">
+  <title>Genometracks | R archive</title>
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Genometracks</h1>
+      <p class="subtitle">Genometracks</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 11</span>
+      <span>1 image</span>
+      <span>7 code blocks</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Genometracks cover" loading="lazy"></figure>
+      <article class="content"><h1>Genometracks</h1>
+<p>Make genomic tracks for pseudobulk data starting from pooled single cell bam files</p>
+<p>1. Split single-cell bam according to the barcode</p>
+<pre><code class="language-perl">export subbam=/project/zhuzhuzhang/lyang/software/subset-bam_linux
+export out_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam
+export barcode_file=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/barcode_tsv/iso-F-04.tsv
+export bam=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/alignment/iso-F-04.Rat/iso-F-04.Rat.star.align/iso-F-04.Rat.bam
+
+module load parallel
+mkdir $out_bam_dir/iso-F-04
+cd $out_bam_dir/iso-F-04
+
+cat $barcode_file | parallel --jobs 8 --colsep &#39;\t&#39; &#39;
+    barcode=&#123;&#125;
+    tmp_file=&quot;tmp_$&#123;barcode&#125;.tsv&quot;
+    echo &quot;$barcode&quot; &gt; &quot;$tmp_file&quot;
+
+    output_bam=$&#123;barcode&#125;.bam
+
+    # Check if output BAM file already exists
+    if [ ! -f &quot;$output_bam&quot; ]; then
+        echo &quot;Processing barcode: $barcode&quot;
+        $subbam --bam $bam --cell-barcodes $tmp_file --bam-tag CB:Z --log-level debug --out-bam $output_bam
+    else
+        echo &quot;Skipping barcode: $barcode (output BAM file exists)&quot;
+    fi
+
+    # Clean up temporary file
+    rm -f $tmp_file
+
+&#39;</code></pre>
+<p>or</p>
+<pre><code class="language-perl">#!/usr/bin/perl
+use strict;
+use warnings;
+use File::Temp qw(tempfile);
+use IPC::Open2;
+
+## This script is to split the mreged bam file into single cell files based on the CB field in the bam files
+
+# Check for correct usage
+if (@ARGV &lt; 1) &#123;
+    die &quot;Usage: perl split_bam_by_barcode.pl &lt;input.bam&gt;\n&quot;;
+&#125;
+
+# Input BAM file
+my $input_bam = $ARGV[0];
+
+# Hash to store temporary files for each barcode
+my %barcode_tempfiles;
+
+# Open the input BAM file using samtools to read both header and data
+open my $sam_in, &quot;-|&quot;, &quot;samtools view -h $input_bam&quot; or die &quot;Cannot open BAM file: $!&quot;;
+
+# Process each line in the BAM file
+while (my $line = &lt;$sam_in&gt;) &#123;
+    chomp $line;
+
+    # If it&#39;s a header line, we need to save it to add to each output BAM file later
+    if ($line =~ /^\@/) &#123;
+        foreach my $fh (values %barcode_tempfiles) &#123;
+            print $fh &quot;$line\n&quot;;
+        &#125;
+        next;
+    &#125;
+
+    # Parse the cell barcode (CB tag) from the read line
+    if ($line =~ /CB:Z:(\S+)/) &#123;
+        my $barcode = $1;
+
+        # Create a new temporary file for each unique barcode, if not already present
+        if (!exists $barcode_tempfiles&#123;$barcode&#125;) &#123;
+            my ($temp_fh, $temp_filename) = tempfile();
+            $barcode_tempfiles&#123;$barcode&#125; = $temp_fh;
+            print $temp_fh &quot;$line\n&quot;;
+        &#125; else &#123;
+            # Write the read line to the respective barcode&#39;s temporary file
+            my $temp_fh = $barcode_tempfiles&#123;$barcode&#125;;
+            print $temp_fh &quot;$line\n&quot;;
+        &#125;
+    &#125;
+&#125;
+
+# Close the input BAM file handle
+close $sam_in;
+
+# Write each temporary file to a BAM file with Samtools
+foreach my $barcode (keys %barcode_tempfiles) &#123;
+    my $temp_fh = $barcode_tempfiles&#123;$barcode&#125;;
+    close $temp_fh;
+
+    # Convert each temporary file to BAM and save it as &lt;barcode&gt;.bam
+    my $pid = open2(my $out, my $in, &quot;samtools view -Sb -o $&#123;barcode&#125;.bam -&quot;);
+    open my $tempfile_in, &quot;&lt;&quot;, $temp_fh-&gt;filename or die &quot;Cannot open temporary file: $!&quot;;
+    while (my $line = &lt;$tempfile_in&gt;) &#123;
+        print $in $line;
+    &#125;
+    close $tempfile_in;
+    close $in;
+    close $out;
+&#125;
+
+print &quot;BAM files split by cell barcode completed.\n&quot;;</code></pre>
+<p>1. To gather the single-cell .bam files to the same folder annotated as the same cell type (not necessarily move to same folder, create softlink works)</p>
+<pre><code class="language-perl">#!/bin/bash
+
+# Check for correct usage
+if [ &quot;$#&quot; -ne 2 ]; then
+    echo &quot;Usage: $0 &lt;metadata_file&gt; &lt;bam_directory&gt;&quot;
+    echo &quot;Example: $0 metadata.tsv /path/to/bam_files&quot;
+    exit 1
+fi
+
+# Assign command-line arguments to variables
+metadata_file=$1     # Path to metadata file
+bam_directory=$2     # Path to directory containing BAM files
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam
+
+# Loop through each line in the metadata file
+while IFS=$&#39;\t&#39; read -r cell_id sample_name cell_type; do
+    # Skip the header row (assuming &#39;CellID&#39;, &#39;SampleName&#39;, &#39;CellType&#39; as column headers)
+    if [[ &quot;$cell_id&quot; == &quot;CellID&quot; ]]; then
+        continue
+    fi
+
+    # Define the directory path for each cell type in each sample
+    target_directory=&quot;$&#123;sample_name&#125;/$&#123;cell_type&#125;&quot;
+
+    # Create the target directory if it doesn&#39;t exist
+    mkdir -p &quot;$target_directory&quot;
+
+    # Define the source BAM file and target soft link path
+    source_bam=&quot;$&#123;bam_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+    target_link=&quot;$&#123;target_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+
+    # Check if the BAM file exists before creating the link
+    if [ -f &quot;$source_bam&quot; ]; then
+        ln -s &quot;$source_bam&quot; &quot;$target_link&quot;
+        echo &quot;Created soft link for $cell_id in $target_directory&quot;
+    else
+        echo &quot;Warning: BAM file for $cell_id not found in $bam_directory&quot;
+    fi
+
+done &lt; &quot;$metadata_file&quot;</code></pre>
+<p>Execute the script (cellID_sample.txt):</p>
+<p><a href="Genometracks/cellID_sample.txt" target="_blank" rel="noreferrer">cellID_sample.txt</a></p>
+<pre><code class="language-perl">cellID=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/cellID_sample.txt
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam
+
+for target_sample in iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
+
+do
+    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/$&#123;target_sample&#125;
+
+    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; $&#123;target_sample&#125;.meta
+
+    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh $&#123;target_sample&#125;.meta $source_bam_dir
+
+done</code></pre>
+<p>1. Merge the .bam files together for each cell type in each sample</p>
+<pre><code class="language-perl">cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/merged_bams
+
+module load samtools
+
+for i in iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
+
+do
+    for j in `ls /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/soc-M-41`
+    do
+        
+        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/$&#123;i&#125;/$&#123;j&#125;
+        if [ -d $BAM_DIR ]; then
+
+            find $BAM_DIR -name &#39;*.bam&#39; | &#123;
+            read firstbam
+            samtools view -h &quot;$firstbam&quot;
+            while read bam; do
+                samtools view &quot;$bam&quot;
+            done
+            &#125; | samtools view -ubS - | samtools sort -@ 8 -o $&#123;i&#125;-$&#123;j&#125;.bam -
+            samtools index $&#123;i&#125;-$&#123;j&#125;.bam
+
+            samtools view $&#123;i&#125;-$&#123;j&#125;.bam|wc -l
+
+        fi
+
+    done
+
+done</code></pre>
+<p>1. Make .bigwig from the merged .bam file</p>
+<pre><code class="language-powershell">mkdir /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/bigwigs_RPGC_normalize
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/bigwigs_RPGC_normalize
+for i in `ls $&#123;bam_dir&#125;/*.bam`
+do
+    BaseName=`basename -s &quot;.bam&quot; $&#123;i&#125;`
+    bamCoverage -b $&#123;i&#125; -o $&#123;BaseName&#125;.bw --normalizeUsing RPGC --effectiveGenomeSize 2647915728
+done</code></pre>
+<p>1. make Genome tracks with pygenometrack</p>
+<p><a href="Genometracks/ASC_track.ini" target="_blank" rel="noreferrer">ASC_track.ini</a></p>
+<p><a href="Genometracks/iso_soc_DEG_bed_for_pygenometrack.bed" target="_blank" rel="noreferrer">iso_soc_DEG_bed_for_pygenometrack.bed</a></p>
+<pre><code class="language-powershell">#!/bin/bash
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig
+awk -F &quot;\t&quot; &#39;BEGIN&#123;OFS=&quot;\t&quot;&#125;&#123;print $8,$9,$10,$7,$6,$11,$2&#125;&#39; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/isoVSsoc_DEG_total_list.txt|sed &quot;1d&quot; |sed s/\\//&quot;&quot;/g|sed s/&quot; &quot;/&quot;&quot;/g &gt;iso_soc_DEG_bed_for_pygenometrack.bed
+
+while read chr start end gene celltype strand fc ;do
+    pyGenomeTracks --tracks ./iso_soc_DEG_normalized_track_plot/$&#123;celltype&#125;_track.ini --region $chr:$start-$(($end+1)) -o ./iso_soc_DEG_normalized_track_plot/plots/$&#123;celltype&#125;_$&#123;gene&#125;.png --title $&#123;celltype&#125;&quot; isoVSsoc logFC: &quot;$&#123;fc&#125;
+done &lt; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/iso_soc_DEG_bed_for_pygenometrack.bed</code></pre>
+<figure class="figure"><img src="/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Screenshot 2026-08-22 at 9.01.42 PM.png" loading="lazy"><figcaption>Screenshot 2026-08-22 at 9.01.42 PM.png</figcaption></figure></article>
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="../">Home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

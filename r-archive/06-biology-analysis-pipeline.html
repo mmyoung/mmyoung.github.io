@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Biology analysis pipeline | R archive                    R archive       Biology analysis pipeline       Biology analysis pipeline                 Page 06       0 images       10 code bl">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/r-archive/06-biology-analysis-pipeline.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="Biology analysis pipeline | R archive                    R archive       Biology analysis pipeline       Biology analysis pipeline                 Page 06       0 images       10 code bl">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-23T11:57:20.105Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.104Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/r-archive/06-biology-analysis-pipeline">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/r-archive/06-biology-analysis-pipeline.html","path":"r-archive/06-biology-analysis-pipeline.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Biology analysis pipeline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Biology analysis pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">Calculate FRiP scores for DAP-seq or ChIP-seq data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">With single-base methylation level file, to identify methylation regions that have certain proportion of cytosines methylated higher than a threshold in the region.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.3.</span> <span class="nav-text">In single-cell analysis, to make pseudobulk bigwig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.4.</span> <span class="nav-text">Length distribution of fastq reads</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Biology analysis pipeline from the exported Notion notes.">
+  <title>Biology analysis pipeline | R archive</title>
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>Biology analysis pipeline</h1>
+      <p class="subtitle">Biology analysis pipeline</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 06</span>
+      <span>0 images</span>
+      <span>10 code blocks</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      
+      <article class="content"><h1>Biology analysis pipeline</h1>
+<h2>Calculate FRiP scores for DAP-seq or ChIP-seq data</h2>
+<pre><code class="language-bash">module load samtools
+sample_fastq=/project/gzy8899/lyang/Xiaocheng_data/src/sample_fastq.tsv
+
+rm FRiP_score_Athaliana.txt
+touch FRiP_score_Athaliana.txt
+
+sed &#39;1d&#39; $sample_fastq|while IFS=, read sampleID _ || [ -n &quot;$sampleID&quot; ] ;do
+    echo &quot;Processing $&#123;sampleID&#125;&quot;
+    bam_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/alignment/$&#123;sampleID&#125;_Q20_sorted.bam
+    peak_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/macs3_output/$&#123;sampleID&#125;_peaks.narrowPeak
+    peak_read=`samtools view -c -L $&#123;peak_file&#125; $&#123;bam_file&#125;`
+    total_read=`samtools view $&#123;bam_file&#125;|wc -l`
+
+    printf &quot;%s\t%d\t%d\t%d\n&quot;  &quot;$&#123;sampleID&#125;&quot; &quot;$&#123;peak_read&#125;&quot; &quot;$&#123;total_read&#125;&quot; &quot;$&#123;peak_read&#125;/$&#123;total_read&#125;&quot; &gt;&gt; FRiP_score_Athaliana.txt
+
+done</code></pre>
+<h2>With single-base methylation level file, to identify methylation regions that have certain proportion of cytosines methylated higher than a threshold in the region.</h2>
+<pre><code class="language-bash">cd /project/gzy8899/lyang/Xiaocheng_data/bisulfite_res/MR_identifying
+python MR_define_exe.py --windows_file Athaliana_100bp_fasta.bed \
+                                      --peaks_file /project/gzy8899/lyang/Xiaocheng_data/bisulfite_res/Athaliana/allc_Atha_adu_L7.tsv.gz \
+                                      --output_file allc_Atha_adu_L7_methyl_regions.bed \
+                                      --methylation_threshold 0.25 \
+                                      --cytosine_threshold 0.4</code></pre>
+<pre><code class="language-python">import pandas as pd
+import argparse
+
+def identify_methylated_regions(df, window_df, methylation_threshold=0.25, cytosine_threshold=0.4):
+    &quot;&quot;&quot;
+    Identify methylated regions in the genome, count cytosines using window sequences from a file.
+
+    Parameters:
+        df (DataFrame): DataFrame with columns [&#39;chromosome&#39;, &#39;position&#39;, &#39;mC_cov&#39;, &#39;total_cov&#39;]
+                        (assumes each row is a cytosine at single base resolution).
+        window_df (DataFrame): DataFrame containing genome windows with columns [&#39;chromosome&#39;, &#39;start&#39;, &#39;end&#39;, &#39;sequence&#39;].
+        methylation_threshold (float): Threshold for methylation level to consider a cytosine as methylated.
+        cytosine_threshold (float): Threshold for the fraction of methylated cytosines to call a region methylated.
+
+    Returns:
+        methylated_regions (list): List of methylated regions, each entry is a tuple (chromosome, start, end, cytosine_count, methylated_fraction).
+    &quot;&quot;&quot;
+    methylated_regions = []
+
+    # Group by chromosome in the methylation data
+    for chrom, group in df.groupby(&#39;chromosome&#39;):
+        # Sort by position
+        group = group.sort_values(&#39;position&#39;)
+
+        # Iterate over each row in the window DataFrame
+        for _, row in window_df.iterrows():
+            if row[&#39;chromosome&#39;] == chrom:
+                window_start = row[&#39;start&#39;]
+                window_end = row[&#39;end&#39;]
+                sequence = row[&#39;sequence&#39;]
+
+                # Count the cytosines in the window sequence
+                cytosine_count = sequence.upper().count(&#39;C&#39;)
+                guanine_count = sequence.upper().count(&#39;G&#39;)
+
+                # Select cytosines in the current window based on methylation data
+                in_window = group[(group[&#39;position&#39;] &gt;= window_start) &amp; (group[&#39;position&#39;] &lt; window_end)]
+
+                if cytosine_count &gt; 0 and len(in_window) &gt; 0:
+                    # Calculate fraction of cytosines with methylation level &gt; methylation_threshold
+                    sense_methylated_cytosines = in_window[in_window[&#39;mC_level&#39;]  &gt; methylation_threshold &amp; in_window[&#39;strand&#39;] == &quot;+&quot;]
+                    sense_methylated_fraction = len(sense_methylated_cytosines) / cytosine_count
+
+                    # If more than cytosine_threshold of cytosines are methylated, call this region methylated
+                    if sense_methylated_fraction &gt; cytosine_threshold:
+                        methylated_regions.append((chrom, window_start, window_end, &quot;+&quot;, cytosine_count, sense_methylated_fraction, in_window[&#39;mC_level&#39;].mean()))
+
+                    anti_methylated_cytosines = in_window[in_window[&#39;mC_level&#39;] &gt; methylation_threshold &amp; in_window[&#39;strand&#39;] == &quot;-&quot;]
+                    anti_methylated_fraction = len(anti_methylated_cytosines) / guanine_count
+
+                    # If more than cytosine_threshold of cytosines are methylated, call this region methylated
+                    if anti_methylated_fraction &gt; cytosine_threshold:
+                        methylated_regions.append((chrom, window_start, window_end, &quot;-&quot;, guanine_count, anti_methylated_fraction, in_window[&#39;mC_level&#39;].mean()))
+
+    return methylated_regions
+
+def main():
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description=&#39;Identify methylated regions based on methylation data and genome windows.&#39;)
+    
+    parser.add_argument(&#39;--windows_file&#39;, required=True, help=&#39;Path to the genome windows file (CSV/TSV format).&#39;)
+    parser.add_argument(&#39;--peaks_file&#39;, required=True, help=&#39;Path to the compressed peaks file (gzip compressed).&#39;)
+    parser.add_argument(&#39;--output_file&#39;, required=True, help=&#39;Path to the output file to save methylated regions.&#39;)
+    parser.add_argument(&#39;--methylation_threshold&#39;, type=float, default=0.25, help=&#39;Methylation level threshold (default: 0.25).&#39;)
+    parser.add_argument(&#39;--cytosine_threshold&#39;, type=float, default=0.4, help=&#39;Cytosine methylation fraction threshold (default: 0.4).&#39;)
+    
+    args = parser.parse_args()
+
+    # Read the genome window file
+    window_columns = [&#39;chromosome&#39;, &#39;start&#39;, &#39;end&#39;, &#39;sequence&#39;]
+    window_df = pd.read_csv(args.windows_file, sep=&#39;\t&#39;, names=window_columns)  # Adjust separator if necessary
+
+    # Read the compressed peaks file without header
+    peak_columns = [&#39;chromosome&#39;, &#39;position&#39;, &#39;strand&#39;, &#39;context&#39;, &#39;mC_cov&#39;, &#39;total_cov&#39;, &#39;sig&#39;]
+    peaks_df = pd.read_csv(args.peaks_file, compression=&#39;gzip&#39;, sep=&#39;\t&#39;, names=peak_columns)
+    peaks_df[&#39;mc_level&#39;] = peaks_df[&#39;mC_cov&#39;] / peaks_df[&#39;total_cov&#39;]
+
+    # Identify methylated regions
+    methylated_regions = identify_methylated_regions(peaks_df, window_df, methylation_threshold=args.methylation_threshold, cytosine_threshold=args.cytosine_threshold)
+
+    # Convert the results into a DataFrame for easy saving
+    methylated_regions_df = pd.DataFrame(methylated_regions, columns=[&#39;chromosome&#39;, &#39;start&#39;, &#39;end&#39;, &#39;cytosine_count&#39;, &#39;methylated_fraction&#39;])
+
+    # Save the methylated regions to a CSV file
+    methylated_regions_df.to_csv(args.output_file, sep=&quot;\t&quot;, columns = [&#39;chr&#39;,&quot;start&quot;,&quot;end&quot;,&quot;strand&quot;,&quot;C_count&quot;,&quot;mC_frac&quot;,&quot;mC_level_avg&quot;],index=False)
+
+    print(f&quot;Methylated regions saved to &#123;args.output_file&#125;&quot;)
+
+if __name__ == &#39;__main__&#39;:
+    main()</code></pre>
+<h2>In single-cell analysis, to make pseudobulk bigwig</h2>
+<p>1. to split merged bam files into single-cell bams according to the CB tags</p>
+<pre><code class="language-bash">export subbam=/project/zhuzhuzhang/lyang/software/subset-bam_linux
+export out_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam
+export barcode_file=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/barcode_tsv/iso-F-04.tsv
+export bam=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/alignment/iso-F-04.Rat/iso-F-04.Rat.star.align/iso-F-04.Rat.bam
+
+module load parallel
+mkdir $out_bam_dir/iso-F-04
+cd $out_bam_dir/iso-F-04
+
+cat $barcode_file | parallel --jobs 8 --colsep &#39;\t&#39; &#39;
+    barcode=&#123;&#125;
+    tmp_file=&quot;tmp_$&#123;barcode&#125;.tsv&quot;
+    echo &quot;$barcode&quot; &gt; &quot;$tmp_file&quot;
+
+    output_bam=$&#123;barcode&#125;.bam
+
+    # Check if output BAM file already exists
+    if [ ! -f &quot;$output_bam&quot; ]; then
+        echo &quot;Processing barcode: $barcode&quot;
+        $subbam --bam $bam --cell-barcodes $tmp_file --bam-tag CB:Z --log-level debug --out-bam $output_bam
+    else
+        echo &quot;Skipping barcode: $barcode (output BAM file exists)&quot;
+    fi
+
+    # Clean up temporary file
+    rm -f $tmp_file
+
+&#39;</code></pre>
+<p>1. to gather the single-cell bam files into the same folder if they are the same celltype, based on the meta information to create softlink in new folders</p>
+<pre><code class="language-bash">cellID=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/cellID_sample.txt
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam
+
+for target_sample in iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
+
+do
+    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/$&#123;target_sample&#125;
+
+    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; $&#123;target_sample&#125;.meta
+
+    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh $&#123;target_sample&#125;.meta $source_bam_dir
+
+done</code></pre>
+<pre><code class="language-bash">##gather_bam_files.sh 
+#!/bin/bash
+
+# Check for correct usage
+if [ &quot;$#&quot; -ne 2 ]; then
+    echo &quot;Usage: $0 &lt;metadata_file&gt; &lt;bam_directory&gt;&quot;
+    echo &quot;Example: $0 metadata.tsv /path/to/bam_files&quot;
+    exit 1
+fi
+
+# Assign command-line arguments to variables
+metadata_file=$1     # Path to metadata file
+bam_directory=$2     # Path to directory containing BAM files
+
+cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam
+
+# Loop through each line in the metadata file
+while IFS=$&#39;\t&#39; read -r cell_id sample_name cell_type; do
+    # Skip the header row (assuming &#39;CellID&#39;, &#39;SampleName&#39;, &#39;CellType&#39; as column headers)
+    if [[ &quot;$cell_id&quot; == &quot;CellID&quot; ]]; then
+        continue
+    fi
+
+    # Define the directory path for each cell type in each sample
+    target_directory=&quot;$&#123;sample_name&#125;/$&#123;cell_type&#125;&quot;
+
+    # Create the target directory if it doesn&#39;t exist
+    mkdir -p &quot;$target_directory&quot;
+
+    # Define the source BAM file and target soft link path
+    source_bam=&quot;$&#123;bam_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+    target_link=&quot;$&#123;target_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+
+    # Check if the BAM file exists before creating the link
+    if [ -f &quot;$source_bam&quot; ]; then
+        ln -s &quot;$source_bam&quot; &quot;$target_link&quot;
+        echo &quot;Created soft link for $cell_id in $target_directory&quot;
+    else
+        echo &quot;Warning: BAM file for $cell_id not found in $bam_directory&quot;
+    fi
+
+done &lt; &quot;$metadata_file&quot;</code></pre>
+<p>1. to merge the bam files together for each cell type</p>
+<pre><code class="language-bash">cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/merged_bams
+
+module load samtools
+
+for i in iso-F-04 iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
+
+do
+    for j in `ls /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/soc-M-41`
+    do
+        
+        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/$&#123;i&#125;/$&#123;j&#125;
+        if [ -d $BAM_DIR ]; then
+
+            find $BAM_DIR -name &#39;*.bam&#39; | &#123;
+            read firstbam
+            samtools view -h &quot;$firstbam&quot;
+            while read bam; do
+                samtools view &quot;$bam&quot;
+            done
+            &#125; | samtools view -ubS - | samtools sort -@ 8 -o $&#123;i&#125;-$&#123;j&#125;.bam -
+            samtools index $&#123;i&#125;-$&#123;j&#125;.bam
+
+            samtools view $&#123;i&#125;-$&#123;j&#125;.bam|wc -l
+
+        fi
+
+    done
+
+done</code></pre>
+<h2>Length distribution of fastq reads</h2>
+<pre><code class="language-perl">zcat cut_linked_adapt.fq.gz | awk &#39;NR%4==2&#123;print&#125;&#39; | perl -alne &#39; &#123;
+s/\r?\n$//;
+my $seq_len = length($_); 
+$hash&#123;$seq_len&#125;++; 
+END&#123;  
+    print &quot;length\tcount\n&quot;; 
+    for my $len (sort &#123;$a &lt;=&gt; $b&#125; keys %hash)&#123; 
+    print &quot;$len\t$hash&#123;$len&#125;\n&quot;; 
+    &#125; 
+&#125;
+&#125;&#39; &gt; cut_R1_fq_len_dis</code></pre>
+<p>For scaleRNA-seq, to extract barcode information from R1 reads, and correct them according to whitelist if the mismatch falls bellow the threshold. Detect ligation, pcr and RT barcode and UMI at the same time.</p>
+<p>RT barcode: 8nt away from linker sequence</p>
+<p>ligation: first 9nt of R1 reads</p>
+<p>PCR: the whole length of I1 reads</p>
+<p>UMIs: roughly the 8nt sequences after linker (can be corrected afterwards)</p>
+<pre><code class="language-bash">import argparse
+import gzip
+from Levenshtein import distance
+
+# Function to parse barcode files
+def read_barcodes(file):
+    barcodes = []
+    barcode_dict = &#123;&#125;
+    with open(file, &#39;r&#39;) as fh:
+        for line in fh:
+            sequence, name = line.strip().split(&quot;\t&quot;)
+            barcodes.append(sequence)
+            barcode_dict[sequence] = name
+    return barcodes, barcode_dict
+
+# Function to open FASTQ files
+def open_fastq(file):
+    if file.endswith(&quot;.gz&quot;):
+        return gzip.open(file, &#39;rt&#39;)
+    return open(file, &#39;r&#39;)
+
+# Function to correct ligation barcode
+def correct_lig_bc(sequence, lig_bc_list, start_index, sub_length, mismatch, lig_barcodes):
+    distance_min = sub_length
+    match_code = None
+    match_idx = 0
+
+    for barcode in lig_bc_list:
+        subseq = sequence[start_index:start_index + sub_length]
+        dis = distance(barcode, subseq)
+
+        if dis &lt; distance_min:
+            distance_min = dis
+            match_code = barcode
+            match_idx = 1
+            if dis == 0:
+                break
+        elif dis == distance_min:
+            match_idx += 1
+
+    if match_idx == 1 and distance_min == 0:
+        return &#123;
+            &quot;label&quot;: &quot;exact&quot;,
+            &quot;lig_bc&quot;: match_code,
+            &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+    elif match_idx == 1 and distance_min &lt;= mismatch:
+        return &#123;
+            &quot;label&quot;: &quot;corrected&quot;,
+            &quot;lig_bc&quot;: match_code,
+            &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+    else:
+        return &#123;
+            &quot;label&quot;: &quot;error&quot;,
+            &quot;lig_bc&quot;: match_code or &quot;none&quot;,
+            &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+
+# Function to process RT barcode
+def correct_rt_bc(sequence, rt_bc_list, sub_length, mismatch, rt_barcodes):
+    distance_min = sub_length
+    match_code = None
+    match_idx = 0
+    umi_seq = None
+
+    start_index = sequence.find(&quot;TCAGAGC&quot;)
+    if start_index == -1:
+        return &#123;&quot;label&quot;: &quot;error&quot;, &quot;rt_bc&quot;: &quot;none&quot;, &quot;rt_bc_well&quot;: &quot;unknown&quot;, &quot;umi&quot;: &quot;unknown&quot;&#125;
+
+    for barcode in rt_bc_list:
+        subseq = sequence[start_index + 15:start_index + 15 + sub_length]
+        dis = distance(barcode, subseq)
+
+        if dis &lt; distance_min:
+            distance_min = dis
+            match_code = barcode
+            match_idx = 1
+            umi_seq = sequence[start_index + 7:start_index + 15]
+            if dis == 0:
+                break
+        elif dis == distance_min:
+            match_idx += 1
+
+    if match_idx == 1 and distance_min == 0:
+        return &#123;
+            &quot;label&quot;: &quot;exact&quot;,
+            &quot;rt_bc&quot;: match_code,
+            &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
+            &quot;umi&quot;: umi_seq
+        &#125;
+    elif match_idx == 1 and distance_min &lt;= mismatch:
+        return &#123;
+            &quot;label&quot;: &quot;corrected&quot;,
+            &quot;rt_bc&quot;: match_code,
+            &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
+            &quot;umi&quot;: umi_seq
+        &#125;
+    else:
+        return &#123;
+            &quot;label&quot;: &quot;error&quot;,
+            &quot;rt_bc&quot;: match_code or &quot;none&quot;,
+            &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
+            &quot;umi&quot;: umi_seq
+        &#125;
+
+# Function to process PCR barcode
+def correct_pcr_bc(sequence, pcr_bc_list, mismatch, pcr_barcodes):
+    distance_min = len(sequence)
+    match_code = None
+    match_idx = 0
+
+    for barcode in pcr_bc_list:
+        dis = distance(barcode, sequence)
+        if dis &lt; distance_min:
+            distance_min = dis
+            match_code = barcode
+            match_idx = 1
+            if dis == 0:
+                break
+        elif dis == distance_min:
+            match_idx += 1
+
+    if match_idx == 1 and distance_min == 0:
+        return &#123;
+            &quot;label&quot;: &quot;exact&quot;,
+            &quot;pcr_bc&quot;: match_code,
+            &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+    elif match_idx == 1 and distance_min &lt;= mismatch:
+        return &#123;
+            &quot;label&quot;: &quot;corrected&quot;,
+            &quot;pcr_bc&quot;: match_code,
+            &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+    else:
+        return &#123;
+            &quot;label&quot;: &quot;error&quot;,
+            &quot;pcr_bc&quot;: match_code or &quot;none&quot;,
+            &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
+        &#125;
+
+batch_size = 1000  # Adjust based on available memory and performance
+
+def read_batch(file_handle, lines_per_record=4):
+    &quot;&quot;&quot;Reads a batch of FASTQ records.&quot;&quot;&quot;
+    batch = []
+    for _ in range(batch_size):
+        record = [file_handle.readline().strip() for _ in range(lines_per_record)]
+        if len(record[0]) == 0:  # EOF reached
+            break
+        batch.append(record)
+    return batch
+
+# Main function
+def main():
+    parser = argparse.ArgumentParser(description=&quot;Calculate Levenshtein distances for barcodes&quot;)
+    parser.add_argument(&quot;--lig_barcode&quot;, required=True)
+    parser.add_argument(&quot;--rt_barcode&quot;, required=True)
+    parser.add_argument(&quot;--pcr_barcode&quot;, required=True)
+    parser.add_argument(&quot;--r1_fastq&quot;, required=True)
+    parser.add_argument(&quot;--r2_fastq&quot;, required=True)
+    parser.add_argument(&quot;--i1_fastq&quot;, required=True)
+    parser.add_argument(&quot;--out_fastq&quot;, required=True)
+    parser.add_argument(&quot;--barcode_sta_out&quot;, required=True)
+    parser.add_argument(&quot;--barcode_well_out&quot;, required=True)
+
+    args = parser.parse_args()
+
+    lig_barcodes, lig_barcode_dict = read_barcodes(args.lig_barcode)
+    rt_barcodes, rt_barcode_dict = read_barcodes(args.rt_barcode)
+    pcr_barcodes, pcr_barcode_dict = read_barcodes(args.pcr_barcode)
+
+    print(f&quot;Loaded &#123;len(lig_barcodes)&#125; ligation barcodes&quot;)
+    print(f&quot;Loaded &#123;len(rt_barcodes)&#125; RT barcodes&quot;)
+    print(f&quot;Loaded &#123;len(pcr_barcodes)&#125; PCR barcodes&quot;)
+
+    processed_fq_line = 0
+    with open_fastq(args.r1_fastq) as r1, open_fastq(args.r2_fastq) as r2, open_fastq(args.i1_fastq) as i1, \
+         gzip.open(args.out_fastq, &#39;wt&#39;) as out_fq, open(args.barcode_sta_out, &#39;w&#39;) as bc_sta, open(args.barcode_well_out, &#39;w&#39;) as bc_well:
+
+        bc_well.write(&quot;ligation_well\trt_well\tpcr_well\n&quot;)
+        ligation_bc_sta = &#123;&#125;
+        rt_bc_sta = &#123;&#125;
+        pcr_bc_sta = &#123;&#125;
+
+        while True:
+            r1_batch = read_batch(r1)
+            i1_batch = read_batch(i1)
+            r2_batch = read_batch(r2)
+
+            if not r1_batch or not i1_batch or not r2_batch:
+                break
+
+            for r1_records, i1_records, r2_records in zip(r1_batch, i1_batch, r2_batch):
+                # Process records as before
+
+                processed_fq_line +=1
+
+                lig_bc_match = correct_lig_bc(r1_records[1], lig_barcodes, 0, 9, 2, lig_barcode_dict) # mismatch 3
+                rt_bc_match = correct_rt_bc(r1_records[1], rt_barcodes, 10, 2, rt_barcode_dict) # mismatch 3
+                pcr_bc_match = correct_pcr_bc(i1_records[1], pcr_barcodes, 2, pcr_barcode_dict) # mismatch 3
+
+                ligation_bc_sta[lig_bc_match[&quot;label&quot;]] = ligation_bc_sta.get(lig_bc_match[&quot;label&quot;], 0) + 1
+                rt_bc_sta[rt_bc_match[&quot;label&quot;]] = rt_bc_sta.get(rt_bc_match[&quot;label&quot;], 0) + 1
+                pcr_bc_sta[pcr_bc_match[&quot;label&quot;]] = pcr_bc_sta.get(pcr_bc_match[&quot;label&quot;], 0) + 1
+
+                if lig_bc_match[&quot;label&quot;] != &quot;error&quot; and rt_bc_match[&quot;label&quot;] != &quot;error&quot; and pcr_bc_match[&quot;label&quot;] != &quot;error&quot;:
+                    first_line = f&quot;@&#123;lig_bc_match[&#39;lig_bc&#39;]&#125;&#123;rt_bc_match[&#39;rt_bc&#39;]&#125;&#123;pcr_bc_match[&#39;pcr_bc&#39;]&#125;,&#123;rt_bc_match[&#39;umi&#39;]&#125;,&#123;r2_records[0][1:]&#125;&quot;
+                    out_fq.write(f&quot;&#123;first_line&#125;\n&#123;r2_records[1]&#125;\n&#123;r2_records[2]&#125;\n&#123;r2_records[3]&#125;\n&quot;)
+                    bc_well.write(f&quot;&#123;lig_bc_match[&#39;lig_bc_well&#39;]&#125;\t&#123;rt_bc_match[&#39;rt_bc_well&#39;]&#125;\t&#123;pcr_bc_match[&#39;pcr_bc_well&#39;]&#125;\n&quot;)
+
+        for label, count in ligation_bc_sta.items():
+            bc_sta.write(f&quot;ligation\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+        for label, count in rt_bc_sta.items():
+            bc_sta.write(f&quot;rt\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+        for label, count in pcr_bc_sta.items():
+            bc_sta.write(f&quot;pcr\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+
+    print(&quot;Processed record:&quot;, processed_fq_line)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<pre><code class="language-bash">## test run of the script
+lig_bc=/project/zhuzhuzhang/lyang/software/ScaleRna/references/3lvlRNA_lig.txt
+pcr_bc=/project/zhuzhuzhang/lyang/software/ScaleRna/references/3lvlRNA_pcr.txt
+rt_bc=/project/zhuzhuzhang/lyang/software/ScaleRna/references/3lvlRNA_rt.txt
+r1_fq=/project/zhuzhuzhang/lyang/sciRNAseq_barcode_detection/test.R1.fq.gz
+r2_fq=/project/zhuzhuzhang/lyang/sciRNAseq_barcode_detection/test.R2.fq.gz
+i1_fq=/project/zhuzhuzhang/lyang/sciRNAseq_barcode_detection/test.I1.fq.gz
+
+python correct_BC.py \
+    --lig_barcode $lig_bc \
+    --rt_barcode $rt_bc \
+    --pcr_barcode $pcr_bc \
+    --r1_fastq $r1_fq \
+    --r2_fastq $r2_fq \
+    --i1_fastq $i1_fq \
+    --barcode_sta_out test_barcode.sta \
+    --barcode_well_out  barcode_well_record \
+    --out_fastq test_out.fq.gz</code></pre></article>
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="../">Home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

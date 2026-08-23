@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Boxplot12345678910111213141516171819202122232425library(ggplot2)library(reshape2)setwd(&quot;D:&#x2F;课题和课题数据及代码&#x2F;WXZ_YBX2&#x2F;public_scRNA-seq&quot;)TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names&#x3D;1,str">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="Boxplot12345678910111213141516171819202122232425library(ggplot2)library(reshape2)setwd(&quot;D:&#x2F;课题和课题数据及代码&#x2F;WXZ_YBX2&#x2F;public_scRNA-seq&quot;)TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names&#x3D;1,str">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.htmlmerge_boxplot_vital_gene.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.htmlmerge_barplot_vital_gene.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.htmlFF5B7001-A1D0-49C8-B923-B488A94CEA72.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.056Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.056Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.htmlmerge_boxplot_vital_gene.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot%203b84e661990b808b89e3f8cfda5fb099.html","path":"assets/notion-export/Used codes/Boxplot 3b84e661990b808b89e3f8cfda5fb099.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Boxplot"><span class="nav-number">1.</span> <span class="nav-text">Boxplot</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>BOXPLOT 3B84E661990B808B89E3F8CFDA5FB099</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="Boxplot"><a href="#Boxplot" class="headerlink" title="Boxplot"></a>Boxplot</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(reshape2)</span><br><span class="line">setwd(<span class="string">&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;</span>)</span><br><span class="line">TPM&lt;-read.table(<span class="string">&quot;vital_gene.tpm&quot;</span>,row.names=<span class="number">1</span>,stringsAsFactors = <span class="built_in">F</span>)</span><br><span class="line">t_TPM &lt;- as.data.frame(t(TPM))</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> colnames(t_TPM)[-<span class="number">1</span>])&#123;</span><br><span class="line">  t_TPM[,i] &lt;- <span class="built_in">as.numeric</span>(<span class="built_in">as.character</span>(t_TPM[,i]))</span><br><span class="line">&#125;</span><br><span class="line">t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=<span class="built_in">c</span>(<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;In&quot;</span>, <span class="string">&quot;BS&quot;</span>, <span class="string">&quot;BG2&quot;</span>, <span class="string">&quot;G1&quot;</span>, <span class="string">&quot;ePL&quot;</span>, <span class="string">&quot;mPL&quot;</span>, <span class="string">&quot;IPL&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;Z&quot;</span>, <span class="string">&quot;eP&quot;</span>, <span class="string">&quot;mP&quot;</span>, <span class="string">&quot;IP&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;MI&quot;</span>, <span class="string">&quot;MII&quot;</span>, <span class="string">&quot;RS2&quot;</span>, <span class="string">&quot;RS4&quot;</span>, <span class="string">&quot;RS6&quot;</span>, <span class="string">&quot;RS8&quot;</span>))</span><br><span class="line">melted_TPM &lt;- melt(t_TPM,id.vars=<span class="built_in">c</span>(<span class="string">&quot;Sample&quot;</span>))</span><br><span class="line">p&lt;-ggplot(melted_TPM,aes(x=factor(Sample),y=value,fill=variable))+</span><br><span class="line">  geom_boxplot(color=<span class="string">&quot;black&quot;</span>,size=<span class="number">1</span>)+ <span class="comment">###设置box外边框颜色和粗细</span></span><br><span class="line">  geom_smooth(method = <span class="string">&quot;loess&quot;</span>, se=<span class="literal">FALSE</span>, aes(group=variable,color=variable))+ <span class="comment">###添加拟合曲线，不展示置信区间</span></span><br><span class="line">  scale_color_brewer(palette = <span class="string">&quot;Paired&quot;</span>)+ <span class="comment">###boxplot配色</span></span><br><span class="line">  scale_fill_brewer(palette = <span class="string">&quot;Paired&quot;</span>)+ <span class="comment">###拟合曲线配色</span></span><br><span class="line">  labs(title=<span class="string">&quot;Gene Expression Level&quot;</span>,x=<span class="string">&quot;&quot;</span>, y = <span class="string">&quot;&quot;</span>) +</span><br><span class="line">  theme(axis.text.x = element_text(size = <span class="number">40</span>, face = <span class="string">&quot;bold&quot;</span>, vjust = <span class="number">1</span>, hjust = <span class="number">1</span>, angle = <span class="number">45</span>,family = <span class="string">&quot;Times&quot;</span>))+</span><br><span class="line">  theme(axis.text.y = element_text(size = <span class="number">40</span>, face = <span class="string">&quot;bold&quot;</span>, vjust = <span class="number">1</span>, hjust = <span class="number">0.5</span>, angle = <span class="number">0</span>,family = <span class="string">&quot;Times&quot;</span>))+</span><br><span class="line">  theme(plot.title = element_text(size = <span class="number">40</span>,hjust = <span class="number">0.5</span>, face = <span class="string">&quot;bold&quot;</span>,family = <span class="string">&quot;Times&quot;</span>))+</span><br><span class="line">  theme(axis.ticks=element_line(colour=<span class="string">&quot;black&quot;</span>,size=<span class="number">2</span>,linetype=<span class="number">1</span>,lineend=<span class="number">1</span>),axis.ticks.length=unit(<span class="number">.8</span>,<span class="string">&quot;lines&quot;</span>),axis.ticks.margin=unit(<span class="number">.4</span>,<span class="string">&quot;cm&quot;</span>))+ <span class="comment">#axis.ticks设置外边框颜色，粗细（size）；axis.ticks.length设置坐标轴刻度线长度，与数值距离。</span></span><br><span class="line">  theme(legend.title=element_blank(),legend.text=element_text(size=<span class="number">30</span>),legend.key.size=unit(<span class="number">1.5</span>,<span class="string">&#x27;cm&#x27;</span>))+ <span class="comment">###取消legend的title，设置legend大小</span></span><br><span class="line">  theme(panel.background = element_blank(),panel.grid.major = element_blank(),panel.border = element_rect(color=<span class="string">&quot;Black&quot;</span>,fill=<span class="literal">NA</span>,size=<span class="number">3</span>))+</span><br><span class="line">  ylim(<span class="number">0</span>,<span class="number">6</span>)</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_boxplot.pdf&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_boxplot.png&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/Boxplot 3b84e661990b808b89e3f8cfda5fb099.htmlmerge_boxplot_vital_gene.png" alt="merge_boxplot_vital_gene.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">library(ggplot2)</span><br><span class="line">library(reshape2)</span><br><span class="line">library(Rmisc)</span><br><span class="line">setwd(<span class="string">&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;</span>)</span><br><span class="line">TPM&lt;-read.table(<span class="string">&quot;vital_gene.tpm&quot;</span>,row.names=<span class="number">1</span>,stringsAsFactors = <span class="built_in">F</span>)</span><br><span class="line">t_TPM &lt;- as.data.frame(t(TPM))</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> colnames(t_TPM)[-<span class="number">1</span>])&#123;</span><br><span class="line">  t_TPM[,i] &lt;- <span class="built_in">as.numeric</span>(<span class="built_in">as.character</span>(t_TPM[,i]))</span><br><span class="line">&#125;</span><br><span class="line">t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(<span class="built_in">c</span>(<span class="string">&quot;A1&quot;</span>, <span class="string">&quot;In&quot;</span>, <span class="string">&quot;BS&quot;</span>, <span class="string">&quot;BG2&quot;</span>, <span class="string">&quot;G1&quot;</span>, <span class="string">&quot;ePL&quot;</span>, <span class="string">&quot;mPL&quot;</span>, <span class="string">&quot;IPL&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;Z&quot;</span>, <span class="string">&quot;eP&quot;</span>, <span class="string">&quot;mP&quot;</span>, <span class="string">&quot;IP&quot;</span>, <span class="string">&quot;D&quot;</span>, <span class="string">&quot;MI&quot;</span>, <span class="string">&quot;MII&quot;</span>, <span class="string">&quot;RS2&quot;</span>, <span class="string">&quot;RS4&quot;</span>, <span class="string">&quot;RS6&quot;</span>, <span class="string">&quot;RS8&quot;</span>)))</span><br><span class="line">melted_TPM &lt;- melt(t_TPM,id.vars=<span class="built_in">c</span>(<span class="string">&quot;Sample&quot;</span>))</span><br><span class="line"><span class="comment"># 获取各个基因表达量的平均值</span></span><br><span class="line">df_mean &lt;- aggregate(melted_TPM$value, <span class="built_in">list</span>(Group=melted_TPM$Sample,</span><br><span class="line">                        gene=melted_TPM$variable), mean, na.rm=<span class="built_in">T</span>)</span><br><span class="line"><span class="comment"># 获取各个基因表达量的标准差</span></span><br><span class="line">df_sd &lt;- aggregate(melted_TPM$value, <span class="built_in">list</span>(Group=melted_TPM$Sample,</span><br><span class="line">                        gene=melted_TPM$variable), sd, na.rm=<span class="built_in">T</span>)</span><br><span class="line"><span class="comment"># 合并mean和sd</span></span><br><span class="line">colnames(df_mean)[<span class="number">3</span>] &lt;- <span class="string">&quot;mean&quot;</span></span><br><span class="line">colnames(df_sd)[<span class="number">3</span>] &lt;- <span class="string">&quot;sd&quot;</span></span><br><span class="line">df_stat &lt;- merge(df_mean, df_sd, by=<span class="built_in">c</span>(<span class="string">&quot;Group&quot;</span>, <span class="string">&quot;gene&quot;</span>))</span><br><span class="line">str(df_stat)</span><br><span class="line"><span class="comment">##接下来用df_stat统计的信息作图。</span></span><br><span class="line">p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+</span><br><span class="line">  geom_bar(stat=<span class="string">&quot;identity&quot;</span>, position = <span class="string">&quot;dodge&quot;</span>)+</span><br><span class="line">  geom_errorbar(aes(x=Group, ymin=mean-sd, ymax=mean+sd),color=<span class="string">&quot;black&quot;</span>,width=<span class="number">.3</span>) +</span><br><span class="line">  scale_fill_brewer(palette = <span class="string">&quot;Paired&quot;</span>)+</span><br><span class="line">  theme(axis.title.x=element_blank(), axis.text.x=element_blank(),axis.ticks.x=element_blank())+ <span class="comment">#去掉横轴标题、刻度和刻度值</span></span><br><span class="line">  theme(axis.title.y=element_blank())+ <span class="comment">###去掉y轴标题</span></span><br><span class="line">  theme(axis.text.y = element_text(size = <span class="number">25</span>, face = <span class="string">&quot;bold&quot;</span>, angle = <span class="number">0</span>,family = <span class="string">&quot;Times&quot;</span>))+</span><br><span class="line">  theme(plot.title = element_text(size = <span class="number">30</span>,hjust = <span class="number">0.5</span>, face = <span class="string">&quot;bold&quot;</span>,family = <span class="string">&quot;Times&quot;</span>))+ <span class="comment">##vjust,hjust这里一直调不好就用默认的吧</span></span><br><span class="line">  theme(axis.ticks=element_line(colour=<span class="string">&quot;black&quot;</span>,size=<span class="number">1</span>,linetype=<span class="number">1</span>,lineend=<span class="number">1</span>),axis.ticks.length=unit(<span class="number">.4</span>,<span class="string">&quot;lines&quot;</span>))+ <span class="comment">##设置边框特征，刻度长度</span></span><br><span class="line">  theme(legend.position = <span class="number">0</span>)+ <span class="comment">##去掉legend</span></span><br><span class="line">  coord_flip() + <span class="comment">##将箱线图转置</span></span><br><span class="line">  facet_grid(~gene,scale = <span class="string">&quot;free&quot;</span>)+ <span class="comment">##根据variable分面，固定坐标刻度一致</span></span><br><span class="line">  theme(strip.text = element_text(colour = <span class="string">&#x27;black&#x27;</span>, face = <span class="string">&#x27;bold.italic&#x27;</span>, family=<span class="string">&quot;Times&quot;</span>, size = rel(<span class="number">2.5</span>)), strip.background = element_blank()) + <span class="comment">###strip.text设置分面标签的字体，颜色和大小，strip.background设置分面背景，这里去掉分面名上的灰色背景</span></span><br><span class="line">  theme(panel.background = element_blank(),panel.border = element_rect(color=<span class="string">&quot;Black&quot;</span>,fill=<span class="literal">NA</span>,size=<span class="number">2</span>))</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_barplot.pdf&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br><span class="line">ggsave(p,file=paste(<span class="string">&quot;merge_barplot.png&quot;</span>,sep=<span class="string">&quot;&quot;</span>),height=<span class="number">10</span>,width=<span class="number">25</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/Boxplot 3b84e661990b808b89e3f8cfda5fb099.htmlmerge_barplot_vital_gene.png" alt="merge_barplot_vital_gene.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">p &lt;-</span><br><span class="line">ggplot(PRC_expr,aes(x=gene,y=value,fill=subtype))+</span><br><span class="line">  geom_violin(width=<span class="number">1</span>,position = position_dodge(<span class="number">0.9</span>)) +</span><br><span class="line">           geom_boxplot(width=<span class="number">0.2</span>, color=<span class="string">&quot;grey&quot;</span>, alpha=<span class="number">0.4</span>,position = position_dodge(<span class="number">0.9</span>))+</span><br><span class="line">           <span class="comment">#facet_grid(.~gene_group,scales = &quot;free&quot;,space = &quot;free&quot;)+</span></span><br><span class="line">           scale_fill_manual(values = <span class="built_in">list</span>(<span class="string">&quot;ACIMP&quot;</span>=<span class="string">&quot;#E41A1C&quot;</span>,<span class="string">&quot;ICIMP&quot;</span>=<span class="string">&quot;#377EB8&quot;</span>,<span class="string">&quot;negCIMP&quot;</span>=<span class="string">&quot;#4DAF4A&quot;</span>))+</span><br><span class="line">           scale_y_continuous(name = <span class="string">&quot;log2(RSEM + 1)&quot;</span>)+</span><br><span class="line">           theme_bw()+</span><br><span class="line">           theme(legend.position = <span class="string">&quot;top&quot;</span>,</span><br><span class="line">                 panel.grid.minor = element_blank(),</span><br><span class="line">                 panel.grid.major = element_blank(),</span><br><span class="line">                 axis.title = element_text(size=<span class="number">12</span>,color=<span class="string">&quot;black&quot;</span>),</span><br><span class="line">                 axis.text.y = element_text(size=<span class="number">9</span>,color = <span class="string">&quot;black&quot;</span>),</span><br><span class="line">                 axis.text.x = element_text(size = <span class="number">9</span>,colour = <span class="string">&quot;black&quot;</span>,</span><br><span class="line">                                            vjust = <span class="number">0.5</span>,hjust = <span class="number">0.5</span>))</span><br><span class="line">p + ggforce::facet_row(vars(gene_group), scales = <span class="string">&#x27;free&#x27;</span>, space = <span class="string">&#x27;free&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/Boxplot 3b84e661990b808b89e3f8cfda5fb099.htmlFF5B7001-A1D0-49C8-B923-B488A94CEA72.png" alt="FF5B7001-A1D0-49C8-B923-B488A94CEA72.png"></p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>BOXPLOT 3B84E661990B808B89E3F8CFDA5FB099</li>
+          
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

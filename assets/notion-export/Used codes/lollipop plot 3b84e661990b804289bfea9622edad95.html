@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="lollipop plot1234567891011121314151617181920212223242526# Librarylibrary(tidyverse)# Create datavalue1&#x3D;abs(rnorm(26))*2data&#x3D;data.frame(x&#x3D;LETTERS[1:26], value1&#x3D;value1, value2&#x3D;value1+1+rnorm(26, sd&#x3D;1) )">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="lollipop plot1234567891011121314151617181920212223242526# Librarylibrary(tidyverse)# Create datavalue1&#x3D;abs(rnorm(26))*2data&#x3D;data.frame(x&#x3D;LETTERS[1:26], value1&#x3D;value1, value2&#x3D;value1+1+rnorm(26, sd&#x3D;1) )">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95.htmlE8599C96-2DC1-41F7-AB3A-8E897D419B99.png">
+<meta property="og:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95.html0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.065Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.065Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95.htmlE8599C96-2DC1-41F7-AB3A-8E897D419B99.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot%203b84e661990b804289bfea9622edad95.html","path":"assets/notion-export/Used codes/lollipop plot 3b84e661990b804289bfea9622edad95.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lollipop-plot"><span class="nav-number">1.</span> <span class="nav-text">lollipop plot</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>LOLLIPOP PLOT 3B84E661990B804289BFEA9622EDAD95</li>
+          
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h1 id="lollipop-plot"><a href="#lollipop-plot" class="headerlink" title="lollipop plot"></a>lollipop plot</h1><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Library</span></span><br><span class="line">library(tidyverse)</span><br><span class="line"><span class="comment"># Create data</span></span><br><span class="line">value1=<span class="built_in">abs</span>(rnorm(<span class="number">26</span>))*<span class="number">2</span></span><br><span class="line">data=data.frame(x=<span class="built_in">LETTERS</span>[<span class="number">1</span>:<span class="number">26</span>], value1=value1, value2=value1+<span class="number">1</span>+rnorm(<span class="number">26</span>, sd=<span class="number">1</span>) )</span><br><span class="line"><span class="comment"># Reorder data using average?</span></span><br><span class="line">data = data %&gt;% rowwise() %&gt;% mutate( mymean = mean(<span class="built_in">c</span>(value1,value2) )) %&gt;% arrange(mymean) %&gt;% mutate(x=factor(x, x))</span><br><span class="line"><span class="comment"># plot</span></span><br><span class="line">ggplot(data) +</span><br><span class="line">  geom_segment( aes(x=x, xend=x, y=value1, yend=value2), color=<span class="string">&quot;grey&quot;</span>) +</span><br><span class="line">  geom_point( aes(x=x, y=value1), color=rgb(<span class="number">0.2</span>,<span class="number">0.7</span>,<span class="number">0.1</span>,<span class="number">0.5</span>), size=<span class="number">3</span> ) +</span><br><span class="line">  geom_point( aes(x=x, y=value2), color=rgb(<span class="number">0.7</span>,<span class="number">0.2</span>,<span class="number">0.1</span>,<span class="number">0.5</span>), size=<span class="number">3</span> ) +</span><br><span class="line">  coord_flip()</span><br><span class="line"><span class="comment"># With a bit more style</span></span><br><span class="line">ggplot(data) +</span><br><span class="line">  geom_segment( aes(x=x, xend=x, y=value1, yend=value2), color=<span class="string">&quot;grey&quot;</span>) +</span><br><span class="line">  geom_point( aes(x=x, y=value1), color=rgb(<span class="number">0.2</span>,<span class="number">0.7</span>,<span class="number">0.1</span>,<span class="number">0.5</span>), size=<span class="number">3</span> ) +</span><br><span class="line">  geom_point( aes(x=x, y=value2), color=rgb(<span class="number">0.7</span>,<span class="number">0.2</span>,<span class="number">0.1</span>,<span class="number">0.5</span>), size=<span class="number">3</span> ) +</span><br><span class="line">  coord_flip()+</span><br><span class="line">  theme_light() +</span><br><span class="line">  theme(</span><br><span class="line">    legend.position = <span class="string">&quot;none&quot;</span>,</span><br><span class="line">    panel.border = element_blank(),</span><br><span class="line">  ) +</span><br><span class="line">  xlab(<span class="string">&quot;&quot;</span>) +</span><br><span class="line">  ylab(<span class="string">&quot;Value of Y&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/lollipop plot 3b84e661990b804289bfea9622edad95.htmlE8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="E8599C96-2DC1-41F7-AB3A-8E897D419B99.png"></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">library(reshape2)</span><br><span class="line">CIMP_num_in_sig&lt;-</span><br><span class="line">  data.frame(<span class="built_in">unclass</span>(table(Full_CGI_anno$signal_group,Full_CGI_anno$group)))</span><br><span class="line">CIMP_num_in_sig$CGIs &lt;- rowSums(CIMP_num_in_sig)</span><br><span class="line">lollipop_data&lt;- apply(CIMP_num_in_sig,<span class="number">2</span>,<span class="keyword">function</span>(x)&#123;x/<span class="built_in">sum</span>(x)&#125;) %&gt;%</span><br><span class="line">  as.data.frame() %&gt;%</span><br><span class="line">  mutate(sig.group=row.names(.)) %&gt;%</span><br><span class="line">  select(sig.group,A_CIMP,IDH_CIMP,CGIs) %&gt;%</span><br><span class="line">  melt() <span class="comment">## make the data </span></span><br><span class="line">lollipop_data$x &lt;- <span class="built_in">c</span>(seq(<span class="number">1</span>,<span class="number">5</span>),seq(<span class="number">1</span>,<span class="number">5</span>)+<span class="number">0.1</span>, seq(<span class="number">1</span>,<span class="number">5</span>)+<span class="number">0.2</span>) <span class="comment">## add x axis postions manually </span></span><br><span class="line">lollipop_data</span><br><span class="line">p&lt;-</span><br><span class="line">  ggplot(lollipop_data,aes(x=x,y=value))+</span><br><span class="line">  geom_segment( aes(x=x, xend=x, y=<span class="number">0</span>, yend=value), color=<span class="string">&quot;skyblue&quot;</span>)+</span><br><span class="line">  geom_point( aes(color=variable), size=<span class="number">3</span>, alpha=<span class="number">0.8</span>) +</span><br><span class="line">  scale_y_continuous(limits = <span class="built_in">c</span>(<span class="number">0</span>,<span class="number">1</span>),name = <span class="string">&quot;Ratio&quot;</span>,expand = <span class="built_in">c</span>(<span class="number">0</span>,<span class="number">0</span>))+</span><br><span class="line">  scale_color_manual(name=<span class="string">&quot;group&quot;</span>,</span><br><span class="line">                     values = <span class="built_in">list</span>(<span class="string">&quot;CGIs&quot;</span>=<span class="string">&quot;#7d8597&quot;</span>,<span class="string">&quot;A_CIMP&quot;</span>=<span class="string">&quot;#4755B8&quot;</span>,<span class="string">&quot;IDH_CIMP&quot;</span>=<span class="string">&quot;#FFCE33&quot;</span>))+</span><br><span class="line">  scale_x_discrete(limits=<span class="built_in">c</span>(<span class="number">1.1</span>,<span class="number">2.1</span>,<span class="number">3.1</span>,<span class="number">4.1</span>,<span class="number">5.1</span>),labels=<span class="built_in">c</span>(<span class="string">&quot;multi&quot;</span>,<span class="string">&quot;sig.1&quot;</span>,<span class="string">&quot;sig.2&quot;</span>,<span class="string">&quot;sig.3&quot;</span>,<span class="string">&quot;sig.4&quot;</span>))+</span><br><span class="line">  theme_bw() +</span><br><span class="line">  theme(</span><br><span class="line">    panel.grid.major.x = element_blank(),</span><br><span class="line">    panel.border = element_blank(),</span><br><span class="line">    axis.ticks.x = element_blank(),</span><br><span class="line">    axis.text = element_text(size = <span class="number">12</span>,colour = <span class="string">&quot;black&quot;</span>),</span><br><span class="line">    axis.title.y = element_text(size=<span class="number">12</span>),</span><br><span class="line">    plot.margin = unit(<span class="built_in">c</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>), <span class="string">&quot;cm&quot;</span>)</span><br><span class="line">  ) +</span><br><span class="line">  xlab(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/notion-export/Used codes/lollipop plot 3b84e661990b804289bfea9622edad95.html0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png" alt="0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png"></p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/assets/">ASSETS</a></li>
+            <li><a href="/assets/notion-export/">NOTION-EXPORT</a></li>
+            <li><a href="/assets/notion-export/Used%20codes/">USED CODES</a></li>
+            <li>LOLLIPOP PLOT 3B84E661990B804289BFEA9622EDAD95</li>
+          
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

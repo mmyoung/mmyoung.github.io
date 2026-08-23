@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mmyoung.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="ComplexHeatmap | R archive                    R archive       ComplexHeatmap       ComplexHeatmap                 Page 01       4 images       5 code blocks">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lin&#39;s blog">
+<meta property="og:url" content="https://mmyoung.github.io/r-archive/01-complexheatmap.html">
+<meta property="og:site_name" content="Lin&#39;s blog">
+<meta property="og:description" content="ComplexHeatmap | R archive                    R archive       ComplexHeatmap       ComplexHeatmap                 Page 01       4 images       5 code blocks">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-10-30_at_3.29.56_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png">
+<meta property="og:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png">
+<meta property="article:published_time" content="2026-08-23T11:57:20.103Z">
+<meta property="article:modified_time" content="2026-08-23T11:57:20.103Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmyoung.github.io/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png">
+
+
+<link rel="canonical" href="https://mmyoung.github.io/r-archive/01-complexheatmap">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://mmyoung.github.io/r-archive/01-complexheatmap.html","path":"r-archive/01-complexheatmap.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Lin's blog
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lin's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-r-archive"><a href="/r-archive/" rel="section"><i class="fa fa-picture-o fa-fw"></i>R Archive</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">ComplexHeatmap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">ComplexHeatmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.0.1.</span> <span class="nav-text">Make TF-target heatmap, with GO annotation on side for TF co-binding targets</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Lin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ComplexHeatmap from the exported Notion notes.">
+  <title>ComplexHeatmap | R archive</title>
+  <link rel="stylesheet" href="archive.css">
+</head>
+<body class="detail-page">
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1>ComplexHeatmap</h1>
+      <p class="subtitle">ComplexHeatmap</p>
+    </div>
+    <div class="meta-stack">
+      <span>Page 01</span>
+      <span>4 images</span>
+      <span>5 code blocks</span>
+    </div>
+  </header>
+
+  <main class="container page-main">
+    <section class="panel detail-panel">
+      <figure class="hero-figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="ComplexHeatmap cover" loading="lazy"></figure>
+      <article class="content"><h1>ComplexHeatmap</h1>
+<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="Screenshot 2024-01-17 at 11.56.13 AM.png" loading="lazy"><figcaption>Screenshot 2024-01-17 at 11.56.13 AM.png</figcaption></figure>
+<pre><code class="language-r">### code
+plot_mat &lt;-
+plot_mat[row_order,] %&gt;%
+filter(row.names(.) %in% unique(kept_tfs))
+dim(plot_mat)
+head(plot_mat)
+colSplit &lt;-
+c(rep(&quot;active&quot;,32),rep(&quot;repressive&quot;,16))
+mypal &lt;- c(pal_npg(&quot;nrc&quot;, alpha = 0.8)(10),&quot;#e9c46a&quot;,&quot;#588157&quot;)
+show_col(mypal)
+names(mypal) &lt;-
+unique(sapply(str_split(colnames(plot_mat),&quot;-&quot;),&quot;[[&quot;,1))
+mypal
+## to make list for the histone mark labels
+H3_labels &lt;- split(1:48,str_split(colnames(plot_mat),&quot;-&quot;,simplify = T)[,1])
+## modify some of the labels to make it less stuffed
+names(H3_labels) &lt;- str_replace_all(names(H3_labels),&quot;H3&quot;,&quot;&quot;)
+names(H3_labels)[2] &lt;- &quot;5mC&quot;
+column_ha =
+HeatmapAnnotation(H3_mark=anno_block(align_to = H3_labels,
+panel_fun = function(index,nm)&#123;
+grid.rect(gp=gpar(fill=&quot;white&quot;))
+grid.text(nm,0.5,0.5)
+&#125;),
+group=sapply(str_split(colnames(plot_mat),&quot;-&quot;),&quot;[[&quot;,2),
+col = list(group=c(&quot;C1&quot;=&quot;#4c72b0&quot;,&quot;C2&quot;=&quot;#dd8452&quot;,&quot;C3&quot;=&quot;#55a868&quot;,&quot;C4&quot;=&quot;#c44e52&quot;),
+histone_mark=mypal
+)
+)
+heat_palette = colorRampPalette(c(&quot;#2166AC&quot;,&quot;#4393C3&quot;,&quot;#92C5DE&quot;,&quot;#D1E5F0&quot;,&quot;#FFFFFF&quot;,&quot;#FDDBC7&quot;,&quot;#F4A582&quot;,&quot;#D6604D&quot;,&quot;#B2182B&quot;))(20)
+h = Heatmap(as.matrix(plot_mat),
+name = &quot;TF_frac+0.01/\nBG_frac+0.01&quot;,
+top_annotation = column_ha,
+cluster_rows = F,
+cluster_columns = F,
+show_column_names = F,
+column_split = colSplit,
+#col = heat_palette
+#col = colorRamp2(c(0.5, 0.8, 1,1.3,1.6,2),c(&quot;#2166AC&quot;,&quot;#4393C3&quot;,&quot;#FFFFFF&quot;, &quot;#F4A582&quot;, &quot;#D6604D&quot;, &quot;#B2182B&quot;))
+col = colorRamp2(c(0.07, 0.5, 1,3,5,7),c(&quot;#2166AC&quot;,&quot;#4393C3&quot;,&quot;#FFFFFF&quot;, &quot;#F4A582&quot;, &quot;#D6604D&quot;, &quot;#B2182B&quot;))
+)
+h
+pdf(&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/multiDAPseq_explore/analysis/DAP_ChIP_OL_heatmap.pdf&quot;,
+width = 10,height = 8)
+draw(h)
+dev.off()</code></pre>
+<p><strong>Make heatmaps for logChange, meanwhile show the pvalue signs in the plot</strong></p>
+<p>Requirement for input: a gene by cell matrix with foldchange values, and corresponding pvalue matrix.</p>
+<p>First, export FC and pvalue matrix to a gene by celltype matrix from a list of DESeq2 results</p>
+<pre><code class="language-r">soc_compare &lt;- pseudo_de_sex[names(pseudo_de_sex)[grep(&quot;soc&quot;,names(pseudo_de_sex))]]
+## gather fold change information together
+DEG_ls&lt;- 
+lapply(seq_len(length(names(soc_compare))), function(x) &#123;
+        soc_compare[[x]] %&gt;%
+            filter(row.names(.) %in% unique(soc_FvsM_DEG$gene))
+    &#125;)
+names(DEG_ls) &lt;- str_split(names(soc_compare),&quot;_&quot;,simplify = T)[,1]
+all_DEG_gene &lt;- do.call(rbind,Map(cbind, DEG_ls, new_clumn = names(DEG_ls))) %&gt;%
+  mutate(gene = str_split(row.names(.), &quot;\\.&quot;, simplify = TRUE)[, 2]) %&gt;%
+    filter(gene != &quot;&quot;)
+
+all_DEG_gene %&gt;%
+    select(new_clumn,avg_log2FC,gene) %&gt;%
+    tidyr::pivot_wider(names_from = new_clumn, values_from = avg_log2FC) %&gt;%
+    tibble::column_to_rownames(var=&quot;gene&quot;) %&gt;%
+    write.table(file=&quot;./soc_FvsM_DEG_FC_celltype_matrix.tsv&quot;,quote=F,sep=&quot;\t&quot;,row.names=T)
+
+all_DEG_gene %&gt;%
+    select(new_clumn,p_val_adj,gene) %&gt;%
+    tidyr::pivot_wider(names_from = new_clumn, values_from = p_val_adj) %&gt;%
+    tibble::column_to_rownames(var=&quot;gene&quot;) %&gt;%
+    write.table(file=&quot;./soc_FvsM_DEG_adjP_celltype_matrix.tsv&quot;,quote=F,sep=&quot;\t&quot;,row.names=T)</code></pre>
+<pre><code class="language-r">soc_FvsM_DEG_FC &lt;- read.table(&quot;./soc_FvsM_DEG_FC_celltype_matrix.tsv&quot;, header=T,sep=&quot;\t&quot;,row.names=1)
+soc_FvsM_DEG_P &lt;- read.table(&quot;./soc_FvsM_DEG_adjP_celltype_matrix.tsv&quot;, header=T,sep=&quot;\t&quot;,row.names=1)
+
+## first, to make a pvalue sign matrix, with corresponding pvalues converted into asterisk
+rm.neg&lt;-plyr::colwise(function(x)&#123;
+  return(ifelse(x &lt; 0.0001,&quot;****&quot;, 
+                ifelse(x&lt;0.001,&quot;***&quot;,
+                      ifelse(x&lt;0.01,&quot;**&quot;,
+                            ifelse(x&lt;0.05,&quot;*&quot;,&quot;&quot;)))))&#125;)
+p_sign_df &lt;- rm.neg(iso_FvsM_DEG_P)
+
+## correct the rownames and colnames to proper format
+row.names(p_sign_df) &lt;- row.names(iso_FvsM_DEG_P)
+colnames(p_sign_df) &lt;- c(&quot;L2/3 IT&quot;, &quot;L4 IT&quot;, &quot;L5 IT&quot;, &quot;L6 IT&quot;, &quot;L5/6 NP&quot;, &quot;L6 CT&quot;, &quot;L5 ET&quot;, &quot;CGE-Inh&quot;, &quot;Sst-Inh&quot;, &quot;Pvalb-Inh&quot;, &quot;ASC&quot;, &quot;ODC&quot;, &quot;OPC&quot;, &quot;Endo&quot;)
+
+colnames(iso_FvsM_DEG_FC) &lt;- c(&quot;L2/3 IT&quot;, &quot;L4 IT&quot;, &quot;L5 IT&quot;, &quot;L6 IT&quot;, &quot;L5/6 NP&quot;, &quot;L6 CT&quot;, &quot;L5 ET&quot;, &quot;CGE-Inh&quot;, &quot;Sst-Inh&quot;, &quot;Pvalb-Inh&quot;, &quot;ASC&quot;, &quot;ODC&quot;, &quot;OPC&quot;, &quot;Endo&quot;)
+
+## reset the NA values to blank
+p_sign_df[is.na(p_sign_df)] &lt;- &quot;&quot;
+
+## make the plots
+library(circlize)
+library(ComplexHeatmap)
+
+col_fun = colorRamp2(c(-5, 0, 5), c(&quot;#0077b6&quot;, &quot;white&quot;, &quot;#e63946&quot;))
+p = Heatmap(soc_FvsM_DEG_FC, name = &quot;soc F/M\navg_logFC&quot;, col = col_fun,
+        cluster_columns = F,
+        show_row_dend = F,
+        heatmap_legend_param = list(
+            legend_direction = &quot;horizontal&quot;, 
+		        legend_width = unit(6, &quot;cm&quot;)),
+        row_names_gp = grid::gpar(fontsize = 4),
+        cell_fun = function(j, i, x, y, width, height, fill) &#123;
+        ## the following steps is to make the asterisk signs align to the middle of each rect
+        gb = textGrob(&quot;*&quot;)
+        gb_w = convertWidth(grobWidth(gb), &quot;mm&quot;)
+        gb_h = convertHeight(grobHeight(gb), &quot;mm&quot;)
+        grid.text(sprintf(&quot;%s&quot;, p_sign_df[i, j]), x, y - gb_h*0.5 + gb_w*0.4, gp = gpar(fontsize = 10))
+&#125;)
+
+lgd1 = Legend(labels=c(&quot;&lt;0.0001&quot;,&quot;&lt;0.001&quot;,&quot;&lt;0.01&quot;,&quot;&lt;0.05&quot;),pch = c(&quot;**** &quot;,&quot;*** &quot;,&quot;** &quot;,&quot;* &quot;), title = &quot;adj.p&quot;, type = &quot;points&quot;, 
+    background = &quot;white&quot;,direction = &quot;horizontal&quot;)
+lgd2 = Legend(labels=&quot;gene not detected&quot;,legend_gp = gpar(fill = &quot;grey&quot;), title = &quot;NA&quot;)
+
+pdf(&quot;soc_FvsM_DEG_logFC_heatmap.pdf&quot;,width=6,height=12)
+draw(p,annotation_legend_list = list(lgd1,lgd2),heatmap_legend_side=&quot;bottom&quot;, annotation_legend_side=&quot;right&quot;,
+           legend_grouping = &quot;original&quot;)
+dev.off()</code></pre>
+<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-10-30_at_3.29.56_PM.png" alt="Screenshot 2024-10-30 at 3.29.56 PM.png" loading="lazy"><figcaption>Screenshot 2024-10-30 at 3.29.56 PM.png</figcaption></figure>
+<h3>Make TF-target heatmap, with GO annotation on side for TF co-binding targets</h3>
+<pre><code class="language-bash">library(data.table)
+library(org.At.tair.db)
+library(clusterProfiler)
+library(tidyverse)
+library(ComplexHeatmap)
+
+## plot gene sets for each TF and perform GO annotation
+cell_type &lt;- &quot;mature-endodermis&quot;
+#for(cell_type in c(&quot;epidermis-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
+#for(cell_type in c(&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
+for(cell_type in c(&quot;mesophyll&quot;,&quot;mature-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
+TF_target_df &lt;-
+read.csv(paste0(&quot;/Volumes/project/gzy8899/references/multiDAPseq_from_Sharon/&quot;,cell_type,&quot;_enriched_tfs.target_gene_lists.csv&quot;),header = T)
+TF_target_df$tf_name &lt;- ifelse((TF_target_df$tf_name==&quot;&quot;)| [is.na](http://is.na/)(TF_target_df$tf_name),TF_target_df$tf,TF_target_df$tf_name)
+TF_target_df$alias &lt;- ifelse([is.na](http://is.na/)(TF_target_df$alias)|(TF_target_df$alias==&quot;&quot;),TF_target_df$gene,TF_target_df$alias)
+length(unique(TF_target_df$tf))
+## 52
+
+mat_plot &lt;-
+#reshape2::dcast(meso_TF_target_df, alias ~ clade, value.var = &quot;avg_log2FC&quot;) %&gt;%
+reshape2::dcast(TF_target_df, alias ~ tf, value.var = &quot;avg_log2FC&quot;) %&gt;%
+column_to_rownames(var = &quot;alias&quot;)
+mat_plot[![is.na](http://is.na/)(mat_plot)] &lt;- 1
+mat_plot[[is.na](http://is.na/)(mat_plot)] &lt;- 0
+dim(mat_plot)
+summary(apply(mat_plot,1,sd))
+#Min.  1st Qu.   Median     Mean  3rd Qu.     Max.
+#0.1387  0.2354  0.2977  0.3053  0.3980  0.5049
+summary(apply(mat_plot,2,sum))
+
+mat_plot &lt;- mat_plot[apply(mat_plot,1,sum) &gt;5,]
+dim(mat_plot)
+#220 52
+row_name &lt;- paste(TF_target_df$tf_name[match(colnames(mat_plot),TF_target_df$tf)],
+TF_target_df$clade[match(colnames(mat_plot),TF_target_df$tf)],sep = &quot;:&quot;)
+colors = structure(1:2, names = c(0,1))
+set.seed(0034)
+h = Heatmap(mat_plot,
+name = &quot;IsTarget&quot;,
+cluster_rows = T,
+cluster_columns = T,
+row_km = 6,
+column_km = 7,
+show_row_dend = F,
+row_names_side = &quot;left&quot;,
+#row_labels = row_name,
+row_names_gp = gpar(fontsize=8),
+column_labels = row_name,
+column_names_gp = gpar(fontsize=8),
+col = colors
+)
+draw_h = draw(h)
+rcl.list &lt;- row_order(draw_h)
+rcl.list
+row.names(mat_plot)[rcl.list[[1]]]
+
+GO_ls &lt;-
+lapply(rcl.list,function(x)&#123;
+enrichGO(row.names(mat_plot)[x],
+OrgDb = org.At.tair.db,
+keyType = &quot;SYMBOL&quot;,
+ont = &quot;ALL&quot;)@result
+&#125;)
+
+lapply(GO_ls,nrow)
+head(GO_ls[[1]])
+
+text_box &lt;-
+lapply(GO_ls,function(x)&#123;
+head(x)[,&quot;Description&quot;]
+&#125;)
+
+names(text_box) &lt;- names(GO_ls)
+## mature-endodermis needs to be adjusted for the GO terms
+if(cell_type==&quot;mature-endodermis&quot;)&#123;
+text_box &lt;- lapply(text_box,
+stringi::stri_replace_all_fixed,
+&quot;oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, reduced iron-sulfur protein as one donor, and incorporation of one atom of oxygen&quot;,
+&quot;oxidoreductase activity,reduced iron-sulfur protein as one donor&quot;)
+text_box &lt;- lapply(text_box,
+stringi::stri_replace_all_fixed,
+&quot;oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, reduced flavin or flavoprotein as one donor, and incorporation of one atom of oxygen&quot;,
+&quot;oxidoreductase activity,reduced flavin or flavoprotein as one donor&quot;)
+&#125;
+
+#text_box$7 &lt;- &quot;NA&quot;
+split_ls &lt;- c()
+for (i in seq_len(length(rcl.list))) &#123;
+split_ls &lt;- c(split_ls,rep(names(rcl.list)[i],length(rcl.list[[i]])))
+&#125;
+
+set.seed(0034)
+h = Heatmap(mat_plot[unlist(rcl.list),],
+name = &quot;IsTarget&quot;,
+cluster_rows = F,
+cluster_columns = T,
+column_title = &#39;rowsums &gt;5&#39;,
+#row_km = 6,
+column_km = 7,
+#show_row_dend = F,
+row_names_side = &quot;left&quot;,
+#row_labels = row_name,
+row_names_gp = gpar(fontsize=6),
+column_labels = row_name,
+column_names_gp = gpar(fontsize=7),
+col = colors,
+row_split = split_ls,
+right_annotation = rowAnnotation(wc = anno_textbox(split_ls,text_box,gp=gpar(fontsize=8))))
+h
+pdf(paste0(&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/DAPseqNscseq/cell_type_TF_targets_heatmap/&quot;,cell_type,&quot;_TFs_target_heatmap.pdf&quot;),width = 11,height = 16)
+draw(h,column_title=cell_type)
+dev.off()
+&#125;</code></pre>
+<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png" alt="Screenshot 2024-11-05 at 3.24.30 PM.png" loading="lazy"><figcaption>Screenshot 2024-11-05 at 3.24.30 PM.png</figcaption></figure>
+<p>Make adjustments on this plot:</p>
+<p>1. log2fc for cell-type enrichment as color scheme 2. list the involvement of genes in each GO term</p>
+<pre><code class="language-bash">## plot gene sets for each TF and perform GO annotation
+cell_type &lt;- &quot;mesophyll&quot;
+TF_target_df &lt;-
+read.csv(paste0(&quot;/Volumes/project/gzy8899/references/multiDAPseq_from_Sharon/&quot;,cell_type,&quot;_enriched_tfs.target_gene_lists.csv&quot;),header = T)
+TF_target_df$tf_name &lt;- ifelse((TF_target_df$tf_name==&quot;&quot;)| [is.na](http://is.na/)(TF_target_df$tf_name),TF_target_df$tf,TF_target_df$tf_name)
+TF_target_df$alias &lt;- ifelse([is.na](http://is.na/)(TF_target_df$alias)|(TF_target_df$alias==&quot;&quot;),TF_target_df$gene,TF_target_df$alias)
+length(unique(TF_target_df$tf))
+
+mat_plot &lt;-
+reshape2::dcast(TF_target_df, gene ~ tf, value.var = &quot;avg_log2FC&quot;) %&gt;%
+column_to_rownames(var = &quot;gene&quot;)
+#mat_plot[![is.na](http://is.na/)(mat_plot)] &lt;- 1
+mat_plot[[is.na](http://is.na/)(mat_plot)] &lt;- 0
+dim(mat_plot)
+summary(apply(mat_plot,1,sd))
+#Min.  1st Qu.   Median     Mean  3rd Qu.     Max.
+#0.1387  0.2354  0.2977  0.3053  0.3980  0.5049
+summary(apply(mat_plot,2,sum))
+
+#mat_plot &lt;- mat_plot[apply(mat_plot,1,sum) &gt;5,]
+dim(mat_plot)
+#220 52
+row_name &lt;- paste(TF_target_df$tf_name[match(colnames(mat_plot),TF_target_df$tf)],
+TF_target_df$clade[match(colnames(mat_plot),TF_target_df$tf)],sep = &quot;:&quot;)
+
+set.seed(0034)
+h = Heatmap(mat_plot,
+name = &quot;IsTarget&quot;,
+cluster_rows = T,
+cluster_columns = T,
+row_km = 6,
+column_km = 7,
+show_row_dend = F,
+row_names_side = &quot;left&quot;,
+#row_labels = row_name,
+row_names_gp = gpar(fontsize=8),
+column_labels = row_name,
+#col = colors,
+column_names_gp = gpar(fontsize=8)
+
+)
+draw_h = draw(h)
+rcl.list &lt;- row_order(draw_h)
+rcl.list
+row.names(mat_plot)[rcl.list[[1]]]
+
+GO_ls &lt;-
+lapply(rcl.list,function(x)&#123;
+enrichGO(row.names(mat_plot)[x],
+OrgDb = org.At.tair.db,
+keyType = &quot;TAIR&quot;,
+ont = &quot;ALL&quot;)@result
+&#125;)
+
+lapply(GO_ls,nrow)
+head(GO_ls[[1]])
+
+text_box &lt;-
+do.call(rbind,lapply(GO_ls,function(x)&#123;
+x[x$pvalue&lt;0.05,c(&quot;Description&quot;,&quot;geneID&quot;)]
+&#125;)) %&gt;%
+separate_rows(geneID) %&gt;%
+pivot_wider(names_from = &quot;Description&quot;,
+values_from = &#39;Description&#39;,
+values_fill = 0,
+values_fn = function(x) 1)%&gt;%
+column_to_rownames(var=&quot;geneID&quot;)
+
+## change rownames of text_box into symbols
+rownames(text_box) &lt;- TF_target_df[match(rownames(text_box),TF_target_df$gene),&quot;alias&quot;]
+## change rownames of text_box into symbols
+rownames(mat_plot) &lt;- TF_target_df[match(rownames(mat_plot),TF_target_df$gene),&quot;alias&quot;]
+
+## make the rows in text_box the same as mat_plot
+text_box[rownames(mat_plot)[!(rownames(mat_plot) %in% rownames(text_box))],] &lt;- 0
+
+## mature-endodermis needs to be adjusted for the GO terms
+split_ls &lt;- c()
+for (i in seq_len(length(rcl.list))) &#123;
+split_ls &lt;- c(split_ls,rep(names(rcl.list)[i],length(rcl.list[[i]])))
+&#125;
+
+set.seed(0034)
+## row orders to keep in the plot
+final_plot &lt;- mat_plot[unlist(rcl.list),]
+
+## colors for expression heatmap
+col_fun = colorRamp2(c(0,2,4,6), c(&quot;#000004FF&quot;, &quot;#87216BFF&quot;, &quot;#E55C30FF&quot;,&quot;#F7D340FF&quot;))
+h1 = Heatmap(final_plot,
+name = &quot;avg_log2FC&quot;,
+cluster_rows = F,
+cluster_columns = T,
+column_title = &#39;rowsums &gt;5&#39;,
+#row_km = 6,
+column_km = 7,
+#show_row_dend = F,
+row_names_side = &quot;left&quot;,
+#row_labels = row_name,
+row_names_gp = gpar(fontsize=6),
+column_labels = row_name,
+column_names_gp = gpar(fontsize=7),
+col = col_fun,
+row_split = split_ls
+#right_annotation = rowAnnotation(wc = anno_textbox(split_ls,text_box,gp=gpar(fontsize=8)))
+)
+h1
+## colors for GO heatmap
+colors=structure(c(&quot;#dad7cd&quot;,&quot;#bc4749&quot;),names=c(0,1))
+
+h2 = Heatmap(text_box[rownames(final_plot),],
+cluster_rows = F,
+cluster_columns = F,
+show_row_names = F,
+column_names_gp = gpar(fontsize=6),
+show_heatmap_legend = F,
+col = colors
+)
+h1+h2
+pdf(paste0(&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/DAPseqNscseq/cell_type_TF_targets_heatmap/&quot;,cell_type,&quot;_TFs_target_heatmap_tmp.pdf&quot;),width = 17,height = 16)
+draw(h1+h2,column_title=cell_type)
+dev.off()</code></pre>
+<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png" alt="Screenshot 2024-11-05 at 3.25.54 PM.png" loading="lazy"><figcaption>Screenshot 2024-11-05 at 3.25.54 PM.png</figcaption></figure></article>
+      <div class="actions">
+        <a class="button" href="./">Back to archive</a>
+        <a class="button" href="../">Home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
