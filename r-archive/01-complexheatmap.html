@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ComplexHeatmap from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ComplexHeatmap from the exported Notion notes." />
   <title>ComplexHeatmap | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,9 +26,9 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="ComplexHeatmap cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="ComplexHeatmap cover" loading="lazy" /></figure>
       <article class="content"><h1>ComplexHeatmap</h1>
-<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="Screenshot 2024-01-17 at 11.56.13 AM.png" loading="lazy"><figcaption>Screenshot 2024-01-17 at 11.56.13 AM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-01-17_at_11.56.13_AM.png" alt="Screenshot 2024-01-17 at 11.56.13 AM.png" loading="lazy" /><figcaption>Screenshot 2024-01-17 at 11.56.13 AM.png</figcaption></figure>
 <pre><code class="language-r">### code
 plot_mat &lt;-
 plot_mat[row_order,] %&gt;%
@@ -46,10 +49,10 @@ names(H3_labels) &lt;- str_replace_all(names(H3_labels),&quot;H3&quot;,&quot;&qu
 names(H3_labels)[2] &lt;- &quot;5mC&quot;
 column_ha =
 HeatmapAnnotation(H3_mark=anno_block(align_to = H3_labels,
-panel_fun = function(index,nm)&#123;
+panel_fun = function(index,nm){
 grid.rect(gp=gpar(fill=&quot;white&quot;))
 grid.text(nm,0.5,0.5)
-&#125;),
+}),
 group=sapply(str_split(colnames(plot_mat),&quot;-&quot;),&quot;[[&quot;,2),
 col = list(group=c(&quot;C1&quot;=&quot;#4c72b0&quot;,&quot;C2&quot;=&quot;#dd8452&quot;,&quot;C3&quot;=&quot;#55a868&quot;,&quot;C4&quot;=&quot;#c44e52&quot;),
 histone_mark=mypal
@@ -78,10 +81,10 @@ dev.off()</code></pre>
 <pre><code class="language-r">soc_compare &lt;- pseudo_de_sex[names(pseudo_de_sex)[grep(&quot;soc&quot;,names(pseudo_de_sex))]]
 ## gather fold change information together
 DEG_ls&lt;- 
-lapply(seq_len(length(names(soc_compare))), function(x) &#123;
+lapply(seq_len(length(names(soc_compare))), function(x) {
         soc_compare[[x]] %&gt;%
             filter(row.names(.) %in% unique(soc_FvsM_DEG$gene))
-    &#125;)
+    })
 names(DEG_ls) &lt;- str_split(names(soc_compare),&quot;_&quot;,simplify = T)[,1]
 all_DEG_gene &lt;- do.call(rbind,Map(cbind, DEG_ls, new_clumn = names(DEG_ls))) %&gt;%
   mutate(gene = str_split(row.names(.), &quot;\\.&quot;, simplify = TRUE)[, 2]) %&gt;%
@@ -102,11 +105,11 @@ all_DEG_gene %&gt;%
 soc_FvsM_DEG_P &lt;- read.table(&quot;./soc_FvsM_DEG_adjP_celltype_matrix.tsv&quot;, header=T,sep=&quot;\t&quot;,row.names=1)
 
 ## first, to make a pvalue sign matrix, with corresponding pvalues converted into asterisk
-rm.neg&lt;-plyr::colwise(function(x)&#123;
+rm.neg&lt;-plyr::colwise(function(x){
   return(ifelse(x &lt; 0.0001,&quot;****&quot;, 
                 ifelse(x&lt;0.001,&quot;***&quot;,
                       ifelse(x&lt;0.01,&quot;**&quot;,
-                            ifelse(x&lt;0.05,&quot;*&quot;,&quot;&quot;)))))&#125;)
+                            ifelse(x&lt;0.05,&quot;*&quot;,&quot;&quot;)))))})
 p_sign_df &lt;- rm.neg(iso_FvsM_DEG_P)
 
 ## correct the rownames and colnames to proper format
@@ -130,13 +133,13 @@ p = Heatmap(soc_FvsM_DEG_FC, name = &quot;soc F/M\navg_logFC&quot;, col = col_fu
             legend_direction = &quot;horizontal&quot;, 
 		        legend_width = unit(6, &quot;cm&quot;)),
         row_names_gp = grid::gpar(fontsize = 4),
-        cell_fun = function(j, i, x, y, width, height, fill) &#123;
+        cell_fun = function(j, i, x, y, width, height, fill) {
         ## the following steps is to make the asterisk signs align to the middle of each rect
         gb = textGrob(&quot;*&quot;)
         gb_w = convertWidth(grobWidth(gb), &quot;mm&quot;)
         gb_h = convertHeight(grobHeight(gb), &quot;mm&quot;)
         grid.text(sprintf(&quot;%s&quot;, p_sign_df[i, j]), x, y - gb_h*0.5 + gb_w*0.4, gp = gpar(fontsize = 10))
-&#125;)
+})
 
 lgd1 = Legend(labels=c(&quot;&lt;0.0001&quot;,&quot;&lt;0.001&quot;,&quot;&lt;0.01&quot;,&quot;&lt;0.05&quot;),pch = c(&quot;**** &quot;,&quot;*** &quot;,&quot;** &quot;,&quot;* &quot;), title = &quot;adj.p&quot;, type = &quot;points&quot;, 
     background = &quot;white&quot;,direction = &quot;horizontal&quot;)
@@ -146,7 +149,7 @@ pdf(&quot;soc_FvsM_DEG_logFC_heatmap.pdf&quot;,width=6,height=12)
 draw(p,annotation_legend_list = list(lgd1,lgd2),heatmap_legend_side=&quot;bottom&quot;, annotation_legend_side=&quot;right&quot;,
            legend_grouping = &quot;original&quot;)
 dev.off()</code></pre>
-<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-10-30_at_3.29.56_PM.png" alt="Screenshot 2024-10-30 at 3.29.56 PM.png" loading="lazy"><figcaption>Screenshot 2024-10-30 at 3.29.56 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-10-30_at_3.29.56_PM.png" alt="Screenshot 2024-10-30 at 3.29.56 PM.png" loading="lazy" /><figcaption>Screenshot 2024-10-30 at 3.29.56 PM.png</figcaption></figure>
 <h3>Make TF-target heatmap, with GO annotation on side for TF co-binding targets</h3>
 <pre><code class="language-bash">library(data.table)
 library(org.At.tair.db)
@@ -156,9 +159,9 @@ library(ComplexHeatmap)
 
 ## plot gene sets for each TF and perform GO annotation
 cell_type &lt;- &quot;mature-endodermis&quot;
-#for(cell_type in c(&quot;epidermis-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
-#for(cell_type in c(&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
-for(cell_type in c(&quot;mesophyll&quot;,&quot;mature-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;))&#123;
+#for(cell_type in c(&quot;epidermis-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;)){
+#for(cell_type in c(&quot;lignified-endodermis&quot;,&quot;mature-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;)){
+for(cell_type in c(&quot;mesophyll&quot;,&quot;mature-endodermis&quot;,&quot;lignified-endodermis&quot;,&quot;mature-xylem&quot;,&quot;suberized-endodermis&quot;)){
 TF_target_df &lt;-
 read.csv(paste0(&quot;/Volumes/project/gzy8899/references/multiDAPseq_from_Sharon/&quot;,cell_type,&quot;_enriched_tfs.target_gene_lists.csv&quot;),header = T)
 TF_target_df$tf_name &lt;- ifelse((TF_target_df$tf_name==&quot;&quot;)| [is.na](http://is.na/)(TF_target_df$tf_name),TF_target_df$tf,TF_target_df$tf_name)
@@ -205,24 +208,24 @@ rcl.list
 row.names(mat_plot)[rcl.list[[1]]]
 
 GO_ls &lt;-
-lapply(rcl.list,function(x)&#123;
+lapply(rcl.list,function(x){
 enrichGO(row.names(mat_plot)[x],
 OrgDb = org.At.tair.db,
 keyType = &quot;SYMBOL&quot;,
 ont = &quot;ALL&quot;)@result
-&#125;)
+})
 
 lapply(GO_ls,nrow)
 head(GO_ls[[1]])
 
 text_box &lt;-
-lapply(GO_ls,function(x)&#123;
+lapply(GO_ls,function(x){
 head(x)[,&quot;Description&quot;]
-&#125;)
+})
 
 names(text_box) &lt;- names(GO_ls)
 ## mature-endodermis needs to be adjusted for the GO terms
-if(cell_type==&quot;mature-endodermis&quot;)&#123;
+if(cell_type==&quot;mature-endodermis&quot;){
 text_box &lt;- lapply(text_box,
 stringi::stri_replace_all_fixed,
 &quot;oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, reduced iron-sulfur protein as one donor, and incorporation of one atom of oxygen&quot;,
@@ -231,13 +234,13 @@ text_box &lt;- lapply(text_box,
 stringi::stri_replace_all_fixed,
 &quot;oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, reduced flavin or flavoprotein as one donor, and incorporation of one atom of oxygen&quot;,
 &quot;oxidoreductase activity,reduced flavin or flavoprotein as one donor&quot;)
-&#125;
+}
 
 #text_box$7 &lt;- &quot;NA&quot;
 split_ls &lt;- c()
-for (i in seq_len(length(rcl.list))) &#123;
+for (i in seq_len(length(rcl.list))) {
 split_ls &lt;- c(split_ls,rep(names(rcl.list)[i],length(rcl.list[[i]])))
-&#125;
+}
 
 set.seed(0034)
 h = Heatmap(mat_plot[unlist(rcl.list),],
@@ -260,8 +263,8 @@ h
 pdf(paste0(&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/DAPseqNscseq/cell_type_TF_targets_heatmap/&quot;,cell_type,&quot;_TFs_target_heatmap.pdf&quot;),width = 11,height = 16)
 draw(h,column_title=cell_type)
 dev.off()
-&#125;</code></pre>
-<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png" alt="Screenshot 2024-11-05 at 3.24.30 PM.png" loading="lazy"><figcaption>Screenshot 2024-11-05 at 3.24.30 PM.png</figcaption></figure>
+}</code></pre>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.24.30_PM.png" alt="Screenshot 2024-11-05 at 3.24.30 PM.png" loading="lazy" /><figcaption>Screenshot 2024-11-05 at 3.24.30 PM.png</figcaption></figure>
 <p>Make adjustments on this plot:</p>
 <p>1. log2fc for cell-type enrichment as color scheme 2. list the involvement of genes in each GO term</p>
 <pre><code class="language-bash">## plot gene sets for each TF and perform GO annotation
@@ -311,20 +314,20 @@ rcl.list
 row.names(mat_plot)[rcl.list[[1]]]
 
 GO_ls &lt;-
-lapply(rcl.list,function(x)&#123;
+lapply(rcl.list,function(x){
 enrichGO(row.names(mat_plot)[x],
 OrgDb = org.At.tair.db,
 keyType = &quot;TAIR&quot;,
 ont = &quot;ALL&quot;)@result
-&#125;)
+})
 
 lapply(GO_ls,nrow)
 head(GO_ls[[1]])
 
 text_box &lt;-
-do.call(rbind,lapply(GO_ls,function(x)&#123;
+do.call(rbind,lapply(GO_ls,function(x){
 x[x$pvalue&lt;0.05,c(&quot;Description&quot;,&quot;geneID&quot;)]
-&#125;)) %&gt;%
+})) %&gt;%
 separate_rows(geneID) %&gt;%
 pivot_wider(names_from = &quot;Description&quot;,
 values_from = &#39;Description&#39;,
@@ -342,9 +345,9 @@ text_box[rownames(mat_plot)[!(rownames(mat_plot) %in% rownames(text_box))],] &lt
 
 ## mature-endodermis needs to be adjusted for the GO terms
 split_ls &lt;- c()
-for (i in seq_len(length(rcl.list))) &#123;
+for (i in seq_len(length(rcl.list))) {
 split_ls &lt;- c(split_ls,rep(names(rcl.list)[i],length(rcl.list[[i]])))
-&#125;
+}
 
 set.seed(0034)
 ## row orders to keep in the plot
@@ -385,7 +388,7 @@ h1+h2
 pdf(paste0(&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/DAPseqNscseq/cell_type_TF_targets_heatmap/&quot;,cell_type,&quot;_TFs_target_heatmap_tmp.pdf&quot;),width = 17,height = 16)
 draw(h1+h2,column_title=cell_type)
 dev.off()</code></pre>
-<figure class="figure"><img src="/r-archive/01-complexheatmap.htmlnotion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png" alt="Screenshot 2024-11-05 at 3.25.54 PM.png" loading="lazy"><figcaption>Screenshot 2024-11-05 at 3.25.54 PM.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/ComplexHeatmap/Screenshot_2024-11-05_at_3.25.54_PM.png" alt="Screenshot 2024-11-05 at 3.25.54 PM.png" loading="lazy" /><figcaption>Screenshot 2024-11-05 at 3.25.54 PM.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

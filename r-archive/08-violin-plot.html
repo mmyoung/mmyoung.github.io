@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Violin plot from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Violin plot from the exported Notion notes." />
   <title>Violin plot | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,9 +26,9 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/08-violin-plot.htmlnotion-export/Used%20codes/Violin%20plot/image.png" alt="Violin plot cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/image.png" alt="Violin plot cover" loading="lazy" /></figure>
       <article class="content"><h1>Violin plot</h1>
-<figure class="figure"><img src="/r-archive/08-violin-plot.htmlnotion-export/Used%20codes/Violin%20plot/image.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <pre><code class="language-r">your_font_size &lt;- 15
 a &lt;- VlnPlot(lastone, features = &#39;Col2a1&#39;, split.by = &#39;group&#39;, 
 		pt.size = 0.0, combine = T, split.plot = T, 
@@ -51,7 +54,7 @@ a &lt;- VlnPlot(lastone, features = &#39;Col2a1&#39;, split.by = &#39;group&#39;
            color = guide_legend(override.aes = list(linetype = 0)))</code></pre>
 <p>Stacked violin plot in seurat</p>
 <p><a href="https://github.com/ycl6/StackedVlnPlot" target="_blank" rel="noreferrer">https://github.com/ycl6/StackedVlnPlot</a></p>
-<figure class="figure"><img src="/r-archive/08-violin-plot.htmlnotion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-20_at_10.48.20_PM.png" alt="Screenshot 2024-10-20 at 10.48.20 PM.png" loading="lazy"><figcaption>Screenshot 2024-10-20 at 10.48.20 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-20_at_10.48.20_PM.png" alt="Screenshot 2024-10-20 at 10.48.20 PM.png" loading="lazy" /><figcaption>Screenshot 2024-10-20 at 10.48.20 PM.png</figcaption></figure>
 <pre><code class="language-r">library(Seurat)
 library(ggplot2)
 library(cowplot)
@@ -69,7 +72,7 @@ b &lt;- VlnPlot(pbmc, features, stack = TRUE, sort = TRUE, flip = TRUE) +
         theme(legend.position = &quot;none&quot;) + ggtitle(&quot;Identity on x-axis&quot;)</code></pre>
 <p><strong>Modified violin plots in single-cell study</strong></p>
 <pre><code class="language-r">make_vlnplot &lt;- 
-function(genes=NULL,celltype=NULL,label_df=NULL)&#123;
+function(genes=NULL,celltype=NULL,label_df=NULL){
     VlnPlot(seu_obj, 
         features = genes,
         idents=celltype,
@@ -91,7 +94,7 @@ function(genes=NULL,celltype=NULL,label_df=NULL)&#123;
                position = position_dodge(width = .90)) &amp;
     guides(fill = guide_legend(override.aes = list(linetype = 0,size = 0)),
                color = guide_legend(override.aes = list(linetype = 0,size=0)))
-&#125;</code></pre>
+}</code></pre>
 <p>combine all the DEGs in all celltypes</p>
 <pre><code class="language-r">do.call(rbind,Map(cbind, DEG_ls, new_clumn = names(DEG_ls))) %&gt;%
   mutate(gene = str_split(row.names(.), &quot;\\.&quot;, simplify = TRUE)[, 2]) %&gt;%
@@ -105,15 +108,15 @@ isoVSsoc_DEG_ls$P_label&lt;-
     symnum(isoVSsoc_DEG_ls$p_val_adj, cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05,1),
        symbols = c(&quot;****&quot;, &quot;***&quot;, &quot;**&quot;, &quot;*&quot;, &quot;ns&quot;),
        abbr.colnames = FALSE, na = &quot;&quot;)</code></pre>
-<figure class="figure"><img src="/r-archive/08-violin-plot.htmlnotion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-24_at_11.52.27_AM.png" alt="Screenshot 2024-10-24 at 11.52.27 AM.png" loading="lazy"><figcaption>Screenshot 2024-10-24 at 11.52.27 AM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Violin%20plot/Screenshot_2024-10-24_at_11.52.27_AM.png" alt="Screenshot 2024-10-24 at 11.52.27 AM.png" loading="lazy" /><figcaption>Screenshot 2024-10-24 at 11.52.27 AM.png</figcaption></figure>
 <pre><code class="language-r">## make plot for those genes in all celltypes
 pdf(file = &quot;./Vlnplot_for_overlapping_DEGs_in_all_celltypes.pdf&quot;,width=8,height=4,onefile=TRUE)
-for(i in seq_len(nrow(gene_for_plot)))&#123;
+for(i in seq_len(nrow(gene_for_plot))){
     p &lt;- make_vlnplot(genes=gene_for_plot[i,&quot;V1&quot;],
                  celltype=names(pseudo_de),
             label_df=subset(isoVSsoc_DEG_ls,gene==gene_for_plot[i,&quot;V1&quot;]))
     print(p)
-&#125;
+}
 dev.off()</code></pre></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>

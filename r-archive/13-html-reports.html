@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HTML reports from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HTML reports from the exported Notion notes." />
   <title>HTML reports | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,7 +26,7 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/13-html-reports.htmlnotion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png" alt="HTML reports cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png" alt="HTML reports cover" loading="lazy" /></figure>
       <article class="content"><h1>HTML reports</h1>
 <p>To make the sequencing results into html report and embed the motif logos into the file:</p>
 <pre><code class="language-r">library(dplyr)
@@ -45,15 +48,15 @@ sample_data &lt;- sample_data %&gt;%
 mutate(Image_Path = paste0(image_dir, &quot;/&quot;, sample, &quot;_meme/logo1.png&quot;)) %&gt;%
 mutate(FRiP_score = round(100* FRiP_score,2))
 
-sample_data$Image &lt;- sapply(sample_data$Image_Path, function(img) &#123;
-if (file.exists(img)) &#123;
+sample_data$Image &lt;- sapply(sample_data$Image_Path, function(img) {
+if (file.exists(img)) {
 encoded &lt;- base64encode(img)
 ext &lt;- tools::file_ext(img)
 sprintf(&#39;&lt;img src=&quot;data:image/%s;base64,%s&quot; style=&quot;max-width:100px;&quot;&gt;&#39;, ext, encoded)
-&#125; else &#123;
+} else {
 &quot;Image not found&quot;
-&#125;
-&#125;)
+}
+})
 
 sample_data &lt;- sample_data %&gt;% select(-Image_Path)
 
@@ -62,7 +65,7 @@ kable(sample_data, escape = FALSE,format = &quot;html&quot;) %&gt;%
 kable_styling(&quot;striped&quot;, full_width = FALSE)</code></pre>
 <pre><code class="language-r">rmarkdown::render(&quot;report.Rmd&quot;)</code></pre>
 <p>display of result:</p>
-<figure class="figure"><img src="/r-archive/13-html-reports.htmlnotion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png" alt="Screenshot 2025-03-12 at 12.21.31 AM.png" loading="lazy"><figcaption>Screenshot 2025-03-12 at 12.21.31 AM.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/HTML%20reports/Screenshot_2025-03-12_at_12.21.31_AM.png" alt="Screenshot 2025-03-12 at 12.21.31 AM.png" loading="lazy" /><figcaption>Screenshot 2025-03-12 at 12.21.31 AM.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

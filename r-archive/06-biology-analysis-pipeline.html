@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Biology analysis pipeline from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Biology analysis pipeline from the exported Notion notes." />
   <title>Biology analysis pipeline | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -33,13 +36,13 @@ rm FRiP_score_Athaliana.txt
 touch FRiP_score_Athaliana.txt
 
 sed &#39;1d&#39; $sample_fastq|while IFS=, read sampleID _ || [ -n &quot;$sampleID&quot; ] ;do
-    echo &quot;Processing $&#123;sampleID&#125;&quot;
-    bam_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/alignment/$&#123;sampleID&#125;_Q20_sorted.bam
-    peak_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/macs3_output/$&#123;sampleID&#125;_peaks.narrowPeak
-    peak_read=`samtools view -c -L $&#123;peak_file&#125; $&#123;bam_file&#125;`
-    total_read=`samtools view $&#123;bam_file&#125;|wc -l`
+    echo &quot;Processing ${sampleID}&quot;
+    bam_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/alignment/${sampleID}_Q20_sorted.bam
+    peak_file=/project/gzy8899/lyang/Xiaocheng_data/Athaliana_2/macs3_output/${sampleID}_peaks.narrowPeak
+    peak_read=`samtools view -c -L ${peak_file} ${bam_file}`
+    total_read=`samtools view ${bam_file}|wc -l`
 
-    printf &quot;%s\t%d\t%d\t%d\n&quot;  &quot;$&#123;sampleID&#125;&quot; &quot;$&#123;peak_read&#125;&quot; &quot;$&#123;total_read&#125;&quot; &quot;$&#123;peak_read&#125;/$&#123;total_read&#125;&quot; &gt;&gt; FRiP_score_Athaliana.txt
+    printf &quot;%s\t%d\t%d\t%d\n&quot;  &quot;${sampleID}&quot; &quot;${peak_read}&quot; &quot;${total_read}&quot; &quot;${peak_read}/${total_read}&quot; &gt;&gt; FRiP_score_Athaliana.txt
 
 done</code></pre>
 <h2>With single-base methylation level file, to identify methylation regions that have certain proportion of cytosines methylated higher than a threshold in the region.</h2>
@@ -135,7 +138,7 @@ def main():
     # Save the methylated regions to a CSV file
     methylated_regions_df.to_csv(args.output_file, sep=&quot;\t&quot;, columns = [&#39;chr&#39;,&quot;start&quot;,&quot;end&quot;,&quot;strand&quot;,&quot;C_count&quot;,&quot;mC_frac&quot;,&quot;mC_level_avg&quot;],index=False)
 
-    print(f&quot;Methylated regions saved to &#123;args.output_file&#125;&quot;)
+    print(f&quot;Methylated regions saved to {args.output_file}&quot;)
 
 if __name__ == &#39;__main__&#39;:
     main()</code></pre>
@@ -151,11 +154,11 @@ mkdir $out_bam_dir/iso-F-04
 cd $out_bam_dir/iso-F-04
 
 cat $barcode_file | parallel --jobs 8 --colsep &#39;\t&#39; &#39;
-    barcode=&#123;&#125;
-    tmp_file=&quot;tmp_$&#123;barcode&#125;.tsv&quot;
+    barcode={}
+    tmp_file=&quot;tmp_${barcode}.tsv&quot;
     echo &quot;$barcode&quot; &gt; &quot;$tmp_file&quot;
 
-    output_bam=$&#123;barcode&#125;.bam
+    output_bam=${barcode}.bam
 
     # Check if output BAM file already exists
     if [ ! -f &quot;$output_bam&quot; ]; then
@@ -177,11 +180,11 @@ cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_
 for target_sample in iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
 
 do
-    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/$&#123;target_sample&#125;
+    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/${target_sample}
 
-    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; $&#123;target_sample&#125;.meta
+    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; ${target_sample}.meta
 
-    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh $&#123;target_sample&#125;.meta $source_bam_dir
+    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh ${target_sample}.meta $source_bam_dir
 
 done</code></pre>
 <pre><code class="language-bash">##gather_bam_files.sh 
@@ -208,14 +211,14 @@ while IFS=$&#39;\t&#39; read -r cell_id sample_name cell_type; do
     fi
 
     # Define the directory path for each cell type in each sample
-    target_directory=&quot;$&#123;sample_name&#125;/$&#123;cell_type&#125;&quot;
+    target_directory=&quot;${sample_name}/${cell_type}&quot;
 
     # Create the target directory if it doesn&#39;t exist
     mkdir -p &quot;$target_directory&quot;
 
     # Define the source BAM file and target soft link path
-    source_bam=&quot;$&#123;bam_directory&#125;/$&#123;cell_id&#125;.bam&quot;
-    target_link=&quot;$&#123;target_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+    source_bam=&quot;${bam_directory}/${cell_id}.bam&quot;
+    target_link=&quot;${target_directory}/${cell_id}.bam&quot;
 
     # Check if the BAM file exists before creating the link
     if [ -f &quot;$source_bam&quot; ]; then
@@ -237,19 +240,19 @@ do
     for j in `ls /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/soc-M-41`
     do
         
-        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/$&#123;i&#125;/$&#123;j&#125;
+        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/${i}/${j}
         if [ -d $BAM_DIR ]; then
 
-            find $BAM_DIR -name &#39;*.bam&#39; | &#123;
+            find $BAM_DIR -name &#39;*.bam&#39; | {
             read firstbam
             samtools view -h &quot;$firstbam&quot;
             while read bam; do
                 samtools view &quot;$bam&quot;
             done
-            &#125; | samtools view -ubS - | samtools sort -@ 8 -o $&#123;i&#125;-$&#123;j&#125;.bam -
-            samtools index $&#123;i&#125;-$&#123;j&#125;.bam
+            } | samtools view -ubS - | samtools sort -@ 8 -o ${i}-${j}.bam -
+            samtools index ${i}-${j}.bam
 
-            samtools view $&#123;i&#125;-$&#123;j&#125;.bam|wc -l
+            samtools view ${i}-${j}.bam|wc -l
 
         fi
 
@@ -257,17 +260,17 @@ do
 
 done</code></pre>
 <h2>Length distribution of fastq reads</h2>
-<pre><code class="language-perl">zcat cut_linked_adapt.fq.gz | awk &#39;NR%4==2&#123;print&#125;&#39; | perl -alne &#39; &#123;
+<pre><code class="language-perl">zcat cut_linked_adapt.fq.gz | awk &#39;NR%4==2{print}&#39; | perl -alne &#39; {
 s/\r?\n$//;
 my $seq_len = length($_); 
-$hash&#123;$seq_len&#125;++; 
-END&#123;  
+$hash{$seq_len}++; 
+END{  
     print &quot;length\tcount\n&quot;; 
-    for my $len (sort &#123;$a &lt;=&gt; $b&#125; keys %hash)&#123; 
-    print &quot;$len\t$hash&#123;$len&#125;\n&quot;; 
-    &#125; 
-&#125;
-&#125;&#39; &gt; cut_R1_fq_len_dis</code></pre>
+    for my $len (sort {$a &lt;=&gt; $b} keys %hash){ 
+    print &quot;$len\t$hash{$len}\n&quot;; 
+    } 
+}
+}&#39; &gt; cut_R1_fq_len_dis</code></pre>
 <p>For scaleRNA-seq, to extract barcode information from R1 reads, and correct them according to whitelist if the mismatch falls bellow the threshold. Detect ligation, pcr and RT barcode and UMI at the same time.</p>
 <p>RT barcode: 8nt away from linker sequence</p>
 <p>ligation: first 9nt of R1 reads</p>
@@ -280,7 +283,7 @@ from Levenshtein import distance
 # Function to parse barcode files
 def read_barcodes(file):
     barcodes = []
-    barcode_dict = &#123;&#125;
+    barcode_dict = {}
     with open(file, &#39;r&#39;) as fh:
         for line in fh:
             sequence, name = line.strip().split(&quot;\t&quot;)
@@ -314,23 +317,23 @@ def correct_lig_bc(sequence, lig_bc_list, start_index, sub_length, mismatch, lig
             match_idx += 1
 
     if match_idx == 1 and distance_min == 0:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;exact&quot;,
             &quot;lig_bc&quot;: match_code,
             &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
     elif match_idx == 1 and distance_min &lt;= mismatch:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;corrected&quot;,
             &quot;lig_bc&quot;: match_code,
             &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
     else:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;error&quot;,
             &quot;lig_bc&quot;: match_code or &quot;none&quot;,
             &quot;lig_bc_well&quot;: lig_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
 
 # Function to process RT barcode
 def correct_rt_bc(sequence, rt_bc_list, sub_length, mismatch, rt_barcodes):
@@ -341,7 +344,7 @@ def correct_rt_bc(sequence, rt_bc_list, sub_length, mismatch, rt_barcodes):
 
     start_index = sequence.find(&quot;TCAGAGC&quot;)
     if start_index == -1:
-        return &#123;&quot;label&quot;: &quot;error&quot;, &quot;rt_bc&quot;: &quot;none&quot;, &quot;rt_bc_well&quot;: &quot;unknown&quot;, &quot;umi&quot;: &quot;unknown&quot;&#125;
+        return {&quot;label&quot;: &quot;error&quot;, &quot;rt_bc&quot;: &quot;none&quot;, &quot;rt_bc_well&quot;: &quot;unknown&quot;, &quot;umi&quot;: &quot;unknown&quot;}
 
     for barcode in rt_bc_list:
         subseq = sequence[start_index + 15:start_index + 15 + sub_length]
@@ -358,26 +361,26 @@ def correct_rt_bc(sequence, rt_bc_list, sub_length, mismatch, rt_barcodes):
             match_idx += 1
 
     if match_idx == 1 and distance_min == 0:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;exact&quot;,
             &quot;rt_bc&quot;: match_code,
             &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
             &quot;umi&quot;: umi_seq
-        &#125;
+        }
     elif match_idx == 1 and distance_min &lt;= mismatch:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;corrected&quot;,
             &quot;rt_bc&quot;: match_code,
             &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
             &quot;umi&quot;: umi_seq
-        &#125;
+        }
     else:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;error&quot;,
             &quot;rt_bc&quot;: match_code or &quot;none&quot;,
             &quot;rt_bc_well&quot;: rt_barcodes.get(match_code, &quot;unknown&quot;),
             &quot;umi&quot;: umi_seq
-        &#125;
+        }
 
 # Function to process PCR barcode
 def correct_pcr_bc(sequence, pcr_bc_list, mismatch, pcr_barcodes):
@@ -397,23 +400,23 @@ def correct_pcr_bc(sequence, pcr_bc_list, mismatch, pcr_barcodes):
             match_idx += 1
 
     if match_idx == 1 and distance_min == 0:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;exact&quot;,
             &quot;pcr_bc&quot;: match_code,
             &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
     elif match_idx == 1 and distance_min &lt;= mismatch:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;corrected&quot;,
             &quot;pcr_bc&quot;: match_code,
             &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
     else:
-        return &#123;
+        return {
             &quot;label&quot;: &quot;error&quot;,
             &quot;pcr_bc&quot;: match_code or &quot;none&quot;,
             &quot;pcr_bc_well&quot;: pcr_barcodes.get(match_code, &quot;unknown&quot;)
-        &#125;
+        }
 
 batch_size = 1000  # Adjust based on available memory and performance
 
@@ -446,18 +449,18 @@ def main():
     rt_barcodes, rt_barcode_dict = read_barcodes(args.rt_barcode)
     pcr_barcodes, pcr_barcode_dict = read_barcodes(args.pcr_barcode)
 
-    print(f&quot;Loaded &#123;len(lig_barcodes)&#125; ligation barcodes&quot;)
-    print(f&quot;Loaded &#123;len(rt_barcodes)&#125; RT barcodes&quot;)
-    print(f&quot;Loaded &#123;len(pcr_barcodes)&#125; PCR barcodes&quot;)
+    print(f&quot;Loaded {len(lig_barcodes)} ligation barcodes&quot;)
+    print(f&quot;Loaded {len(rt_barcodes)} RT barcodes&quot;)
+    print(f&quot;Loaded {len(pcr_barcodes)} PCR barcodes&quot;)
 
     processed_fq_line = 0
     with open_fastq(args.r1_fastq) as r1, open_fastq(args.r2_fastq) as r2, open_fastq(args.i1_fastq) as i1, \
          gzip.open(args.out_fastq, &#39;wt&#39;) as out_fq, open(args.barcode_sta_out, &#39;w&#39;) as bc_sta, open(args.barcode_well_out, &#39;w&#39;) as bc_well:
 
         bc_well.write(&quot;ligation_well\trt_well\tpcr_well\n&quot;)
-        ligation_bc_sta = &#123;&#125;
-        rt_bc_sta = &#123;&#125;
-        pcr_bc_sta = &#123;&#125;
+        ligation_bc_sta = {}
+        rt_bc_sta = {}
+        pcr_bc_sta = {}
 
         while True:
             r1_batch = read_batch(r1)
@@ -481,16 +484,16 @@ def main():
                 pcr_bc_sta[pcr_bc_match[&quot;label&quot;]] = pcr_bc_sta.get(pcr_bc_match[&quot;label&quot;], 0) + 1
 
                 if lig_bc_match[&quot;label&quot;] != &quot;error&quot; and rt_bc_match[&quot;label&quot;] != &quot;error&quot; and pcr_bc_match[&quot;label&quot;] != &quot;error&quot;:
-                    first_line = f&quot;@&#123;lig_bc_match[&#39;lig_bc&#39;]&#125;&#123;rt_bc_match[&#39;rt_bc&#39;]&#125;&#123;pcr_bc_match[&#39;pcr_bc&#39;]&#125;,&#123;rt_bc_match[&#39;umi&#39;]&#125;,&#123;r2_records[0][1:]&#125;&quot;
-                    out_fq.write(f&quot;&#123;first_line&#125;\n&#123;r2_records[1]&#125;\n&#123;r2_records[2]&#125;\n&#123;r2_records[3]&#125;\n&quot;)
-                    bc_well.write(f&quot;&#123;lig_bc_match[&#39;lig_bc_well&#39;]&#125;\t&#123;rt_bc_match[&#39;rt_bc_well&#39;]&#125;\t&#123;pcr_bc_match[&#39;pcr_bc_well&#39;]&#125;\n&quot;)
+                    first_line = f&quot;@{lig_bc_match[&#39;lig_bc&#39;]}{rt_bc_match[&#39;rt_bc&#39;]}{pcr_bc_match[&#39;pcr_bc&#39;]},{rt_bc_match[&#39;umi&#39;]},{r2_records[0][1:]}&quot;
+                    out_fq.write(f&quot;{first_line}\n{r2_records[1]}\n{r2_records[2]}\n{r2_records[3]}\n&quot;)
+                    bc_well.write(f&quot;{lig_bc_match[&#39;lig_bc_well&#39;]}\t{rt_bc_match[&#39;rt_bc_well&#39;]}\t{pcr_bc_match[&#39;pcr_bc_well&#39;]}\n&quot;)
 
         for label, count in ligation_bc_sta.items():
-            bc_sta.write(f&quot;ligation\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+            bc_sta.write(f&quot;ligation\t{label}\t{count}\n&quot;)
         for label, count in rt_bc_sta.items():
-            bc_sta.write(f&quot;rt\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+            bc_sta.write(f&quot;rt\t{label}\t{count}\n&quot;)
         for label, count in pcr_bc_sta.items():
-            bc_sta.write(f&quot;pcr\t&#123;label&#125;\t&#123;count&#125;\n&quot;)
+            bc_sta.write(f&quot;pcr\t{label}\t{count}\n&quot;)
 
     print(&quot;Processed record:&quot;, processed_fq_line)
 

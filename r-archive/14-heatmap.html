@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="heatmap from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="heatmap from the exported Notion notes." />
   <title>heatmap | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,13 +26,13 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/image.png" alt="heatmap cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/image.png" alt="heatmap cover" loading="lazy" /></figure>
       <article class="content"><h1>heatmap</h1>
 <h3>ggplot based heatmap (exhibiting GO terms from either promoter or distal targets of the same TF)</h3>
 <p>the trick is to use facet to split the TFs and plot only right borders for each panel to split groups</p>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/image.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <p>start with data like this:</p>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/Screenshot_2025-05-29_at_4.43.31_PM.png" alt="Screenshot 2025-05-29 at 4.43.31 PM.png" loading="lazy"><figcaption>Screenshot 2025-05-29 at 4.43.31 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/Screenshot_2025-05-29_at_4.43.31_PM.png" alt="Screenshot 2025-05-29 at 4.43.31 PM.png" loading="lazy" /><figcaption>Screenshot 2025-05-29 at 4.43.31 PM.png</figcaption></figure>
 <pre><code class="language-r">data %&gt;% 
 group_by(tf_name) %&gt;%
 mutate(group_n=n()) %&gt;%
@@ -76,11 +79,11 @@ arrange(tf_name,group) %&gt;%
     labs(x = &quot;Transcription Factor (Target Type)&quot;, y = &quot;GO Terms&quot;</code></pre>
 <h3>plot exhibiting the number of DEGs in each time point in each cell type</h3>
 <p>start with DEG analysis results from DESeq2, with extra column denoting time points and celltype. The tricky part is to impute the 0 values in the matrix, because otherwise there will be no square plotted in an empty cell.</p>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/image%201.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/image%201.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <pre><code class="language-r">p1 &lt;- time_course_DEG_pseudo %&gt;%
     filter(celltype %in% !!celltype_label) %&gt;%
   # Create a complete grid of all celltype and age combinations first
-  &#123;
+  {
     # Get all unique celltypes and ages
     all_celltypes &lt;- unique(.$celltype)
     all_ages &lt;- c(&quot;P30&quot;,&quot;P50&quot;, &quot;P65&quot;, &quot;P80&quot;, &quot;P95&quot;, &quot;P120&quot;)
@@ -102,7 +105,7 @@ arrange(tf_name,group) %&gt;%
     left_join(complete_grid, filtered_data, by = c(&quot;celltype&quot;, &quot;age&quot;)) %&gt;%
       # Replace NA with 0
       mutate(count = replace_na(count, 0))
-  &#125; %&gt;%
+  } %&gt;%
   mutate(celltype = factor(celltype, levels = rev(celltype_label))) %&gt;%
   mutate(age = factor(age, levels = c(&quot;P30&quot;,&quot;P50&quot;, &quot;P65&quot;, &quot;P80&quot;, &quot;P95&quot;, &quot;P120&quot;))) %&gt;%
   ggplot(aes(x = age, y = celltype, fill = count)) +
@@ -120,7 +123,7 @@ arrange(tf_name,group) %&gt;%
 # Apply the same approach for the second plot (p2)
 p2 &lt;- time_course_DEG_pseudo %&gt;%
   filter(celltype %in% !!celltype_label) %&gt;%
-  &#123;
+  {
     # Get all unique celltypes and ages
     all_celltypes &lt;- unique(.$celltype)
     all_ages &lt;- c(&quot;P30&quot;,&quot;P50&quot;, &quot;P65&quot;, &quot;P80&quot;, &quot;P95&quot;, &quot;P120&quot;)
@@ -142,7 +145,7 @@ p2 &lt;- time_course_DEG_pseudo %&gt;%
     left_join(complete_grid, filtered_data, by = c(&quot;celltype&quot;, &quot;age&quot;)) %&gt;%
       # Replace NA with 0
       mutate(count = replace_na(count, 0))
-  &#125; %&gt;%
+  } %&gt;%
   mutate(celltype = factor(celltype, levels = rev(celltype_label))) %&gt;%
   mutate(age = factor(age, levels = c(&quot;P30&quot;,&quot;P50&quot;, &quot;P65&quot;, &quot;P80&quot;, &quot;P95&quot;, &quot;P120&quot;))) %&gt;%
   ggplot(aes(x = age, y = celltype, fill = count)) +
@@ -157,27 +160,27 @@ p2 &lt;- time_course_DEG_pseudo %&gt;%
         plot.title = element_text(size = 7),
         panel.grid.major = element_blank())</code></pre>
 <p>make complex circle plot</p>
-<pre><code class="language-r">rand_col = function(k) &#123;
+<pre><code class="language-r">rand_col = function(k) {
     return(rgb(runif(k), runif(k), runif(k)))
-&#125;
+}
 
 library(circlize)
 par(lwd = 0.5)
 circos.par(&quot;cell.padding&quot; = c(0, 0, 0, 0))
 circos.initializeWithIdeogram(chromosome.index = &quot;chr1&quot;, plotType = NULL)
 
-posTransform.fun = function(region) &#123;
+posTransform.fun = function(region) {
     return(region)
-&#125;
+}
 bed = generateRandomBed(nr = 400, fun = function(k) rep(&quot;gene&quot;, k))
-circos.genomicTrackPlotRegion(bed, ylim = c(0, 1), panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed, ylim = c(0, 1), panel.fun = function(region, value, ...) {
     circos.genomicText(region, value, y = 0, labels.column = 1, facing = &quot;clockwise&quot;, adj = c(0, 0.5), cex = 0.5, posTransform = posTransform.fun)
-&#125;, track.height = 0.05, bg.border = NA)
+}, track.height = 0.05, bg.border = NA)
 
 circos.genomicPosTransformLines(bed, posTransform = posTransform.fun, track.height = 0.04, col = &quot;orange&quot;)
 
 cytoband = read.cytoband()$df
-circos.genomicTrackPlotRegion(cytoband, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(cytoband, stack = TRUE, panel.fun = function(region, value, ...) {
     circos.genomicRect(region, value, col = cytoband.col(value[, 2]), border = NA, ...)
     cell.xlim = get.cell.meta.data(&quot;cell.xlim&quot;)
     cell.ylim = get.cell.meta.data(&quot;cell.ylim&quot;)
@@ -188,86 +191,86 @@ circos.genomicTrackPlotRegion(cytoband, stack = TRUE, panel.fun = function(regio
     major.labels[l] = &quot;&quot;
     circos.axis(&quot;top&quot;, major.at = major.at, labels = major.labels, labels.facing = &quot;clockwise&quot;, labels.cex = 0.4)
     circos.text(major.at[l], rep(1.7, sum(l)), paste0(major.at[l]/1000000, &quot;MB&quot;), cex = 0.8, facing = &quot;clockwise&quot;, adj = c(0, 0.5), niceFacing = TRUE)
-&#125;, bg.border = NA, track.height = 0.02)
+}, bg.border = NA, track.height = 0.02)
 
 bed_list = list(generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000))
-circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) {
     circos.genomicRect(region, value, col = rand_col(nrow(region)), border = NA, ...)
-&#125;, bg.border = NA, track.height = 0.05)
+}, bg.border = NA, track.height = 0.05)
 
 bed = generateRandomBed(nr = 5000)
-circos.genomicTrackPlotRegion(bed, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed, stack = TRUE, panel.fun = function(region, value, ...) {
     circos.genomicRect(region, value, col = &quot;red&quot;, border = NA)
-&#125;, bg.border = NA, bg.col = &quot;yellow&quot;, track.height = 0.02)
+}, bg.border = NA, bg.col = &quot;yellow&quot;, track.height = 0.02)
 
 bed_list = list(generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000))
-circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) {
     i = getI(...)
-    for(k in seq_len(nrow(region))) &#123;
+    for(k in seq_len(nrow(region))) {
         circos.lines(rep(mean(region[k, 1], region[k, 2]), 2), c(i - 0.4, i + 0.4), straight = TRUE, col = &quot;red&quot;)
-    &#125;
-&#125;, track.height = 0.1, bg.border = NA)
+    }
+}, track.height = 0.1, bg.border = NA)
 
 bed_list = list(generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000))
-circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) {
     circos.genomicLines(region, value, type = &quot;segment&quot;, ...)
-&#125;, track.height = 0.05, bg.border = NA)
+}, track.height = 0.05, bg.border = NA)
 
 bed = generateRandomBed(nr = 5000)
-circos.genomicTrackPlotRegion(bed, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed, panel.fun = function(region, value, ...) {
     circos.genomicLines(region, value, area = TRUE, col = &quot;green&quot;, border = &quot;black&quot;, ...)
-&#125;, bg.border = NA, track.height = 0.05)
+}, bg.border = NA, track.height = 0.05)
 
 bed_list = list(generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000),
     generateRandomBed(nr = 5000))
-circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, stack = TRUE, panel.fun = function(region, value, ...) {
     circos.genomicRect(region, value, col = &quot;purple&quot;, border = &quot;black&quot;, ...)
-&#125;, track.height = 0.05, bg.border = NA)
+}, track.height = 0.05, bg.border = NA)
 
 bed = generateRandomBed(nr = 1000, fun = function(k) sample(5, k, replace = TRUE))
-circos.genomicTrackPlotRegion(bed, ylim = c(0.5, 5.5), panel.fun = function(region, value, ...) &#123;
-    for(i in seq_len(nrow(region))) &#123;
+circos.genomicTrackPlotRegion(bed, ylim = c(0.5, 5.5), panel.fun = function(region, value, ...) {
+    for(i in seq_len(nrow(region))) {
         circos.rect(region[i, 1], value[i, 1]-0.5, region[i, 2], value[i, 1] + 0.5, col = &quot;red&quot;)
-    &#125;
-&#125;, bg.border = NA, track.height = 0.05)
+    }
+}, bg.border = NA, track.height = 0.05)
 
 bed = generateRandomBed(nr = 1000, fun = function(k) sample(5, k, replace = TRUE))
-circos.genomicTrackPlotRegion(bed, ylim = c(0.5, 5.5), panel.fun = function(region, value, ...) &#123;
-    for(i in seq_len(nrow(region))) &#123;
+circos.genomicTrackPlotRegion(bed, ylim = c(0.5, 5.5), panel.fun = function(region, value, ...) {
+    for(i in seq_len(nrow(region))) {
         circos.rect(region[i, 1], value[i, 1]-0.5, region[i, 2], value[i, 1] + 0.5, col = &quot;green&quot;)
-    &#125;
-&#125;, bg.border = NA, track.height = 0.05)
+    }
+}, bg.border = NA, track.height = 0.05)
 
 col = c(&quot;#0000FF80&quot;, &quot;#FF000080&quot;)
 bed_list = list(generateRandomBed(),
     generateRandomBed())
-circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {
     i = getI(...)
     circos.genomicLines(region, value, type = &quot;l&quot;, col = col[i], ...)
-&#125;, track.height = 0.1, bg.border = NA)
+}, track.height = 0.1, bg.border = NA)
 
 col = c(&quot;#00FFFF80&quot;, &quot;#00FF0080&quot;)
 bed_list = list(generateRandomBed(),
     generateRandomBed())
-circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) &#123;
+circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {
     i = getI(...)
     circos.genomicLines(region, value, type = &quot;l&quot;, col = col[i], ...)
-&#125;, track.height = 0.1, bg.border = NA)
+}, track.height = 0.1, bg.border = NA)
 
 circos.clear()</code></pre>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" alt="BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" loading="lazy"><figcaption>BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" alt="BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png" loading="lazy" /><figcaption>BA6C9EA6-04A5-412E-AE9F-B2346D224BA5.png</figcaption></figure>
 <p>heatmap exhibiting two information in each rect</p>
 <pre><code class="language-r">library(ComplexHeatmap)
 library(circlize)
@@ -310,16 +313,16 @@ row_an &lt;- HeatmapAnnotation(type = c(rep(&quot;W&quot;, 11), rep(&quot;E&quot
                             which = &quot;row&quot;
                             )
 DiagFunc &lt;-
-  function(up, down)&#123;
-  function(j, i, x, y, width, height, fill)&#123;
+  function(up, down){
+  function(j, i, x, y, width, height, fill){
     grid.polygon(unit.c(x - 0.5*width, x - 0.5*width, x + 0.5*width),
                  unit.c(y - 0.5*height, y + 0.5*height, y + 0.5*height),
                  gp = gpar(fill = UpColor(up[i, j]), col = &quot;grey&quot;))
     grid.polygon(unit.c(x + 0.5*width, x + 0.5*width, x - 0.5*width),
                  unit.c(y + 0.5*height, y - 0.5*height, y - 0.5*height),
                  gp = gpar(fill = DnColor(dn[i, j]), col = &quot;grey&quot;))
-  &#125;
-  &#125;
+  }
+  }
 p1 &lt;- Heatmap(up,
               column_title = &quot;&quot;,
               rect_gp = gpar(type = &quot;none&quot;),
@@ -350,7 +353,7 @@ draw(p1, annotation_legend_list = lgd,
      heatmap_legend_side = &quot;bottom&quot;,
      merge_legend = TRUE)
 dev.off()</code></pre>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/112B7E69-1FE1-4960-9441-44A159A7306B.png" alt="112B7E69-1FE1-4960-9441-44A159A7306B.png" loading="lazy"><figcaption>112B7E69-1FE1-4960-9441-44A159A7306B.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/112B7E69-1FE1-4960-9441-44A159A7306B.png" alt="112B7E69-1FE1-4960-9441-44A159A7306B.png" loading="lazy" /><figcaption>112B7E69-1FE1-4960-9441-44A159A7306B.png</figcaption></figure>
 <p>Heamap labeling p-value and corr coefficient in each rect</p>
 <pre><code class="language-r">library(tidyverse)
 library(reshape2)
@@ -376,7 +379,7 @@ data$new_Var2 &lt;- factor(data$Var2, levels = rev(c(&quot;a&quot;, &quot;b&quot
         axis.text.y = element_text(size = 14, face = &quot;bold&quot;)) + #调整y轴文字
   labs(fill =paste0(&quot; * p &lt; 0&quot;,&quot;\n\n&quot;,&quot;** p &gt; 0&quot;,&quot;\n\n&quot;,&quot;Correlation&quot;)) +   # 修改 legend 内容
   scale_x_discrete(position = &quot;top&quot;) # 将 X 轴放置在最上面</code></pre>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" alt="2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" loading="lazy"><figcaption>2DC8751B-5D8C-4AF8-8F05-C64D92311040.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" alt="2DC8751B-5D8C-4AF8-8F05-C64D92311040.png" loading="lazy" /><figcaption>2DC8751B-5D8C-4AF8-8F05-C64D92311040.png</figcaption></figure>
 <p>correlation plot with sample clustering information</p>
 <pre><code class="language-r">library(vegan)
 library(dplyr)
@@ -445,7 +448,7 @@ segments(-6.9, 5.6, -2.8, 5.6, lty = &#39;solid&#39;, lwd = 1.2,
          col = &#39;grey50&#39;, xpd = TRUE)segments(3.6, 0.7, -6.9, 0.7, lty = &#39;solid&#39;, lwd = 1.2,
          col = &#39;grey50&#39;, xpd = TRUE)segments(-6.9, 0.7, -6.9, 5.6, lty = &#39;solid&#39;, lwd = 1.2,
          col = &#39;grey50&#39;, xpd = TRUE)</code></pre>
-<figure class="figure"><img src="/r-archive/14-heatmap.htmlnotion-export/Used%20codes/heatmap/102AB7BA-0426-4750-9A04-588CF85B96DE.png" alt="102AB7BA-0426-4750-9A04-588CF85B96DE.png" loading="lazy"><figcaption>102AB7BA-0426-4750-9A04-588CF85B96DE.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/heatmap/102AB7BA-0426-4750-9A04-588CF85B96DE.png" alt="102AB7BA-0426-4750-9A04-588CF85B96DE.png" loading="lazy" /><figcaption>102AB7BA-0426-4750-9A04-588CF85B96DE.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

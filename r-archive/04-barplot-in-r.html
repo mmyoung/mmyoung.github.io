@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Barplot in R from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Barplot in R from the exported Notion notes." />
   <title>Barplot in R | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,12 +26,12 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Barplot in R cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Barplot in R cover" loading="lazy" /></figure>
       <article class="content"><h1>Barplot in R</h1>
 <p>To add breaks in the y-axis</p>
-<figure class="figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Untitled" loading="lazy"><figcaption>Untitled</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Untitled.png" alt="Untitled" loading="lazy" /><figcaption>Untitled</figcaption></figure>
 <pre><code class="language-r">library(scales)
-trans &lt;- function(x)&#123;pmin(x,100) + 0.01*pmax(x-100,0)&#125;
+trans &lt;- function(x){pmin(x,100) + 0.01*pmax(x-100,0)}
 yticks &lt;- c(0, 500,1000, 2000, 4000, 10000, 15000, 20000)
 
 umis_count$trans &lt;- 
@@ -45,7 +48,7 @@ ggplot(aes(x=umis, y=trans)) +
   theme(axis.text=element_text(size=12),axis.title=element_text(size=14))</code></pre>
 <h3>Make barplot for celltype distribution in single-cell studies</h3>
 <p>a trick is to use a column that stores the color code for each celltype is to use scale_fill_identity</p>
-<figure class="figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/image.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <pre><code class="language-r">options(repr.plot.width = 10, repr.plot.height = 4, repr.plot.res = 300)
 seu_obj_recluster@meta.data %&gt;%
   group_by(celltype,sampleID) %&gt;%
@@ -73,7 +76,7 @@ seu_obj_recluster@meta.data %&gt;%
   theme_minimal() +
   labs(x = &quot;Sample ID&quot;, y = &quot;Percentage&quot;, fill = &quot;Cell Type&quot;)</code></pre>
 <h3>To plot the DEG number in each celltype between conditions and the celltype number</h3>
-<figure class="figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/Screenshot_2024-10-10_at_5.41.58_PM.png" alt="Screenshot 2024-10-10 at 5.41.58 PM.png" loading="lazy"><figcaption>Screenshot 2024-10-10 at 5.41.58 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2024-10-10_at_5.41.58_PM.png" alt="Screenshot 2024-10-10 at 5.41.58 PM.png" loading="lazy" /><figcaption>Screenshot 2024-10-10 at 5.41.58 PM.png</figcaption></figure>
 <pre><code class="language-r">p1 &lt;- seu_obj_recluster@meta.data %&gt;%
     count(celltype) %&gt;%
     filter(celltype!=&quot;NA&quot;) %&gt;%
@@ -115,9 +118,9 @@ library(Rmisc)
 setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
 TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
 t_TPM &lt;- as.data.frame(t(TPM))
-for (i in colnames(t_TPM)[-1])&#123;
+for (i in colnames(t_TPM)[-1]){
   t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
-&#125;
+}
 t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;)))
 melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
 # 获取各个基因表达量的平均值
@@ -148,9 +151,9 @@ p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+
   theme(panel.background = element_blank(),panel.border = element_rect(color=&quot;Black&quot;,fill=NA,size=2))
 ggsave(p,file=paste(&quot;merge_barplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
 ggsave(p,file=paste(&quot;merge_barplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
-<figure class="figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/Screenshot_2026-08-10_at_7.40.24_PM.png" alt="Screenshot 2026-08-10 at 7.40.24 PM.png" loading="lazy"><figcaption>Screenshot 2026-08-10 at 7.40.24 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/Screenshot_2026-08-10_at_7.40.24_PM.png" alt="Screenshot 2026-08-10 at 7.40.24 PM.png" loading="lazy" /><figcaption>Screenshot 2026-08-10 at 7.40.24 PM.png</figcaption></figure>
 <p>barplot filling different palette in each column</p>
-<pre><code class="language-r">ColourPalleteMulti &lt;- function(df, group, subgroup)&#123;
+<pre><code class="language-r">ColourPalleteMulti &lt;- function(df, group, subgroup){
 
   # Find how many colour categories to create and the number of colours in each
   categories &lt;- aggregate(as.formula(paste(subgroup, group, sep=&quot;~&quot; )), df, function(x) length(unique(x)))
@@ -158,9 +161,9 @@ ggsave(p,file=paste(&quot;merge_barplot.png&quot;,sep=&quot;&quot;),height=10,wi
   category.end  &lt;- (scales::hue_pal(l = 40)(nrow(categories))) # set the bottom
   # Build Colour pallette
   colours &lt;- unlist(lapply(1:nrow(categories),
-                          function(i)&#123;
-                            colorRampPalette(colors = c(category.start[i], category.end[i]))(categories[i,2])&#125;))
-  return(colours)&#125;
+                          function(i){
+                            colorRampPalette(colors = c(category.start[i], category.end[i]))(categories[i,2])}))
+  return(colours)}
 
 library(ggplot2)
 # Create data
@@ -174,7 +177,7 @@ colours &lt;-ColourPalleteMulti(df, &quot;color&quot;, &quot;clarity&quot;)
 ggplot(df, aes(color)) +
   geom_bar(aes(fill = group), colour = &quot;grey&quot;) +
   scale_fill_manual(&quot;Subject&quot;, values=colours, guide = &quot;none&quot;) ## or just assign the color codes to &quot;values&quot;</code></pre>
-<figure class="figure"><img src="/r-archive/04-barplot-in-r.htmlnotion-export/Used%20codes/Barplot%20in%20R/AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png" alt="AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png" loading="lazy"><figcaption>AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Barplot%20in%20R/AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png" alt="AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png" loading="lazy" /><figcaption>AEADB68E-151B-481C-9FD8-26FA3B0B3B49.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

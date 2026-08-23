@@ -1,0 +1,147 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="R plot detail page with the figure and code shown together." />
+  <title>R Archive | Plot</title>
+  <style>
+    :root {
+      --bg: #fbf7f1;
+      --panel: rgba(255,255,255,.88);
+      --line: #e8ddd0;
+      --text: #2f2923;
+      --muted: #7d7166;
+      --shadow: 0 14px 34px rgba(56, 45, 33, .06);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(207, 189, 166, .2), transparent 26%),
+        radial-gradient(circle at top right, rgba(191, 213, 214, .16), transparent 24%),
+        var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .topbar {
+      padding: 22px 0 14px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+    .eyebrow { margin: 0; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    h1 { margin: 0; font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.1; }
+    .meta { margin: 0; color: var(--muted); font-size: .95rem; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .plot-wrap { padding: 18px; display: grid; gap: 18px; }
+    .plot-image { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid #f0e8de; }
+    .plot-image img { width: 100%; display: block; }
+    .plot-header { padding: 0 4px; }
+    .plot-header h2 { margin: 0 0 6px; font-size: clamp(1.35rem, 2.2vw, 1.8rem); }
+    .plot-header p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .code-card { padding: 0 4px 6px; }
+    .code-card h3 { margin: 0 0 10px; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    pre { margin: 0; padding: 16px 18px; overflow: auto; border-radius: 18px; border: 1px solid #e8ddd0; background: #f8f4ee; color: #2c251d; font-size: .9rem; line-height: 1.68; white-space: pre-wrap; word-break: break-word; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; padding: 0 4px 6px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid #d7cabd;
+      background: #fff;
+      color: #342b22;
+      font-weight: 600;
+    }
+    .button:hover { background: #faf4eb; }
+    .notice { padding: 14px 4px 0; color: var(--muted); font-size: .95rem; }
+    @media (max-width: 720px) {
+      .container { padding: 0 14px; }
+      .topbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .plot-wrap { padding: 12px; gap: 14px; }
+      pre { padding: 14px; font-size: .84rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar container">
+    <div>
+      <p class="eyebrow">R archive</p>
+      <h1 id="page-title">Plot</h1>
+    </div>
+    <p class="meta" id="page-meta">Figure and code</p>
+  </header>
+
+  <main class="container" style="padding-bottom: 36px;">
+    <section class="panel plot-wrap">
+      <div class="plot-image">
+        <img id="plot-image" src="" alt="" />
+      </div>
+      <div class="plot-header">
+        <h2 id="plot-heading"></h2>
+        <p id="plot-subtitle"></p>
+      </div>
+      <div class="code-card">
+        <h3>Code</h3>
+        <pre><code id="plot-code"></code></pre>
+      </div>
+      <div class="actions">
+        <a class="button" href="../">Back to gallery</a>
+        <a class="button" href="/">Back to home</a>
+      </div>
+      <div class="notice" id="plot-notice"></div>
+    </section>
+  </main>
+
+  <script>
+    const plots = [{"id": "01", "title": "Volcano 1", "subtitle": "Volcano plots", "image": "/2026/08/08/R-plotting-notes-part-1/EA52A791-8A0C-4865-9EE3-6317EAC6C756.png", "alt": "Volcano 1", "code": "with(res, plot(log2FoldChange, -log10(pvalue), pch = 20,\n               main = \"Volcano plot\", xlim = c(-2.5, 2)))\nwith(subset(res, padj < .05),\n     points(log2FoldChange, -log10(pvalue), pch = 20, col = \"red\"))\n\nggplot(data, aes(logFC, -log10(padj), color = sig)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#0072B5\", \"grey\", \"#BC3C28\")) +\n  geom_hline(yintercept = -log10(0.05), linetype = 4) +\n  geom_vline(xintercept = c(-0.5, 0.5), linetype = 4)"}, {"id": "02", "title": "Volcano 2", "subtitle": "Volcano plots", "image": "/2026/08/08/R-plotting-notes-part-1/C9FE71CD-2D53-4C76-8C43-C8DAA41DF208.png", "alt": "Volcano 2", "code": "with(res, plot(log2FoldChange, -log10(pvalue), pch = 20,\n               main = \"Volcano plot\", xlim = c(-2.5, 2)))\nwith(subset(res, padj < .05),\n     points(log2FoldChange, -log10(pvalue), pch = 20, col = \"red\"))\n\nggplot(data, aes(logFC, -log10(padj), color = sig)) +\n  geom_point() +\n  scale_color_manual(values = c(\"#0072B5\", \"grey\", \"#BC3C28\")) +\n  geom_hline(yintercept = -log10(0.05), linetype = 4) +\n  geom_vline(xintercept = c(-0.5, 0.5), linetype = 4)"}, {"id": "03", "title": "Heatmap 1", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/0F623161-6E06-4416-83AC-61E76F7F0BC1.png", "alt": "Heatmap 1", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "04", "title": "Heatmap 2", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/E12445D8-6BE9-4F3D-BC0D-1AFC011CFE41.png", "alt": "Heatmap 2", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "05", "title": "Heatmap 3", "subtitle": "Heatmaps", "image": "/2026/08/08/R-plotting-notes-part-1/1B202378-5FB2-4824-9556-CD3C35110C53.png", "alt": "Heatmap 3", "code": "hmcol <- colorRampPalette(brewer.pal(9, \"GnBu\"))(100)\nheatmap.2(counts(dds, normalized = TRUE)[select, ],\n          col = hmcol, Rowv = FALSE, Colv = FALSE,\n          scale = \"none\", dendrogram = \"none\", trace = \"none\")\n\npheatmap(data, show_rownames = FALSE, cellwidth = 40,\n         cluster_cols = FALSE, cutree_rows = 6,\n         gaps_col = c(2, 4, 6), angle_col = 45, fontsize = 12)"}, {"id": "06", "title": "Boxplot 1", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/4B2EC705-848B-41D1-995E-37FF255B7A9D.png", "alt": "Boxplot 1", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "07", "title": "Boxplot 2", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/AEE98DB0-C1AA-4076-8944-8F81CAA6D2CD.png", "alt": "Boxplot 2", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "08", "title": "Boxplot 3", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/BAF3ADF7-BBE5-4315-B742-6B63DA7BC11A.png", "alt": "Boxplot 3", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "09", "title": "Boxplot 4", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/42BE12CC-1FDC-4F62-A1FC-7DAF408EF0E1.png", "alt": "Boxplot 4", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "10", "title": "Boxplot 5", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/393347FD-C9F0-431A-8D93-D98E0C61B9E6.png", "alt": "Boxplot 5", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "11", "title": "Boxplot 6", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/Image.png", "alt": "Boxplot 6", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "12", "title": "Boxplot 7", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/boxplot_vital_gene.png", "alt": "Boxplot 7", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "13", "title": "Boxplot 8", "subtitle": "Boxplots and grouped comparisons", "image": "/2026/08/08/R-plotting-notes-part-1/merge_boxplot_vital_gene.png", "alt": "Boxplot 8", "code": "layout(t(1:4))\npar(oma = c(2, 4, 4, 0), mar = c(5, 2, 1, 1), cex = 1)\n\nboxplot(colSums(edatay) ~ pdata$gender)\npoints(colSums(edatay) ~ jitter(as.numeric(pdata$gender)),\n       col = as.numeric(pdata$gender), pch = 19)"}, {"id": "14", "title": "Annotation 1", "subtitle": "Layout and annotation", "image": "/2026/08/08/R-plotting-notes-part-1/A82DCCA1-D6F4-4BC0-B9A7-AB6275DCCE8C.png", "alt": "Annotation 1", "code": "plot(1:5, 1:5, xlim = c(0, 6), ylim = c(0, 6), type = \"n\")\narrows(x0 = 1, y0 = 1, x1 = 4, y1 = 4)\n\nannotate(\"rect\", xmin = x1[2], xmax = x1[3], ymin = -0.16, ymax = -0.04,\n         alpha = .2, colour = \"black\")"}, {"id": "15", "title": "Annotation 2", "subtitle": "Layout and annotation", "image": "/2026/08/08/R-plotting-notes-part-1/1E49C900-3915-4602-8A45-507D9DA517FB.png", "alt": "Annotation 2", "code": "plot(1:5, 1:5, xlim = c(0, 6), ylim = c(0, 6), type = \"n\")\narrows(x0 = 1, y0 = 1, x1 = 4, y1 = 4)\n\nannotate(\"rect\", xmin = x1[2], xmax = x1[3], ymin = -0.16, ymax = -0.04,\n         alpha = .2, colour = \"black\")"}, {"id": "16", "title": "Composition 1", "subtitle": "Plot composition", "image": "/2026/08/08/R-plotting-notes-part-1/795FC6D4-F5F1-4880-9677-9361D6FD9AEB.webp", "alt": "Composition 1", "code": "library(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "17", "title": "Correlation 1", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/EA8B529A-D25D-4C66-B949-5FA4E1EB9988.png", "alt": "Correlation 1", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "18", "title": "Correlation 2", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/04739DA0-0583-4CE6-8FD0-9FC934DFE5D9.png", "alt": "Correlation 2", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "19", "title": "Correlation 3", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/E68B8419-7D49-4DBD-8DCE-094483872CF6.png", "alt": "Correlation 3", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "20", "title": "Correlation 4", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/15C3D728-428F-4339-BC7B-8B32A8D4FEB1.png", "alt": "Correlation 4", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "21", "title": "Correlation 5", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/519BB96E-F30E-4119-8FB6-59EA8E529294.png", "alt": "Correlation 5", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "22", "title": "Correlation 6", "subtitle": "Correlation and scatter-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/32F7BB03-1E3F-4073-B1A7-CEA7D0CBB449.png", "alt": "Correlation 6", "code": "ggplot(df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  theme(plot.title = element_text(hjust = 0.5))\n\nggplot(data, aes(x = gene, y = value, color = subtype)) +\n  geom_violin(width = 1, position = position_dodge(0.9))"}, {"id": "23", "title": "Genomic track 1", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/2BB53905-66C6-48C6-AB6C-EC4B2771E357.png", "alt": "Genomic track 1", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "24", "title": "Genomic track 2", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/5C8B30F2-E3C6-4B74-9961-0186830A69B2.png", "alt": "Genomic track 2", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "25", "title": "Genomic track 3", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/8DAFD102-C14F-48D2-8348-2FDEA2E47ACC.png", "alt": "Genomic track 3", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "26", "title": "Genomic track 4", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/761D21DE-336D-40BF-8213-0EDD8B2E1DDB.png", "alt": "Genomic track 4", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "27", "title": "Genomic track 5", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/BFADDD65-87F3-4A11-A66D-18011B1DBA68.png", "alt": "Genomic track 5", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "28", "title": "Genomic track 6", "subtitle": "Peak, CNV, and genomic-style plots", "image": "/2026/08/08/R-plotting-notes-part-2/D2A1E1CC-E91A-4EB0-82DC-29E6F8E17FFA.png", "alt": "Genomic track 6", "code": "ggplot(plot_df, aes(x = miR_expr, y = gene_expr)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  labs(y = \"CNV\", x = i, title = label) +\n  theme(plot.title = element_text(hjust = 0.5))"}, {"id": "29", "title": "Infographic 1", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F7727693-7496-4518-9F87-083CAD8F4AB9.png", "alt": "Infographic 1", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "30", "title": "Infographic 2", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F7E51B53-8860-4555-B3FE-A71DD06F08AD.png", "alt": "Infographic 2", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "31", "title": "Infographic 3", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/F2ECEA82-B9AF-4043-816B-FD7069D08F5C.png", "alt": "Infographic 3", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "32", "title": "Infographic 4", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/03F05377-984C-4F20-9CE3-31BEA9B2F825.png", "alt": "Infographic 4", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "33", "title": "Infographic 5", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/9B52A253-FDCF-44BF-A220-19261BD77BDA.png", "alt": "Infographic 5", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "34", "title": "Infographic 6", "subtitle": "Lollipop, odds ratio, donut, and facet plots", "image": "/2026/08/08/R-plotting-notes-part-2/14776163-2523-4A27-9F6F-5E7C5ED7F7F0.png", "alt": "Infographic 6", "code": "ggplot(lollipop_data, aes(x = x, y = value)) +\n  geom_segment(aes(x = x, xend = x, y = 0, yend = value), color = \"skyblue\") +\n  geom_point(aes(color = variable), size = 3, alpha = 0.8)\n\nggplot(barplot_data, aes(x = value - 1, y = sig.group, fill = variable)) +\n  geom_col(alpha = 0.8, position = \"dodge\")\n\nggplot(data, aes(ymax = ymax, ymin = ymin, xmax = 4, xmin = 3, fill = category)) +\n  geom_rect() +\n  coord_polar(theta = \"y\") +\n  theme_void()\n\np + ggforce::facet_row(vars(gene_group), scales = \"free\", space = \"free\")"}, {"id": "35", "title": "Circos 1", "subtitle": "Circos and composite figures", "image": "/2026/08/08/R-plotting-notes-part-2/FB48FE97-07CE-4359-9413-F16564D39B58.png", "alt": "Circos 1", "code": "circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {\n  circos.genomicLines(region, value, type = \"l\", col = col[i], ...)\n})\n\nlibrary(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "36", "title": "Circos 2", "subtitle": "Circos and composite figures", "image": "/2026/08/08/R-plotting-notes-part-2/D445F173-53E5-4525-8257-832035E3B300.png", "alt": "Circos 2", "code": "circos.genomicTrackPlotRegion(bed_list, panel.fun = function(region, value, ...) {\n  circos.genomicLines(region, value, type = \"l\", col = col[i], ...)\n})\n\nlibrary(cowplot)\nggdraw() +\n  draw_plot(p4, x = 0, y = 0, width = .9, height = .25) +\n  draw_plot(p1, x = 0, y = .25, width = 1, height = .25) +\n  draw_plot(p2, x = 0, y = .5, width = 1, height = .25) +\n  draw_plot(p3, x = 0, y = .75, width = 1, height = .25)"}, {"id": "37", "title": "Color shelf 1", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/BAB1F7B8-3D3D-45D8-8662-E0EA9DB85981.png", "alt": "Color shelf 1", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "38", "title": "Color shelf 2", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/B78ED818-1B51-4813-9DDA-5AF02272DE3C.png", "alt": "Color shelf 2", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "39", "title": "Color shelf 3", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/08D87F8D-A8D6-447F-8A83-B5170742C5F1.png", "alt": "Color shelf 3", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "40", "title": "Color shelf 4", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/C98DB5D5-F351-498F-BE4C-06EC68AAB2D9.png", "alt": "Color shelf 4", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "41", "title": "Color shelf 5", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/F9FE4B87-152F-4761-8266-35A4D816A9DA.png", "alt": "Color shelf 5", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "42", "title": "Color shelf 6", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/27A3B0CF-80BF-458C-BFF1-CC9B9983CE4E.png", "alt": "Color shelf 6", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "43", "title": "Color shelf 7", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/6E8E3670-BAFB-48BB-B7D9-3DA5BA1E25FE.png", "alt": "Color shelf 7", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}, {"id": "44", "title": "Color shelf 8", "subtitle": "Color reference shelf", "image": "/2026/08/08/R-plotting-notes-part-2/F47B527F-8C5B-41F0-8EE3-882003AADD95.png", "alt": "Color shelf 8", "code": "library(\"scales\")\nshow_col(mypal)\n\nmycolors <- brewer.pal(9, \"YlGnBu\")\nrev(colorRampPalette(brewer.pal(10, \"RdBu\"))(20))"}];
+    const params = new URLSearchParams(window.location.search);
+    const requestedId = params.get('id') || '01';
+    const plot = plots.find((item) => item.id === requestedId) || plots[0];
+
+    const title = document.getElementById('page-title');
+    const meta = document.getElementById('page-meta');
+    const image = document.getElementById('plot-image');
+    const heading = document.getElementById('plot-heading');
+    const subtitle = document.getElementById('plot-subtitle');
+    const code = document.getElementById('plot-code');
+    const notice = document.getElementById('plot-notice');
+
+    if (plot) {
+      document.title = `${plot.title} | R Archive`;
+      title.textContent = plot.title;
+      meta.textContent = `Figure ${plot.id} · code below`;
+      image.src = `../assets/${plot.image.split('/').pop()}`;
+      image.alt = plot.alt;
+      heading.textContent = plot.title;
+      subtitle.textContent = plot.subtitle || '';
+      code.textContent = plot.code || '';
+      notice.textContent = 'The image is shown first, followed by the matching notebook code.';
+    } else {
+      document.title = 'R Archive | Plot not found';
+      title.textContent = 'Plot not found';
+      meta.textContent = '';
+      notice.textContent = 'No plot data was available.';
+    }
+  </script>
+</body>
+</html>

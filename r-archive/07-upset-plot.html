@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Upset plot from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Upset plot from the exported Notion notes." />
   <title>Upset plot | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,17 +26,17 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/07-upset-plot.htmlnotion-export/Used%20codes/Upset%20plot/image.png" alt="Upset plot cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Upset%20plot/image.png" alt="Upset plot cover" loading="lazy" /></figure>
       <article class="content"><h1>Upset plot</h1>
 <h3>Make plot for the DEGs in all celltypes in single-cell study</h3>
-<figure class="figure"><img src="/r-archive/07-upset-plot.htmlnotion-export/Used%20codes/Upset%20plot/image.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Upset%20plot/image.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <pre><code class="language-r">library(ComplexHeatmap)
 ## plot for foldchange of 0.3
 m = make_comb_mat(DEG_ls)
 options(repr.plot.width = 18, repr.plot.height = 5, repr.plot.res = 300)
 ## only plot the sets that have more than 10 elements
 UpSet(m[set_size(m)&gt;10],comb_order = order(comb_size(m[set_size(m)&gt;10]),decreasing = TRUE))</code></pre>
-<figure class="figure"><img src="/r-archive/07-upset-plot.htmlnotion-export/Used%20codes/Upset%20plot/image%201.png" alt="image.png" loading="lazy"><figcaption>image.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Upset%20plot/image%201.png" alt="image.png" loading="lazy" /><figcaption>image.png</figcaption></figure>
 <pre><code class="language-r">target_gene_ls = list(C1=gene_Csites_count$Target[gene_Csites_count$n1&gt;0],
     C2=gene_Csites_count$Target[gene_Csites_count$n2&gt;0],
     C3=gene_Csites_count$Target[gene_Csites_count$n3&gt;0],
@@ -56,11 +59,11 @@ ht = UpSet(m,set_order = c(1,2,3,4),
 options(repr.plot.width = 8, repr.plot.height = 4)
 ht = draw(ht)
 od = column_order(ht)
-decorate_annotation(&quot;Genre Intersections&quot;, &#123;
+decorate_annotation(&quot;Genre Intersections&quot;, {
     grid.text(cs[od], x = seq_along(cs), y = unit(cs[od], &quot;native&quot;) + unit(2, &quot;pt&quot;), 
         default.units = &quot;native&quot;, just = c(&quot;left&quot;, &quot;bottom&quot;), 
         gp = gpar(fontsize = 8, col = &quot;#404040&quot;), rot = 30)
-&#125;)</code></pre></article>
+})</code></pre></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

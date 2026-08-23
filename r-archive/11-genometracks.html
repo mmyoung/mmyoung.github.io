@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Genometracks from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Genometracks from the exported Notion notes." />
   <title>Genometracks | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,7 +26,7 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Genometracks cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Genometracks cover" loading="lazy" /></figure>
       <article class="content"><h1>Genometracks</h1>
 <p>Make genomic tracks for pseudobulk data starting from pooled single cell bam files</p>
 <p>1. Split single-cell bam according to the barcode</p>
@@ -37,11 +40,11 @@ mkdir $out_bam_dir/iso-F-04
 cd $out_bam_dir/iso-F-04
 
 cat $barcode_file | parallel --jobs 8 --colsep &#39;\t&#39; &#39;
-    barcode=&#123;&#125;
-    tmp_file=&quot;tmp_$&#123;barcode&#125;.tsv&quot;
+    barcode={}
+    tmp_file=&quot;tmp_${barcode}.tsv&quot;
     echo &quot;$barcode&quot; &gt; &quot;$tmp_file&quot;
 
-    output_bam=$&#123;barcode&#125;.bam
+    output_bam=${barcode}.bam
 
     # Check if output BAM file already exists
     if [ ! -f &quot;$output_bam&quot; ]; then
@@ -65,9 +68,9 @@ use IPC::Open2;
 ## This script is to split the mreged bam file into single cell files based on the CB field in the bam files
 
 # Check for correct usage
-if (@ARGV &lt; 1) &#123;
+if (@ARGV &lt; 1) {
     die &quot;Usage: perl split_bam_by_barcode.pl &lt;input.bam&gt;\n&quot;;
-&#125;
+}
 
 # Input BAM file
 my $input_bam = $ARGV[0];
@@ -79,52 +82,52 @@ my %barcode_tempfiles;
 open my $sam_in, &quot;-|&quot;, &quot;samtools view -h $input_bam&quot; or die &quot;Cannot open BAM file: $!&quot;;
 
 # Process each line in the BAM file
-while (my $line = &lt;$sam_in&gt;) &#123;
+while (my $line = &lt;$sam_in&gt;) {
     chomp $line;
 
     # If it&#39;s a header line, we need to save it to add to each output BAM file later
-    if ($line =~ /^\@/) &#123;
-        foreach my $fh (values %barcode_tempfiles) &#123;
+    if ($line =~ /^\@/) {
+        foreach my $fh (values %barcode_tempfiles) {
             print $fh &quot;$line\n&quot;;
-        &#125;
+        }
         next;
-    &#125;
+    }
 
     # Parse the cell barcode (CB tag) from the read line
-    if ($line =~ /CB:Z:(\S+)/) &#123;
+    if ($line =~ /CB:Z:(\S+)/) {
         my $barcode = $1;
 
         # Create a new temporary file for each unique barcode, if not already present
-        if (!exists $barcode_tempfiles&#123;$barcode&#125;) &#123;
+        if (!exists $barcode_tempfiles{$barcode}) {
             my ($temp_fh, $temp_filename) = tempfile();
-            $barcode_tempfiles&#123;$barcode&#125; = $temp_fh;
+            $barcode_tempfiles{$barcode} = $temp_fh;
             print $temp_fh &quot;$line\n&quot;;
-        &#125; else &#123;
+        } else {
             # Write the read line to the respective barcode&#39;s temporary file
-            my $temp_fh = $barcode_tempfiles&#123;$barcode&#125;;
+            my $temp_fh = $barcode_tempfiles{$barcode};
             print $temp_fh &quot;$line\n&quot;;
-        &#125;
-    &#125;
-&#125;
+        }
+    }
+}
 
 # Close the input BAM file handle
 close $sam_in;
 
 # Write each temporary file to a BAM file with Samtools
-foreach my $barcode (keys %barcode_tempfiles) &#123;
-    my $temp_fh = $barcode_tempfiles&#123;$barcode&#125;;
+foreach my $barcode (keys %barcode_tempfiles) {
+    my $temp_fh = $barcode_tempfiles{$barcode};
     close $temp_fh;
 
     # Convert each temporary file to BAM and save it as &lt;barcode&gt;.bam
-    my $pid = open2(my $out, my $in, &quot;samtools view -Sb -o $&#123;barcode&#125;.bam -&quot;);
+    my $pid = open2(my $out, my $in, &quot;samtools view -Sb -o ${barcode}.bam -&quot;);
     open my $tempfile_in, &quot;&lt;&quot;, $temp_fh-&gt;filename or die &quot;Cannot open temporary file: $!&quot;;
-    while (my $line = &lt;$tempfile_in&gt;) &#123;
+    while (my $line = &lt;$tempfile_in&gt;) {
         print $in $line;
-    &#125;
+    }
     close $tempfile_in;
     close $in;
     close $out;
-&#125;
+}
 
 print &quot;BAM files split by cell barcode completed.\n&quot;;</code></pre>
 <p>1. To gather the single-cell .bam files to the same folder annotated as the same cell type (not necessarily move to same folder, create softlink works)</p>
@@ -151,14 +154,14 @@ while IFS=$&#39;\t&#39; read -r cell_id sample_name cell_type; do
     fi
 
     # Define the directory path for each cell type in each sample
-    target_directory=&quot;$&#123;sample_name&#125;/$&#123;cell_type&#125;&quot;
+    target_directory=&quot;${sample_name}/${cell_type}&quot;
 
     # Create the target directory if it doesn&#39;t exist
     mkdir -p &quot;$target_directory&quot;
 
     # Define the source BAM file and target soft link path
-    source_bam=&quot;$&#123;bam_directory&#125;/$&#123;cell_id&#125;.bam&quot;
-    target_link=&quot;$&#123;target_directory&#125;/$&#123;cell_id&#125;.bam&quot;
+    source_bam=&quot;${bam_directory}/${cell_id}.bam&quot;
+    target_link=&quot;${target_directory}/${cell_id}.bam&quot;
 
     # Check if the BAM file exists before creating the link
     if [ -f &quot;$source_bam&quot; ]; then
@@ -178,11 +181,11 @@ cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_
 for target_sample in iso-F-22 iso-F-35 iso-M-00 iso-M-23 iso-M-40 soc-F-05 soc-F-24 soc-F-36 soc-M-01 soc-M-25 soc-M-41
 
 do
-    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/$&#123;target_sample&#125;
+    source_bam_dir=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/single_cell_bam/${target_sample}
 
-    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; $&#123;target_sample&#125;.meta
+    awk -v sample=$target_sample &#39;$2==sample&#39; $cellID &gt; ${target_sample}.meta
 
-    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh $&#123;target_sample&#125;.meta $source_bam_dir
+    /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/src/gather_bam_files.sh ${target_sample}.meta $source_bam_dir
 
 done</code></pre>
 <p>1. Merge the .bam files together for each cell type in each sample</p>
@@ -196,19 +199,19 @@ do
     for j in `ls /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/soc-M-41`
     do
         
-        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/$&#123;i&#125;/$&#123;j&#125;
+        BAM_DIR=/project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/sample_celltype_gather_bam/${i}/${j}
         if [ -d $BAM_DIR ]; then
 
-            find $BAM_DIR -name &#39;*.bam&#39; | &#123;
+            find $BAM_DIR -name &#39;*.bam&#39; | {
             read firstbam
             samtools view -h &quot;$firstbam&quot;
             while read bam; do
                 samtools view &quot;$bam&quot;
             done
-            &#125; | samtools view -ubS - | samtools sort -@ 8 -o $&#123;i&#125;-$&#123;j&#125;.bam -
-            samtools index $&#123;i&#125;-$&#123;j&#125;.bam
+            } | samtools view -ubS - | samtools sort -@ 8 -o ${i}-${j}.bam -
+            samtools index ${i}-${j}.bam
 
-            samtools view $&#123;i&#125;-$&#123;j&#125;.bam|wc -l
+            samtools view ${i}-${j}.bam|wc -l
 
         fi
 
@@ -218,10 +221,10 @@ done</code></pre>
 <p>1. Make .bigwig from the merged .bam file</p>
 <pre><code class="language-powershell">mkdir /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/bigwigs_RPGC_normalize
 cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/bigwigs_RPGC_normalize
-for i in `ls $&#123;bam_dir&#125;/*.bam`
+for i in `ls ${bam_dir}/*.bam`
 do
-    BaseName=`basename -s &quot;.bam&quot; $&#123;i&#125;`
-    bamCoverage -b $&#123;i&#125; -o $&#123;BaseName&#125;.bw --normalizeUsing RPGC --effectiveGenomeSize 2647915728
+    BaseName=`basename -s &quot;.bam&quot; ${i}`
+    bamCoverage -b ${i} -o ${BaseName}.bw --normalizeUsing RPGC --effectiveGenomeSize 2647915728
 done</code></pre>
 <p>1. make Genome tracks with pygenometrack</p>
 <p><a href="Genometracks/ASC_track.ini" target="_blank" rel="noreferrer">ASC_track.ini</a></p>
@@ -229,12 +232,12 @@ done</code></pre>
 <pre><code class="language-powershell">#!/bin/bash
 
 cd /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig
-awk -F &quot;\t&quot; &#39;BEGIN&#123;OFS=&quot;\t&quot;&#125;&#123;print $8,$9,$10,$7,$6,$11,$2&#125;&#39; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/isoVSsoc_DEG_total_list.txt|sed &quot;1d&quot; |sed s/\\//&quot;&quot;/g|sed s/&quot; &quot;/&quot;&quot;/g &gt;iso_soc_DEG_bed_for_pygenometrack.bed
+awk -F &quot;\t&quot; &#39;BEGIN{OFS=&quot;\t&quot;}{print $8,$9,$10,$7,$6,$11,$2}&#39; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/isoVSsoc_DEG_total_list.txt|sed &quot;1d&quot; |sed s/\\//&quot;&quot;/g|sed s/&quot; &quot;/&quot;&quot;/g &gt;iso_soc_DEG_bed_for_pygenometrack.bed
 
 while read chr start end gene celltype strand fc ;do
-    pyGenomeTracks --tracks ./iso_soc_DEG_normalized_track_plot/$&#123;celltype&#125;_track.ini --region $chr:$start-$(($end+1)) -o ./iso_soc_DEG_normalized_track_plot/plots/$&#123;celltype&#125;_$&#123;gene&#125;.png --title $&#123;celltype&#125;&quot; isoVSsoc logFC: &quot;$&#123;fc&#125;
+    pyGenomeTracks --tracks ./iso_soc_DEG_normalized_track_plot/${celltype}_track.ini --region $chr:$start-$(($end+1)) -o ./iso_soc_DEG_normalized_track_plot/plots/${celltype}_${gene}.png --title ${celltype}&quot; isoVSsoc logFC: &quot;${fc}
 done &lt; /project/zhuzhuzhang/lyang/scaleBio_RNA_rat_brain/out_mRatBN/make_pseudobulk_bigwig/iso_soc_DEG_bed_for_pygenometrack.bed</code></pre>
-<figure class="figure"><img src="/r-archive/11-genometracks.htmlnotion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Screenshot 2026-08-22 at 9.01.42 PM.png" loading="lazy"><figcaption>Screenshot 2026-08-22 at 9.01.42 PM.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Genometracks/Screenshot_2026-08-22_at_9.01.42_PM.png" alt="Screenshot 2026-08-22 at 9.01.42 PM.png" loading="lazy" /><figcaption>Screenshot 2026-08-22 at 9.01.42 PM.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Data manipulation in R from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Data manipulation in R from the exported Notion notes." />
   <title>Data manipulation in R | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -35,7 +38,7 @@ res2 &lt;- combined_fc %&gt;%
     rcorr()
     
 ## a function to organize the data
-flattenCorrMatrix &lt;- function(cormat, pmat) &#123;
+flattenCorrMatrix &lt;- function(cormat, pmat) {
   ut &lt;- upper.tri(cormat)
   data.frame(
     row = rownames(cormat)[row(cormat)[ut]],
@@ -43,7 +46,7 @@ flattenCorrMatrix &lt;- function(cormat, pmat) &#123;
     cor  =(cormat)[ut],
     p = pmat[ut]
     )
-&#125;
+}
 
 flattenCorrMatrix(res2$r, res2$P)
 

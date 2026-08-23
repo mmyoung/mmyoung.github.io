@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ssGSEA from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ssGSEA from the exported Notion notes." />
   <title>ssGSEA | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -27,20 +30,20 @@
       <article class="content"><h1>ssGSEA</h1>
 <p>ref: <a href="https://rpubs.com/pranali018/SSGSEA" target="_blank" rel="noreferrer">https://rpubs.com/pranali018/SSGSEA</a></p>
 <p>function:</p>
-<pre><code class="language-r">ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) &#123;
+<pre><code class="language-r">ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
     row_names = rownames(X)
     num_genes = nrow(X)
-    gene_sets = lapply(gene_sets, function(genes) &#123;which(row_names %in% genes)&#125;)
+    gene_sets = lapply(gene_sets, function(genes) {which(row_names %in% genes)})
 
     # Ranks for genes
     R = matrixStats::colRanks(X, preserveShape = T, ties.method = &#39;average&#39;)
 
     # Calculate enrichment score (es) for each sample (column)
-    es = apply(R, 2, function(R_col) &#123;
+    es = apply(R, 2, function(R_col) {
         gene_ranks = order(R_col, decreasing = TRUE)
 
         # Calc es for each gene set
-        es_sample = sapply(gene_sets, function(gene_set_idx) &#123;
+        es_sample = sapply(gene_sets, function(gene_set_idx) {
             # pos: match (within the gene set)
             # neg: non-match (outside the gene set)
             indicator_pos = gene_ranks %in% gene_set_idx
@@ -57,14 +60,14 @@
             if (scale) step_cdf_diff = step_cdf_diff / num_genes
 
             # Use ssGSEA or not
-            if (single) &#123;
+            if (single) {
                 sum(step_cdf_diff)
-            &#125; else &#123;
+            } else {
                 step_cdf_diff[which.max(abs(step_cdf_diff))]
-            &#125;
-        &#125;)
+            }
+        })
         unlist(es_sample)
-    &#125;)
+    })
 
     if (length(gene_sets) == 1) es = matrix(es, nrow = 1)
 
@@ -75,7 +78,7 @@
     rownames(es) = names(gene_sets)
     colnames(es) = colnames(X)
     return(es)
-&#125;</code></pre>
+}</code></pre>
 <pre><code class="language-r">res &lt;- ssgsea(as.matrix(expr_df), TF_pos_targets_ls, scale = TRUE, norm = FALSE)</code></pre></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>

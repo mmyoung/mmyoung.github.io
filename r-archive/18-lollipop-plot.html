@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="lollipop plot from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="lollipop plot from the exported Notion notes." />
   <title>lollipop plot | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,7 +26,7 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/18-lollipop-plot.htmlnotion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="lollipop plot cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="lollipop plot cover" loading="lazy" /></figure>
       <article class="content"><h1>lollipop plot</h1>
 <pre><code class="language-r"># Library
 library(tidyverse)
@@ -51,12 +54,12 @@ ggplot(data) +
   ) +
   xlab(&quot;&quot;) +
   ylab(&quot;Value of Y&quot;)</code></pre>
-<figure class="figure"><img src="/r-archive/18-lollipop-plot.htmlnotion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" loading="lazy"><figcaption>E8599C96-2DC1-41F7-AB3A-8E897D419B99.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot/E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" alt="E8599C96-2DC1-41F7-AB3A-8E897D419B99.png" loading="lazy" /><figcaption>E8599C96-2DC1-41F7-AB3A-8E897D419B99.png</figcaption></figure>
 <pre><code class="language-r">library(reshape2)
 CIMP_num_in_sig&lt;-
   data.frame(unclass(table(Full_CGI_anno$signal_group,Full_CGI_anno$group)))
 CIMP_num_in_sig$CGIs &lt;- rowSums(CIMP_num_in_sig)
-lollipop_data&lt;- apply(CIMP_num_in_sig,2,function(x)&#123;x/sum(x)&#125;) %&gt;%
+lollipop_data&lt;- apply(CIMP_num_in_sig,2,function(x){x/sum(x)}) %&gt;%
   as.data.frame() %&gt;%
   mutate(sig.group=row.names(.)) %&gt;%
   select(sig.group,A_CIMP,IDH_CIMP,CGIs) %&gt;%
@@ -81,7 +84,7 @@ p&lt;-
     plot.margin = unit(c(1,1,1,1), &quot;cm&quot;)
   ) +
   xlab(&quot;&quot;)</code></pre>
-<figure class="figure"><img src="/r-archive/18-lollipop-plot.htmlnotion-export/Used%20codes/lollipop%20plot/0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png" alt="0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png" loading="lazy"><figcaption>0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/lollipop%20plot/0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png" alt="0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png" loading="lazy" /><figcaption>0AF0056A-7908-4ACF-A630-7CD33DF9A47F.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>

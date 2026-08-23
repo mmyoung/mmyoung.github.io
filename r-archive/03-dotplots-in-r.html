@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dotplots in R from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dotplots in R from the exported Notion notes." />
   <title>Dotplots in R | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,12 +26,12 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Dotplots in R cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Dotplots in R cover" loading="lazy" /></figure>
       <article class="content"><h1>Dotplots in R</h1>
 <h3>Volcano plots with annotation in the coordinate system, example is based on edgeR results</h3>
-<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Screenshot 2024-05-24 at 10.26.38 PM.png" loading="lazy"><figcaption>Screenshot 2024-05-24 at 10.26.38 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-05-24_at_10.26.38_PM.png" alt="Screenshot 2024-05-24 at 10.26.38 PM.png" loading="lazy" /><figcaption>Screenshot 2024-05-24 at 10.26.38 PM.png</figcaption></figure>
 <pre><code class="language-r">edger_volcanoplot&lt;- 
-function(edger_res,title)&#123;
+function(edger_res,title){
   p &lt;-
     ggplot(data=edger_res$table, aes(x=logFC, y =-log10(PValue)))+
      geom_point(data=subset(edger_res$table,edger_res$table$PValue&gt;0.05 | abs(edger_res$table$logFC)&lt;1),color=&quot;#828C8C&quot;)+    
@@ -57,11 +60,11 @@ function(edger_res,title)&#123;
   
     ggsave(filename=paste0(title,&quot;.pdf&quot;),p,
            width = 4,height = 5)
-&#125;
+}
 
 edger_volcanoplot(et13,title = &quot;M3 vs M1&quot;)</code></pre>
 <h3>facet with different groups and add p values in each plot</h3>
-<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-07-24_at_1.18.59_PM.png" alt="Screenshot 2024-07-24 at 1.18.59 PM.png" loading="lazy"><figcaption>Screenshot 2024-07-24 at 1.18.59 PM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-07-24_at_1.18.59_PM.png" alt="Screenshot 2024-07-24 at 1.18.59 PM.png" loading="lazy" /><figcaption>Screenshot 2024-07-24 at 1.18.59 PM.png</figcaption></figure>
 <pre><code class="language-r">library(tidyr)
 library(dplyr)
 summ &lt;-
@@ -92,7 +95,7 @@ scale_y_continuous(name=&quot;proportion of DAPpeak overlap with markers/bg&quot
 theme(strip.text = element_text(size = 12))) %&gt;%
 ggsave(filename=&quot;/Volumes/project/gzy8899/lyang/Abrabidopsis/multiDAPseq_explore/analysis/tf_tss_distance_vs_enrichment_dotplot.pdf&quot;,width=10,height = 8)</code></pre>
 <p>Advanced, add a second y axis</p>
-<figure class="figure"><img src="/r-archive/03-dotplots-in-r.htmlnotion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png" alt="Screenshot 2024-12-05 at 10.40.01 AM.png" loading="lazy"><figcaption>Screenshot 2024-12-05 at 10.40.01 AM.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Dotplots%20in%20R/Screenshot_2024-12-05_at_10.40.01_AM.png" alt="Screenshot 2024-12-05 at 10.40.01 AM.png" loading="lazy" /><figcaption>Screenshot 2024-12-05 at 10.40.01 AM.png</figcaption></figure>
 <pre><code class="language-bash">## to add the histone mark distribution into the dotplot
 mark_distribution &lt;-
 data.frame(pos=unlist(epi_tss_distri[c(1,3,5,7,9,11,13,15,17,19)]),

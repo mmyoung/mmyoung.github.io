@@ -1,11 +1,14 @@
+---
+layout: false
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Boxplot from the exported Notion notes.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Boxplot from the exported Notion notes." />
   <title>Boxplot | R archive</title>
-  <link rel="stylesheet" href="archive.css">
+  <link rel="stylesheet" href="archive.css" />
 </head>
 <body class="detail-page">
   <header class="topbar container">
@@ -23,16 +26,16 @@
 
   <main class="container page-main">
     <section class="panel detail-panel">
-      <figure class="hero-figure"><img src="/r-archive/15-boxplot.htmlnotion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="Boxplot cover" loading="lazy"></figure>
+      <figure class="hero-figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="Boxplot cover" loading="lazy" /></figure>
       <article class="content"><h1>Boxplot</h1>
 <pre><code class="language-r">library(ggplot2)
 library(reshape2)
 setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
 TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
 t_TPM &lt;- as.data.frame(t(TPM))
-for (i in colnames(t_TPM)[-1])&#123;
+for (i in colnames(t_TPM)[-1]){
   t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
-&#125;
+}
 t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;))
 melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
 p&lt;-ggplot(melted_TPM,aes(x=factor(Sample),y=value,fill=variable))+
@@ -50,16 +53,16 @@ p&lt;-ggplot(melted_TPM,aes(x=factor(Sample),y=value,fill=variable))+
   ylim(0,6)
 ggsave(p,file=paste(&quot;merge_boxplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
 ggsave(p,file=paste(&quot;merge_boxplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
-<figure class="figure"><img src="/r-archive/15-boxplot.htmlnotion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="merge_boxplot_vital_gene.png" loading="lazy"><figcaption>merge_boxplot_vital_gene.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_boxplot_vital_gene.png" alt="merge_boxplot_vital_gene.png" loading="lazy" /><figcaption>merge_boxplot_vital_gene.png</figcaption></figure>
 <pre><code class="language-r">library(ggplot2)
 library(reshape2)
 library(Rmisc)
 setwd(&quot;D:/课题和课题数据及代码/WXZ_YBX2/public_scRNA-seq&quot;)
 TPM&lt;-read.table(&quot;vital_gene.tpm&quot;,row.names=1,stringsAsFactors = F)
 t_TPM &lt;- as.data.frame(t(TPM))
-for (i in colnames(t_TPM)[-1])&#123;
+for (i in colnames(t_TPM)[-1]){
   t_TPM[,i] &lt;- as.numeric(as.character(t_TPM[,i]))
-&#125;
+}
 t_TPM$Sample&lt;-factor(t_TPM$Sample,levels=rev(c(&quot;A1&quot;, &quot;In&quot;, &quot;BS&quot;, &quot;BG2&quot;, &quot;G1&quot;, &quot;ePL&quot;, &quot;mPL&quot;, &quot;IPL&quot;, &quot;L&quot;, &quot;Z&quot;, &quot;eP&quot;, &quot;mP&quot;, &quot;IP&quot;, &quot;D&quot;, &quot;MI&quot;, &quot;MII&quot;, &quot;RS2&quot;, &quot;RS4&quot;, &quot;RS6&quot;, &quot;RS8&quot;)))
 melted_TPM &lt;- melt(t_TPM,id.vars=c(&quot;Sample&quot;))
 # 获取各个基因表达量的平均值
@@ -90,7 +93,7 @@ p&lt;-ggplot(df_stat,aes(x=Group, y=mean, fill=gene))+
   theme(panel.background = element_blank(),panel.border = element_rect(color=&quot;Black&quot;,fill=NA,size=2))
 ggsave(p,file=paste(&quot;merge_barplot.pdf&quot;,sep=&quot;&quot;),height=10,width=25)
 ggsave(p,file=paste(&quot;merge_barplot.png&quot;,sep=&quot;&quot;),height=10,width=25)</code></pre>
-<figure class="figure"><img src="/r-archive/15-boxplot.htmlnotion-export/Used%20codes/Boxplot/merge_barplot_vital_gene.png" alt="merge_barplot_vital_gene.png" loading="lazy"><figcaption>merge_barplot_vital_gene.png</figcaption></figure>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/merge_barplot_vital_gene.png" alt="merge_barplot_vital_gene.png" loading="lazy" /><figcaption>merge_barplot_vital_gene.png</figcaption></figure>
 <pre><code class="language-r">p &lt;-
 ggplot(PRC_expr,aes(x=gene,y=value,fill=subtype))+
   geom_violin(width=1,position = position_dodge(0.9)) +
@@ -107,7 +110,7 @@ ggplot(PRC_expr,aes(x=gene,y=value,fill=subtype))+
                  axis.text.x = element_text(size = 9,colour = &quot;black&quot;,
                                             vjust = 0.5,hjust = 0.5))
 p + ggforce::facet_row(vars(gene_group), scales = &#39;free&#39;, space = &#39;free&#39;)</code></pre>
-<figure class="figure"><img src="/r-archive/15-boxplot.htmlnotion-export/Used%20codes/Boxplot/FF5B7001-A1D0-49C8-B923-B488A94CEA72.png" alt="FF5B7001-A1D0-49C8-B923-B488A94CEA72.png" loading="lazy"><figcaption>FF5B7001-A1D0-49C8-B923-B488A94CEA72.png</figcaption></figure></article>
+<figure class="figure"><img src="https://mmyoung.github.io/assets/notion-export/Used%20codes/Boxplot/FF5B7001-A1D0-49C8-B923-B488A94CEA72.png" alt="FF5B7001-A1D0-49C8-B923-B488A94CEA72.png" loading="lazy" /><figcaption>FF5B7001-A1D0-49C8-B923-B488A94CEA72.png</figcaption></figure></article>
       <div class="actions">
         <a class="button" href="./">Back to archive</a>
         <a class="button" href="../">Home</a>
